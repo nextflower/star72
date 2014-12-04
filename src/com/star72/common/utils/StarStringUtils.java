@@ -1,5 +1,8 @@
 package com.star72.common.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 用于字符串相关操作的工具类
  * 
@@ -39,6 +42,24 @@ public class StarStringUtils {
 		/** 删除普通标签  */
 		s = s.replaceAll("//|\\|:|/*|\"|<|>||", "");
 		return s;
+	}
+	
+	/**
+	 * 将字符串分解成为单个的字符串列表：
+	 * 例如：abc==>a,b,c
+	 * @param source
+	 * @return
+	 */
+	public static List<String> parseStr2SingleStrList(String source) {
+		if(source == null) {
+			return new ArrayList<String>();
+		}
+		List<String> result = new ArrayList<String>();
+		char[] charArray = source.toCharArray();
+		for(char ch : charArray) {
+			result.add(new String(new char[]{ch}));
+		}
+		return result;
 	}
 
 }

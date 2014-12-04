@@ -16,7 +16,12 @@ public class AdminAct {
 	
 	@RequestMapping("/login.do")
 	public String login(HttpServletRequest request) {
-		return "login";
+		boolean logined = true;
+		if(logined) {
+			return "login";
+		} else {
+			return "login";
+		}
 	}
 
 }

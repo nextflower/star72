@@ -27,6 +27,63 @@ public class DicReader {
 	
 	private DicReader() {}
 	
+	public static Map<String, String> getSancai_ji() {
+		String dicPath = "com/star72/naming/dic/sancai.txt";
+		Map<String, String> result = new HashMap<String, String>();
+		List<String> lines = readLines(dicPath);
+		for(String line : lines) {
+			String[] split = line.split(":");
+			if(split.length == 2) {
+				String shuxingStr = split[0];
+				String description = split[1];
+				String[] shuxingArr = shuxingStr.split("_");
+				String sancai = shuxingArr[0];
+				result.put(sancai, description);
+			}
+		}
+		return result;
+	}
+	
+	public static Map<Integer, String> getWugeShuli_ji() {
+		String dicPath = "com/star72/naming/dic/shuli81.txt";
+		Map<Integer, String> result = new HashMap<Integer, String>();
+		List<String> lines = readLines(dicPath);
+		for(String line : lines) {
+			String[] split = line.split(":");
+			if(split.length == 2) {
+				Integer shuzi = Integer.parseInt(split[0]);
+				String description = split[1];
+				result.put(shuzi, description);
+			}
+		}
+		return result;
+	}
+	
+	public static Map<String, Integer> getHanziBihua() {
+		String dicPath = "com/star72/naming/dic/wuxingbihua_quan.txt";
+		Map<String, Integer> result = new HashMap<String, Integer>();
+		List<String> lines = readLines(dicPath);
+		for(String line : lines) {
+			String[] split = line.split(":");
+			if(split.length == 2) {
+				//木_3:巾 久 
+				String wuxingbihua = split[0];
+				String hansiStr = split[1];
+				
+				String[] split2 = wuxingbihua.split("_");
+				Integer bihua = null;
+				if(split2.length == 2) {
+					bihua = Integer.parseInt(split2[1]);
+				}
+				List<String> hanziList = StarStringUtils.parseStr2SingleStrList(hansiStr);
+				for(String hanzi : hanziList) {
+					result.put(hanzi, bihua);
+				}
+			}
+		}
+		return result;
+	}
+	
 	public static Map<String, Set<String>> getWuxingHanzi() {
 		String dicPath = "com/star72/naming/dic/wuxingbihua_shiyi_ji.txt";
 		Map<String, Set<String>> result = new HashMap<String, Set<String>>();

@@ -13,6 +13,7 @@ import com.star72.naming.dicreader.DicReader;
 import com.star72.naming.entity.CharBean;
 import com.star72.naming.entity.CharLib;
 import com.star72.naming.entity.NameBean;
+import com.star72.naming.utils.WugeSancaiUtils;
 
 /**
  * 名字创建器
@@ -50,10 +51,46 @@ public class PersonNameCreator {
 		result = filterByXishen(result, xishen);
 		System.out.println("filterByXishen：" + result.size());
 		
+		result = filterByWugeSancai(result);
+		System.out.println("filterByWugeSancai：" + result.size());
+		
+		
 		return result;
 	}
 
 	
+	private List<NameBean> filterByWugeSancai(List<NameBean> list) {
+		Map<String, Integer> hanziBihua = DicReader.getHanziBihua();
+		List<NameBean> result = new ArrayList<NameBean>();
+		
+		Map<Integer, String> wugeShuli_ji = DicReader.getWugeShuli_ji();
+		Map<String, String> sancai_ji = DicReader.getSancai_ji();
+		
+		for(NameBean nb : list) {
+			
+			//计算各种格
+			WugeSancaiUtils.computeWuge(nb, hanziBihua);
+			
+			if(nb.hasRightGe()) {
+				//各种格过滤
+				if(WugeSancaiUtils.validateWuge(nb, wugeShuli_ji)) {
+					
+					//计算三才
+					String sancai = WugeSancaiUtils.computeSancai(nb);
+					
+					//三才过滤
+					String description = sancai_ji.get(sancai);
+					if(description != null) {
+						result.add(nb);
+					}
+					
+				}
+			}
+			
+		}
+		return result;
+	}
+
 	/**
 	 * 通过xishen筛选
 	 * @param cbList

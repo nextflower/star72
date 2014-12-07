@@ -25,6 +25,49 @@ public class PersonNameCreator {
 	
 	public PersonNameCreator(){}
 	
+	public String print(String xing, String ming, String xishen, String shengxiao) {
+		
+		StringBuffer sb = new StringBuffer();
+		NameBean nb = new NameBean();
+		nb.setXing(xing);
+		nb.setMing(ming);
+		
+		Map<String, Integer> hanziBihua = DicReader.getHanziBihua();
+		Map<String, String> sancai_ji = DicReader.getSancai_ji();
+		Map<Integer, String> wugeShuli_ji = DicReader.getWugeShuli_ji();
+		Map<String, String> wuxingBihua_shiyi = DicReader.getWuxingBihua_shiyi();
+		
+		//计算各种格
+		WugeSancaiUtils.computeWuge(nb, hanziBihua);
+				
+		//计算三才
+		String sancai = WugeSancaiUtils.computeSancai(nb);
+		
+		//三才过滤
+		String description = sancai_ji.get(sancai);
+		
+		sb.append(nb.getXing() + nb.getMing());
+		sb.append("\r\n");
+		sb.append("三才五格解析：天格" + nb.getGe_tian() + "，地格" + nb.getGe_di() 
+				+ "，人格" + nb.getGe_ren() + "，外格" + nb.getGe_wai() + "，总格" + nb.getGe_zong() + "。");
+		sb.append("三才配置：" + sancai + "。");
+		sb.append("\r\n");
+		sb.append("\t" + "天格" + nb.getGe_tian() + "：" + wugeShuli_ji.get(nb.getGe_tian()) + "\r\n");
+		sb.append("\t" + "地格" + nb.getGe_di() + "：" + wugeShuli_ji.get(nb.getGe_di()) + "\r\n");
+		sb.append("\t" + "人格" + nb.getGe_ren() + "：" + wugeShuli_ji.get(nb.getGe_ren()) + "\r\n");
+		sb.append("\t" + "外格" + nb.getGe_wai() + "：" + wugeShuli_ji.get(nb.getGe_wai()) + "\r\n");
+		sb.append("\t" + "总格" + nb.getGe_zong() + "：" + wugeShuli_ji.get(nb.getGe_zong()) + "\r\n");
+		sb.append("\t" + "三才(天人地) 【" + sancai + "】：" + description + "\r\n");
+		
+		sb.append("单字说明：\r\n");
+		List<String> mingList = StarStringUtils.parseStr2SingleStrList(ming);
+		for(String m : mingList) {
+			sb.append("\t" + m + "：" + wuxingBihua_shiyi.get(m) + "\r\n");
+		}
+		
+		return sb.toString();
+	}
+	
 	/**
 	 * 
 	 * @param lib 字库
@@ -224,6 +267,7 @@ public class PersonNameCreator {
 				result.add(nb);
 			}
 		} else {
+			int count = 0;
 			for(CharBean cb1 : cbList) {
 				for(CharBean cb2 : cbList) {
 					//不需要叠字
@@ -235,6 +279,7 @@ public class PersonNameCreator {
 					NameBean nb = new NameBean();
 					nb.setXing(xing);
 					nb.setMing(cb1.getName().concat(cb2.getName()));
+					
 					result.add(nb);
 				}
 			}

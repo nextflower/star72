@@ -178,7 +178,6 @@ public class WugeSancaiUtils {
 		if(!nb.hasRightGe()) {
 			return false;
 		}
-		
 		/*
 		if(wugeshuli_ji.get(nb.getGe_tian()) == null) {
 			return false;

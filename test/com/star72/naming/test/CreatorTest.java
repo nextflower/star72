@@ -16,18 +16,28 @@ import com.star72.naming.entity.NameBean;
 public class CreatorTest {
 	
 	@Test
+	public void testPrint() {
+		PersonNameCreator pnCreator = new PersonNameCreator();
+		String xingshen = "水";
+		String shengxiao = "马";
+		String xing = "李";
+		String ming = "虹含";
+		String print = pnCreator.print(xing, ming, xingshen, shengxiao);
+		System.out.println(print);
+	}
+	
+	@Test
 	public void test() {
 		
 		WuxingCharLibCreator creator = new WuxingCharLibCreator();
+		String charLibPath = "com/star72/naming/dic/wuxingbihua_shiyi.txt";
 		CharLib charLib = creator.createCharLib();
+		System.out.println(charLib.size());
 		PersonNameCreator pnCreator = new PersonNameCreator();
-		List<NameBean> list = pnCreator.create(charLib, "王", null, false, true, "金", CharLibConstants.SHENGXIAO_LONG);
+		List<NameBean> list = pnCreator.create(charLib, "李", null, false, true, "水", CharLibConstants.SHENGXIAO_MA);
 		int count = 0;
 		for(NameBean nb : list) {
-			System.out.print(nb.getMing() + ", ");
-			if(++count % 20 == 0) {
-				System.out.println();
-			}
+			System.out.println(nb);
 		}
 		System.out.println();
 		System.out.println(list.size());

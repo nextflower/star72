@@ -27,6 +27,23 @@ public class DicReader {
 	
 	private DicReader() {}
 	
+	public static Map<String, String> getWuxingBihua_shiyi() {
+		String dicPath = "com/star72/naming/dic/wuxingbihua_shiyi.txt";
+		Map<String, String> result = new HashMap<String, String>();
+		List<String> lines = readLines(dicPath);
+		for(String line : lines) {
+			String[] split = line.split("：");
+			if(split.length == 2) {
+				String shuxingStr = split[0];
+				String description = split[1];
+				String[] shuxingArr = shuxingStr.split("_");
+				String hanzi = shuxingArr[1];
+				result.put(hanzi, description);
+			}
+		}
+		return result;
+	}
+	
 	public static Map<String, String> getSancai_ji() {
 		String dicPath = "com/star72/naming/dic/sancai.txt";
 		Map<String, String> result = new HashMap<String, String>();

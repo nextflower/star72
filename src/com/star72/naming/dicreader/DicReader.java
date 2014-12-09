@@ -27,7 +27,35 @@ public class DicReader {
 	
 	private DicReader() {}
 	
-	public static Map<String, String> getWuxingBihua_shiyi() {
+	public static Map<String, String> getKangxiBushou() {
+		String dicPath = "com/star72/naming/dic/kangxi.txt";
+		Map<String, String> result = new HashMap<String, String>();
+		List<String> lines = readLines(dicPath);
+		for(String line : lines) {
+			String[] split = line.split("_");
+			result.put(split[0], split[2]);
+		}
+		return result;
+	}
+	
+	public static Map<String, Integer> getWuxingBihua_shiyi() {
+		String dicPath = "com/star72/naming/dic/wuxingbihua_shiyi.txt";
+		Map<String, Integer> result = new HashMap<String, Integer>();
+		List<String> lines = readLines(dicPath);
+		for(String line : lines) {
+			String[] split = line.split("：");
+			if(split.length == 2) {
+				String shuxingStr = split[0];
+				String[] shuxingArr = shuxingStr.split("_");
+				String hanzi = shuxingArr[1];
+				Integer bihua = Integer.parseInt(shuxingArr[0]);
+				result.put(hanzi, bihua);
+			}
+		}
+		return result;
+	}
+	
+	public static Map<String, String> getWuxingDecsription_shiyi() {
 		String dicPath = "com/star72/naming/dic/wuxingbihua_shiyi.txt";
 		Map<String, String> result = new HashMap<String, String>();
 		List<String> lines = readLines(dicPath);
@@ -76,7 +104,7 @@ public class DicReader {
 		return result;
 	}
 	
-	public static Map<String, Integer> getHanziBihua() {
+	public static Map<String, Integer> getHanziBihua_quan() {
 		String dicPath = "com/star72/naming/dic/wuxingbihua_quan.txt";
 		Map<String, Integer> result = new HashMap<String, Integer>();
 		List<String> lines = readLines(dicPath);

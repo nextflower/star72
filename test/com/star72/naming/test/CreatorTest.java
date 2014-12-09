@@ -21,7 +21,7 @@ public class CreatorTest {
 		String xingshen = "水";
 		String shengxiao = "马";
 		String xing = "李";
-		String ming = "虹含";
+		String ming = "";
 		String print = pnCreator.print(xing, ming, xingshen, shengxiao);
 		System.out.println(print);
 	}
@@ -34,10 +34,10 @@ public class CreatorTest {
 		CharLib charLib = creator.createCharLib();
 		System.out.println(charLib.size());
 		PersonNameCreator pnCreator = new PersonNameCreator();
-		List<NameBean> list = pnCreator.create(charLib, "李", null, false, true, "水", CharLibConstants.SHENGXIAO_MA);
-		int count = 0;
+		List<NameBean> list = pnCreator.create(charLib, "王", null, false, true, "金", CharLibConstants.SHENGXIAO_LONG);
 		for(NameBean nb : list) {
-			System.out.println(nb);
+			String print = pnCreator.print(nb.getXing(), nb.getMing(), "金", CharLibConstants.SHENGXIAO_LONG);
+			System.out.println(print);
 		}
 		System.out.println();
 		System.out.println(list.size());
@@ -62,6 +62,14 @@ public class CreatorTest {
 //		Map<String, Integer> hanziBihua = DicReader.getHanziBihua();
 //		System.out.println(hanziBihua);
 //		System.out.println(hanziBihua.size());
+		
+//		Map<String, Integer> kangxiBihua = DicReader.getKangxiBihua();
+//		System.out.println(kangxiBihua);
+//		System.out.println(kangxiBihua.size());
+		
+		Map<String, String> kangxiBushou = DicReader.getKangxiBushou();
+		System.out.println(kangxiBushou);
+		System.out.println(kangxiBushou.size());
 		
 	}
 

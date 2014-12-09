@@ -32,10 +32,10 @@ public class PersonNameCreator {
 		nb.setXing(xing);
 		nb.setMing(ming);
 		
-		Map<String, Integer> hanziBihua = DicReader.getHanziBihua();
+		Map<String, Integer> hanziBihua = DicReader.getHanziBihua_quan();
 		Map<String, String> sancai_ji = DicReader.getSancai_ji();
 		Map<Integer, String> wugeShuli_ji = DicReader.getWugeShuli_ji();
-		Map<String, String> wuxingBihua_shiyi = DicReader.getWuxingBihua_shiyi();
+		Map<String, String> wuxingBihua_shiyi = DicReader.getWuxingDecsription_shiyi();
 		
 		//计算各种格
 		WugeSancaiUtils.computeWuge(nb, hanziBihua);
@@ -81,9 +81,7 @@ public class PersonNameCreator {
 	 */
 	public List<NameBean> create(CharLib lib, String xing, String midChar, Boolean isTwoChar, Boolean needDiezi, String xishen, String shengxiao) {
 		
-		
 		List<CharBean> cbList = lib.getCharBeanList();
-		
 		
 		List<NameBean> result = initialList(xing, midChar, cbList, isTwoChar, needDiezi);//根据字库、长度生成结果
 		System.out.println("初始list：" + result.size());
@@ -103,7 +101,8 @@ public class PersonNameCreator {
 
 	
 	private List<NameBean> filterByWugeSancai(List<NameBean> list) {
-		Map<String, Integer> hanziBihua = DicReader.getHanziBihua();
+		
+		Map<String, Integer> hanziBihua = DicReader.getHanziBihua_quan();
 		List<NameBean> result = new ArrayList<NameBean>();
 		
 		Map<Integer, String> wugeShuli_ji = DicReader.getWugeShuli_ji();

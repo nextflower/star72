@@ -53,4 +53,10 @@ public class CharBean implements Serializable {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "CharBean [name=" + name + ", bihua=" + bihua + ", wuxing="
+				+ wuxing + ", description=" + description + "]";
+	}
+
 }

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.star72.naming.charlib.WuxingCharLibCreator;
 import com.star72.naming.constants.CharLibConstants;
+import com.star72.naming.create.KangXiNameCreator;
 import com.star72.naming.create.PersonNameCreator;
 import com.star72.naming.dicreader.DicReader;
 import com.star72.naming.entity.CharLib;
@@ -16,12 +17,28 @@ import com.star72.naming.entity.NameBean;
 public class CreatorTest {
 	
 	@Test
+	public void kangxiCreatorTest() {
+		KangXiNameCreator creator = new KangXiNameCreator();
+		String xing = "李";
+		String midChar = null;
+		Boolean isTwoChar = false;
+		Boolean needDiezi = true;
+		String xishen = "土";
+		String shengxiao = "蛇";
+		List<NameBean> list = creator.create(xing, midChar, isTwoChar, needDiezi, xishen, shengxiao);
+		
+		for(NameBean nb : list) {
+			System.out.println(nb);
+		}
+	}
+	
+	@Test
 	public void testPrint() {
 		PersonNameCreator pnCreator = new PersonNameCreator();
-		String xingshen = "水";
-		String shengxiao = "马";
-		String xing = "李";
-		String ming = "";
+		String xingshen = "金";
+		String shengxiao = "龙";
+		String xing = "王";
+		String ming = "王炳鑫";
 		String print = pnCreator.print(xing, ming, xingshen, shengxiao);
 		System.out.println(print);
 	}
@@ -45,31 +62,16 @@ public class CreatorTest {
 	
 	@Test
 	public void readerTest() {
-//		Map<String, Set<String>> map_ji = DicReader.getShengxiaoBushou_ji();
-//		Map<String, Set<String>> map_xi = DicReader.getShengxiaoBushou_xi();
-//		System.out.println(map_ji);
-//		System.out.println(map_xi);
-		
-//		Map<String, Set<String>> bushouHanzi = DicReader.getBushouHanzi();
-//		System.out.println(bushouHanzi);
-		
-//		Map<Integer, Set<String>> bushouBihua = DicReader.getBushouBihua();
-//		System.out.println(bushouBihua);
-		
-//		Map<String, Set<String>> wuxingHanzi = DicReader.getWuxingHanzi();
-//		System.out.println(wuxingHanzi);
-		
-//		Map<String, Integer> hanziBihua = DicReader.getHanziBihua();
-//		System.out.println(hanziBihua);
-//		System.out.println(hanziBihua.size());
 		
 //		Map<String, Integer> kangxiBihua = DicReader.getKangxiBihua();
 //		System.out.println(kangxiBihua);
-//		System.out.println(kangxiBihua.size());
+		
+//		Map<String, Set<String>> kangxiWuxingMap = DicReader.getKangxiWuxingMap();
+//		System.out.println(kangxiWuxingMap);
+//		System.out.println(kangxiWuxingMap.keySet());
 		
 		Map<String, String> kangxiBushou = DicReader.getKangxiBushou();
 		System.out.println(kangxiBushou);
-		System.out.println(kangxiBushou.size());
 		
 	}
 

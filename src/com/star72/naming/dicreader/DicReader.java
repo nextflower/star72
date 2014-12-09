@@ -25,20 +25,92 @@ import com.star72.naming.entity.CharBean;
  */
 public class DicReader {
 	
+	private static Map<String, String> KangxiBushou = null;
+	private static Map<String, Set<String>> KangxiWuxingMap = null;
+	private static Map<String, Integer> KangxiBihua = null;
+	private static Map<String, Set<String>> KangxiBushouMap = null;
+	private static Map<String, Set<String>> ShengxiaoBushou_xi = null;
+	private static Map<String, Set<String>> ShengxiaoBushou_ji = null;
+	
 	private DicReader() {}
 	
+	public static Map<String, Set<String>> getKangxiBushouMap() {
+		if(KangxiBushouMap != null) {
+			return KangxiBushouMap;
+		}
+		String dicPath = "com/star72/naming/dic/kangxi_changyong.txt";
+		Map<String, Set<String>> result = new HashMap<String, Set<String>>();
+		List<String> lines = readLines(dicPath);
+		for(String line : lines) {
+			String[] split = line.split("_");
+			String bushou = split[3];
+			Set<String> set = result.get(bushou);
+			if(set == null) {
+				set = new HashSet<String>();
+				result.put(bushou, set);
+			}
+			set.add(split[1]);
+		}
+		KangxiBushouMap = result;
+		return result;
+	}
+	
 	public static Map<String, String> getKangxiBushou() {
-		String dicPath = "com/star72/naming/dic/kangxi.txt";
+		if(KangxiBushou != null) {
+			return KangxiBushou;
+		}
+		String dicPath = "com/star72/naming/dic/kangxi_changyong.txt";
 		Map<String, String> result = new HashMap<String, String>();
 		List<String> lines = readLines(dicPath);
 		for(String line : lines) {
 			String[] split = line.split("_");
-			result.put(split[0], split[2]);
+			result.put(split[1], split[3]);
 		}
+		KangxiBushou = result;
 		return result;
 	}
 	
+	public static Map<String, Set<String>> getKangxiWuxingMap() {
+		if(KangxiWuxingMap != null) {
+			return KangxiWuxingMap;
+		}
+		String dicPath = "com/star72/naming/dic/kangxi_changyong.txt";
+		Map<String, Set<String>> result = new HashMap<String, Set<String>>();
+		List<String> lines = readLines(dicPath);
+		for(String line : lines) {
+			String[] split = line.split("_");
+			String wuxing = split[6];
+			Set<String> set = result.get(wuxing);
+			if(set == null) {
+				set = new HashSet<String>();
+				result.put(wuxing, set);
+			}
+			set.add(split[1]);
+		}
+		KangxiWuxingMap = result;
+		return result;
+	}
+	
+	public static Map<String, Integer> getKangxiBihua() {
+		if(KangxiBihua != null) {
+			return KangxiBihua;
+		}
+		String dicPath = "com/star72/naming/dic/kangxi_changyong.txt";
+		Map<String, Integer> result = new HashMap<String, Integer>();
+		List<String> lines = readLines(dicPath);
+		for(String line : lines) {
+			String[] split = line.split("_");
+			result.put(split[1], Integer.parseInt(split[0]));
+		}
+		KangxiBihua = result;
+		return result;
+	}
+	
+	private static Map<String, Integer> WuxingBihua_shiyi = null;
 	public static Map<String, Integer> getWuxingBihua_shiyi() {
+		if(WuxingBihua_shiyi != null) {
+			return WuxingBihua_shiyi;
+		}
 		String dicPath = "com/star72/naming/dic/wuxingbihua_shiyi.txt";
 		Map<String, Integer> result = new HashMap<String, Integer>();
 		List<String> lines = readLines(dicPath);
@@ -52,10 +124,15 @@ public class DicReader {
 				result.put(hanzi, bihua);
 			}
 		}
+		WuxingBihua_shiyi = result;
 		return result;
 	}
 	
+	private static Map<String, String> WuxingDecsription_shiyi = null;
 	public static Map<String, String> getWuxingDecsription_shiyi() {
+		if(WuxingDecsription_shiyi != null) {
+			return WuxingDecsription_shiyi;
+		}
 		String dicPath = "com/star72/naming/dic/wuxingbihua_shiyi.txt";
 		Map<String, String> result = new HashMap<String, String>();
 		List<String> lines = readLines(dicPath);
@@ -69,10 +146,15 @@ public class DicReader {
 				result.put(hanzi, description);
 			}
 		}
+		WuxingDecsription_shiyi = result;
 		return result;
 	}
 	
+	private static Map<String, String> Sancai_ji = null;
 	public static Map<String, String> getSancai_ji() {
+		if(Sancai_ji != null) {
+			return Sancai_ji;
+		}
 		String dicPath = "com/star72/naming/dic/sancai.txt";
 		Map<String, String> result = new HashMap<String, String>();
 		List<String> lines = readLines(dicPath);
@@ -86,10 +168,15 @@ public class DicReader {
 				result.put(sancai, description);
 			}
 		}
+		Sancai_ji = result;
 		return result;
 	}
 	
+	private static Map<Integer, String> WugeShuli_ji = null;
 	public static Map<Integer, String> getWugeShuli_ji() {
+		if(WugeShuli_ji != null) {
+			return WugeShuli_ji;
+		}
 		String dicPath = "com/star72/naming/dic/shuli81.txt";
 		Map<Integer, String> result = new HashMap<Integer, String>();
 		List<String> lines = readLines(dicPath);
@@ -101,35 +188,31 @@ public class DicReader {
 				result.put(shuzi, description);
 			}
 		}
+		WugeShuli_ji = result;
 		return result;
 	}
 	
+	private static Map<String, Integer> HanziBihua_quan = null;
 	public static Map<String, Integer> getHanziBihua_quan() {
-		String dicPath = "com/star72/naming/dic/wuxingbihua_quan.txt";
+		if(HanziBihua_quan != null) {
+			return HanziBihua_quan;
+		}
+		String dicPath = "com/star72/naming/dic/kangxi.txt";
 		Map<String, Integer> result = new HashMap<String, Integer>();
 		List<String> lines = readLines(dicPath);
 		for(String line : lines) {
-			String[] split = line.split(":");
-			if(split.length == 2) {
-				//木_3:巾 久 
-				String wuxingbihua = split[0];
-				String hansiStr = split[1];
-				
-				String[] split2 = wuxingbihua.split("_");
-				Integer bihua = null;
-				if(split2.length == 2) {
-					bihua = Integer.parseInt(split2[1]);
-				}
-				List<String> hanziList = StarStringUtils.parseStr2SingleStrList(hansiStr);
-				for(String hanzi : hanziList) {
-					result.put(hanzi, bihua);
-				}
-			}
+			String[] split = line.split("_");
+			result.put(split[1], Integer.parseInt(split[0]));
 		}
+		HanziBihua_quan = result;
 		return result;
 	}
 	
+	private static Map<String, Set<String>> WuxingHanzi = null;
 	public static Map<String, Set<String>> getWuxingHanzi() {
+		if(WuxingHanzi != null) {
+			return WuxingHanzi;
+		}
 		String dicPath = "com/star72/naming/dic/wuxingbihua_shiyi_ji.txt";
 		Map<String, Set<String>> result = new HashMap<String, Set<String>>();
 		List<String> lines = readLines(dicPath);
@@ -151,10 +234,15 @@ public class DicReader {
 				set.add(charName);
 			}
 		}
+		WuxingHanzi = result;
 		return result;
 	}
 	
+	private static Map<Integer, Set<String>> BushouBihua = null;
 	public static Map<Integer, Set<String>> getBushouBihua() {
+		if(BushouBihua != null) {
+			return BushouBihua;
+		}
 		String dicPath = "com/star72/naming/dic/bushoubihua.txt";
 		Map<Integer, Set<String>> result = new HashMap<Integer, Set<String>>();
 		List<String> lines = readLines(dicPath);
@@ -173,10 +261,15 @@ public class DicReader {
 				result.put(bihua, set);
 			}
 		}
+		BushouBihua = result;
 		return result;
 	}
 	
+	private static Map<String, Set<String>> BushouHanzi = null;
 	public static Map<String, Set<String>> getBushouHanzi() {
+		if(BushouHanzi != null) {
+			return BushouHanzi;
+		}
 		String dicPath = "com/star72/naming/dic/bushouhanzi.txt";
 		Map<String, Set<String>> result = new HashMap<String, Set<String>>();
 		List<String> lines = readLines(dicPath);
@@ -195,17 +288,26 @@ public class DicReader {
 				result.put(bushou, set);
 			}
 		}
+		BushouHanzi = result;
 		return result;
 	}
 	
 	public static Map<String, Set<String>> getShengxiaoBushou_xi() {
+		if(ShengxiaoBushou_xi != null) {
+			return ShengxiaoBushou_xi;
+		}
 		String dicPath = "com/star72/naming/dic/shengxiaobushou_xi.txt";
-		return getShengxiaoBushou(dicPath);
+		ShengxiaoBushou_xi = getShengxiaoBushou(dicPath);
+		return ShengxiaoBushou_xi;
 	}
 	
 	public static Map<String, Set<String>> getShengxiaoBushou_ji() {
+		if(ShengxiaoBushou_ji != null) {
+			return ShengxiaoBushou_ji;
+		}
 		String dicPath = "com/star72/naming/dic/shengxiaobushou_ji.txt";
-		return getShengxiaoBushou(dicPath);
+		ShengxiaoBushou_ji = getShengxiaoBushou(dicPath);
+		return ShengxiaoBushou_ji;
 	}
 	
 	private static Map<String, Set<String>> getShengxiaoBushou(String dicPath) {

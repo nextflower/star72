@@ -16,20 +16,30 @@ import com.star72.naming.entity.NameBean;
 
 public class CreatorTest {
 	
+	
+	
 	@Test
 	public void kangxiCreatorTest() {
 		KangXiNameCreator creator = new KangXiNameCreator();
-		String xing = "李";
+		String xing = "王";
 		String midChar = null;
 		Boolean isTwoChar = false;
 		Boolean needDiezi = true;
-		String xishen = "土";
-		String shengxiao = "蛇";
+		String xishen = "金";
+		String shengxiao = "龙";
 		List<NameBean> list = creator.create(xing, midChar, isTwoChar, needDiezi, xishen, shengxiao);
 		
-		for(NameBean nb : list) {
-			System.out.println(nb);
-		}
+		System.out.println(list.size());
+	}
+	
+	@Test
+	public void testSingleName() {
+		KangXiNameCreator creator = new KangXiNameCreator();
+		NameBean nb = new NameBean();
+		nb.setXing("王");
+		nb.setMing("韫铭");
+		boolean flag = creator.validate(nb, "金", "龙");
+		System.out.println(flag);
 	}
 	
 	@Test

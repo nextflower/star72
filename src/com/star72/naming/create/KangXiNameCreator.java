@@ -32,7 +32,7 @@ public class KangXiNameCreator {
 		return list;
 	}
 
-	private boolean validate(NameBean nb, String xishen, String shengxiao) {
+	public boolean validate(NameBean nb, String xishen, String shengxiao) {
 		
 		//validate sheng xiao
 		if(!validateShengxiao(nb, shengxiao)) {
@@ -54,7 +54,7 @@ public class KangXiNameCreator {
 		return true;
 	}
 	
-	private boolean validateSancaiWuge(NameBean nb) {
+	public boolean validateSancaiWuge(NameBean nb) {
 		Map<String, Integer> kangxiBihua = DicReader.getKangxiBihua();
 		
 		Map<Integer, String> wugeShuli_ji = DicReader.getWugeShuli_ji();

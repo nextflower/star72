@@ -23,51 +23,24 @@ public class CreatorTest {
 		KangXiNameCreator creator = new KangXiNameCreator();
 		String xing = "王";
 		String midChar = null;
-		Boolean isTwoChar = false;
+		Boolean isTwoChar = true;
 		Boolean needDiezi = true;
 		String xishen = "金";
 		String shengxiao = "龙";
 		List<NameBean> list = creator.create(xing, midChar, isTwoChar, needDiezi, xishen, shengxiao);
 		
 		System.out.println(list.size());
+		
 	}
 	
 	@Test
 	public void testSingleName() {
 		KangXiNameCreator creator = new KangXiNameCreator();
 		NameBean nb = new NameBean();
-		nb.setXing("王");
-		nb.setMing("韫铭");
+		nb.setXing("李");
+		nb.setMing("鑫");
 		boolean flag = creator.validate(nb, "金", "龙");
 		System.out.println(flag);
-	}
-	
-	@Test
-	public void testPrint() {
-		PersonNameCreator pnCreator = new PersonNameCreator();
-		String xingshen = "金";
-		String shengxiao = "龙";
-		String xing = "王";
-		String ming = "王炳鑫";
-		String print = pnCreator.print(xing, ming, xingshen, shengxiao);
-		System.out.println(print);
-	}
-	
-	@Test
-	public void test() {
-		
-		WuxingCharLibCreator creator = new WuxingCharLibCreator();
-		String charLibPath = "com/star72/naming/dic/wuxingbihua_shiyi.txt";
-		CharLib charLib = creator.createCharLib();
-		System.out.println(charLib.size());
-		PersonNameCreator pnCreator = new PersonNameCreator();
-		List<NameBean> list = pnCreator.create(charLib, "王", null, false, true, "金", CharLibConstants.SHENGXIAO_LONG);
-		for(NameBean nb : list) {
-			String print = pnCreator.print(nb.getXing(), nb.getMing(), "金", CharLibConstants.SHENGXIAO_LONG);
-			System.out.println(print);
-		}
-		System.out.println();
-		System.out.println(list.size());
 	}
 	
 	@Test

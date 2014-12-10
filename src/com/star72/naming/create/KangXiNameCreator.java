@@ -44,6 +44,8 @@ public class KangXiNameCreator {
 			return false;
 		}
 		
+		System.out.println(nb);
+		
 		//validate san cai wu ge
 		if(!validateSancaiWuge(nb)) {
 			return false;
@@ -98,7 +100,7 @@ public class KangXiNameCreator {
 	
 	private boolean validateShengxiao(NameBean nb, String shengxiao) {
 		if(StringUtils.isBlank(shengxiao)) {
-			return false;
+			return true;
 		}
 		Map<String, Set<String>> shengxiaoBushou_xi = DicReader.getShengxiaoBushou_xi();
 		Set<String> xiBushouSet = shengxiaoBushou_xi.get(shengxiao);

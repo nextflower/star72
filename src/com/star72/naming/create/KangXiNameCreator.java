@@ -44,8 +44,6 @@ public class KangXiNameCreator {
 			return false;
 		}
 		
-		System.out.println(nb);
-		
 		//validate san cai wu ge
 		if(!validateSancaiWuge(nb)) {
 			return false;
@@ -63,6 +61,7 @@ public class KangXiNameCreator {
 		Map<String, String> sancai_ji = DicReader.getSancai_ji();
 		//计算各种格
 		WugeSancaiUtils.computeWuge(nb, kangxiBihua);
+		
 		if(nb.hasRightGe()) {
 			//各种格过滤
 			if(WugeSancaiUtils.validateWuge(nb, wugeShuli_ji)) {

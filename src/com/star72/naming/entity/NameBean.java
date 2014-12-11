@@ -51,7 +51,7 @@ public class NameBean implements Serializable{
 	@Override
 	public String toString() {
 		return "NameBean [full=" + xing + ming + ", xing=" + xing + ", ming=" + ming + "]," +
-				" [tian" + ge_tian + ", ren" + ge_ren + ", di" + ge_di + ", zong" + ge_zong + ", wai" + ge_wai + "]";
+				" [天格" + ge_tian + ", 人格" + ge_ren + ", 地格" + ge_di + ", 总格" + ge_zong + ", 外格" + ge_wai + "。 三才：" + sancai + "。五格大吉。]";
 	}
 	public String getMidChar() {
 		return midChar;

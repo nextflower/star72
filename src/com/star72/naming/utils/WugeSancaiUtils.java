@@ -193,9 +193,9 @@ public class WugeSancaiUtils {
 		}
 		
 		/**/
-		if(wugeshuli_ji.get(nb.getGe_wai()) == null) {
-			return false;
-		}
+//		if(wugeshuli_ji.get(nb.getGe_wai()) == null) {
+//			return false;
+//		}
 		
 		
 		if(wugeshuli_ji.get(nb.getGe_zong()) == null) {

@@ -31,8 +31,25 @@ public class DicReader {
 	private static Map<String, Set<String>> KangxiBushouMap = null;
 	private static Map<String, Set<String>> ShengxiaoBushou_xi = null;
 	private static Map<String, Set<String>> ShengxiaoBushou_ji = null;
+	private static Set<String> Xingshi_set = null;
 	
 	private DicReader() {}
+	
+	public static Set<String> getXingShi() {
+		if(Xingshi_set != null) {
+			return Xingshi_set;
+		}
+		String dicPath = "com/star72/naming/dic/xingshidaquanpaiming.txt";
+		Set<String> result = new HashSet<String>();
+		List<String> lines = readLines(dicPath);
+		for(String line : lines) {
+			List<String> list = StarStringUtils.parseStr2SingleStrList(line);
+			for(String s : list) {
+//				if(StringUtils)
+			}
+		}
+		return result;
+	}
 	
 	public static Map<String, Set<String>> getKangxiBushouMap() {
 		if(KangxiBushouMap != null) {

@@ -49,7 +49,7 @@ public class KangXiNameCreator {
 			return false;
 		}
 		
-		System.out.println(nb);
+		//System.out.println(nb);
 		
 		return true;
 	}
@@ -83,7 +83,7 @@ public class KangXiNameCreator {
 
 	private boolean validateXishen(NameBean nb, String xishen) {
 		if(StringUtils.isBlank(xishen)) {
-			return false;
+			return true;
 		}
 		Map<String, Set<String>> kangxiWuxingMap = DicReader.getKangxiWuxingMap();
 		Set<String> set = kangxiWuxingMap.get(xishen);

@@ -45,7 +45,9 @@ public class DicReader {
 		for(String line : lines) {
 			List<String> list = StarStringUtils.parseStr2SingleStrList(line);
 			for(String s : list) {
-//				if(StringUtils)
+				if(StringUtils.isNotBlank(s)) {
+					result.add(s);
+				}
 			}
 		}
 		return result;

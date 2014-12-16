@@ -11,7 +11,7 @@ public class DomainTest {
 	
 	@Test
 	public void test() {
-		List<String> list = PinyinUtil.hanzi2PinyinNoDiao("冒牌货");
+		List<String> list = PinyinUtil.hanzi2PinyinNoDiao("古代文献");
 		String domain = concat(list, "") + ".com";
 		System.out.println(domain);
 		DomainQueryUtil.queryByWanWang(domain, false);

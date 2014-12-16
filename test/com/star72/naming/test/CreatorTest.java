@@ -71,9 +71,6 @@ public class CreatorTest {
 //		Map<String, String> kangxiBushou = DicReader.getKangxiBushou();
 //		System.out.println(kangxiBushou);
 		
-		int day = DateUtils.getCurrentDay();
-		System.out.println(day);
-		
 	}
 	
 	@Test

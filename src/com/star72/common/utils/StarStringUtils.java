@@ -3,6 +3,8 @@ package com.star72.common.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * 用于字符串相关操作的工具类
  * 
@@ -59,6 +61,24 @@ public class StarStringUtils {
 		for(char ch : charArray) {
 			result.add(new String(new char[]{ch}));
 		}
+		return result;
+	}
+	
+	public static List<String> partedStringByLength(String source, int length) {
+		if(source == null) {
+			return new ArrayList<String>();
+		}
+		List<String> result = new ArrayList<String>();
+		
+		do {
+			if(source.length() < length) {
+				result.add(source);
+			} else {
+				result.add(source.substring(0, length));
+				source = source.substring(length);
+			}
+		} while (source.length() > length);
+		
 		return result;
 	}
 

@@ -1,6 +1,7 @@
 package com.star72.search.test;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 import org.wltea.analyzer.solr.IKTokenizerFactory;
@@ -34,7 +37,7 @@ public class ServerWriterTest {
 
 	@Test
 	public void test() {
-		server.setSolrURL("http://localhost:8080/Solr/wenxian");
+		server.setSolrURL("http://localhost:8088/Solr/wenxian");
 		File rootFile = new File(rootPath);
 		if(!rootFile.isDirectory()) {
 			return ;
@@ -42,7 +45,10 @@ public class ServerWriterTest {
 		File[] files = rootFile.listFiles();
 		if(files != null) {
 			for(File f : files) {
-				writeToIndex(f);
+				if(f.getName().contains("诗藏")) {
+					System.out.println(f.getName());
+					writeToIndex(f);
+				}
 			}
 		}
 	}
@@ -69,7 +75,7 @@ public class ServerWriterTest {
 						count++;
 						
 						List<String> parts = StarStringUtils.partedStringByLength(sb.toString(), 1000);
-						System.out.println(parts.size());
+//						System.out.println(parts.size());
 						for(String content : parts) {
 							EpsSolrDocument doc = new EpsSolrDocument();
 							doc.addField(FIELD_ID, UUID.randomUUID().toString());
@@ -81,7 +87,7 @@ public class ServerWriterTest {
 							doc.addField(FIELD_CONTENT, content);
 							doc.addField(FIELD_TITLE, content.substring(0, 10));
 							
-							//server.addDocument(doc, false);
+							server.addDocument(doc, false);
 						}
 						
 						sb = new StringBuffer(); 
@@ -96,6 +102,7 @@ public class ServerWriterTest {
 			}
 			
 		} else {
+			System.out.println(f.getName());
 			File[] files = f.listFiles();
 			if(files != null) {
 				for(File child : files) {
@@ -110,9 +117,9 @@ public class ServerWriterTest {
 	public void testQuery() {
 		
 		EPSSolrServerForCommon server = new EPSSolrServerForCommon();
-		server.setSolrURL("http://localhost:8080/Solr/wenxian");
+		server.setSolrURL("http://localhost:8088/Solr/wenxian");
 		//单独的查询条件
-		SolrCommonItem item = new SolrCommonItem("TITLE", "大乘");
+		SolrCommonItem item = new SolrCommonItem("CONTENT", "大乘");
 		
 		//分页设置（可选）
 		Integer pageNo = 1;
@@ -142,7 +149,7 @@ public class ServerWriterTest {
 	
 	@Test
 	public void solrTest() {
-		server.setSolrURL("http://localhost:8080/Solr/wenxian");
+		server.setSolrURL("http://localhost:8088/Solr/wenxian");
 		EpsSolrDocument doc = new EpsSolrDocument();
 		doc.addField(FIELD_ID, UUID.randomUUID().toString());
 		doc.addField(FIELD_SORT_VALUE, 12);
@@ -151,6 +158,17 @@ public class ServerWriterTest {
 //		doc.addField(FIELD_TITLE, "红高粱标题");
 		server.addDocument(doc, false);
 		
+	}
+	
+	@Test
+	public void readLinesByStream() throws IOException {
+		File f = new File("F:\\文档\\gudaiwenxian\\诗藏\\诗集\\全宋诗.txt");
+		LineIterator lineIterator = FileUtils.lineIterator(f);
+		int count = 0;
+		while(lineIterator.hasNext()) {
+			String line = lineIterator.nextLine();
+			System.out.println(++count);
+		}
 	}
 	
 }

@@ -37,13 +37,11 @@ public class ServerWriterTest {
 
 	@Test
 	public void test() {
-		
 		server.setSolrURL("http://localhost:8088/Solr/wenxian");
 		File rootFile = new File(rootPath);
 		if(!rootFile.isDirectory()) {
 			return ;
 		}
-		
 		File[] files = rootFile.listFiles();
 		if(files != null) {
 			for(File f : files) {
@@ -53,7 +51,6 @@ public class ServerWriterTest {
 				}
 			}
 		}
-		
 	}
 
 	private void writeToIndex(File f) {

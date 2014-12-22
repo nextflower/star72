@@ -1,95 +1,72 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>七十二颗星  Administrator's Control Panel</title>
-<#include "/star72_sys/head.html"/>
-<script type="text/javascript">
-if(top!=this) {
-	top.location=this.location;
-}
-$(function() {
-	$("#username").focus();
-	$("#jvForm").validate();
-});
-</script>
-<style type="text/css">
-body{margin:0;padding:0;font-size:12px;background:url(${base}/res/star72/img/login/bg.jpg) top repeat-x;}
-.input{width:150px;height:17px;border-top:1px solid #404040;border-left:1px solid #404040;border-right:1px solid #D4D0C8;border-bottom:1px solid #D4D0C8;}
-</style>
-</head>
-<body>
-<form id="jvForm" action="login.do" method="post">
-<#if returnUrl??><input type="hidden" name="returnUrl" value="${returnUrl}"/></#if>
-<#if processUrl??><input type="hidden" name="processUrl" value="${processUrl}"/></#if>
-<table width="750" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td height="200">&nbsp;</td>
-  </tr>
-  <tr>
-    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td width="423" height="280" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td><img src="${base}/res/star72/img/login/ltop.jpg" /></td>
-              </tr>
-              <tr>
-                <td><img src="${base}/res/star72/img/login/llogo.jpg" /></td>
-              </tr>
-            </table></td>
-          <td width="40" align="center" valign="bottom"><img src="${base}/res/star72/img/login/line.jpg" width="23" height="232" /></td>
-          <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td height="90" align="center" valign="bottom"><img src="${base}/res/star72/img/login/ltitle.jpg" /></td>
-              </tr>
-              <tr>
-                <td>
-                <div>
-				<#if error??>
-					<ul>
-						<#if error=="org.apache.shiro.authc.IncorrectCredentialsException">
-						<li><@s.m "error.invalidPassword"/></li>
-						<#elseif error=="org.apache.shiro.authc.UnknownAccountException">
-						<li><@s.m "error.usernameNotExist"/></li>
-						<#elseif error=="com.star72.cmsmain.common.security.CaptchaErrorException">
-						<li><@s.m "error.invalidCaptcha"/></li>
-						<#elseif error=="com.star72.cmsmain.common.security.DisabledException">
-						<li><@s.m "error.userDisabled"/></li>
- 						</#if>
-					</ul>
-				</#if>
-                </div>
-                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
-                    <tr>
-                      <td width="91" height="40" align="right"><strong> <@s.m "login.username"/>：</strong></td>
-                      <td width="211"><input type="input" id="username" name="username" vld="{required:true}" maxlength="100" class="input"/></td>
-                    </tr>
-                    <tr>
-                      <td height="40" align="right"><strong><@s.m "login.password"/>：</strong></td>
-                      <td><input name="password" type="password" id="password" maxlength="32" vld="{required:true}" class="input"/></td>
-                    </tr>
-                    <#if errorRemaining?? && errorRemaining<=0>
-                    <tr>
-                    	<td colspan="2" align="center"><img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1"/></td>
-                    </tr>
-                    <tr>
-                      <td height="40" align="right"><strong><@s.m "login.captcha"/>：</strong></td>
-                      <td><input name="captcha" type="text" id="captcha" vld="{required:true}" class="input"/></td>
-                    </tr>
-                    </#if>
-                    <tr>
-                      <td height="40" colspan="2" align="center">
-					    <input type="image" src="${base}/res/star72/img/login/login.jpg" name="submit" />
-                        &nbsp; &nbsp; <img name="reg" style="cursor: pointer" src="${base}/res/star72/img/login/reset.jpg" onclick="document.forms[0].reset()" /> </td>
-                    </tr>
-                  </table></td>
-              </tr>
-            </table></td>
-        </tr>
-      </table></td>
-  </tr>
-</table>
-</form>
-<#include "/common/alert_message.html"/>
-</body>
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>后台登陆</title>
+
+    <!-- Bootstrap -->
+    <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	<style type="text/css">
+		body { margin:0; padding:0; background:url(${base}/res/images/bg_mood.jpg) top center; background-repeat: repeat; }
+	</style>
+
+  </head>
+  <body>
+
+    <div class="container">
+		<div class="row"><h1>&nbsp;</h1></div>
+		<div class="row"><h1>&nbsp;</h1></div>
+		<div class="row"><h1>&nbsp;</h1></div>
+		
+      	<div class="row text-center">
+	      <div class="col-sm-3"></div>
+	      <div class="col-sm-6">
+				<form action="" class="form-horizontal" role="form">
+				   <div class="form-group">
+				      <label for="firstname" class="col-sm-2 control-label">用户名</label>
+				      <div class="col-sm-8">
+				         <input type="text" class="form-control" id="username" name="username" 
+				            placeholder="请输入用户名">
+				      </div>
+				   </div>
+				   <div class="form-group">
+				      <label for="lastname" class="col-sm-2 control-label">密码</label>
+				      <div class="col-sm-8">
+				         <input type="password" class="form-control" id="lastname" name="password"
+				            placeholder="请输入密码">
+				      </div>
+				   </div>
+				   <div class="form-group">
+				      <div class="col-sm-2"></div>
+					  <div class="col-sm-3">
+				         <button type="submit" class="btn btn-success btn-block">注册</button>
+				      </div>
+					  <div class="col-sm-3">
+				         <button type="submit" class="btn btn-primary btn-block">登录</button>
+				      </div>
+					  <div class="col-sm-2">
+				         <button type="submit" class="btn btn-link">忘记密码?</button>
+				      </div>
+					  <div class="col-sm-2"></div>
+				   </div>
+				</form>
+		  </div>
+	      <div class="col-sm-3"></div>
+	    </div>
+
+    </div><!-- /.container -->
+
+    <script src="${base}/res/jquery/jquery.min.js"></script>
+	<script src="${base}/res/bootstrap/js/bootstrap.min.js"></script>
+  </body>
 </html>

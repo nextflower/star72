@@ -26,19 +26,19 @@
 				/login.jspx = authc
 				/logout.jspx = logout
 				/member/** = user
-				/jeeadmin/star72/login.do = authc
-				/jeeadmin/star72/logout.do = logout
-				/jeeadmin/star72/** =user
+				/admin/star72/login.do = authc
+				/admin/star72/logout.do = logout
+				/admin/star72/** =user
 			</value>
 		</property>
 	</bean>
 	<!-- Shiro Filter -->	
 	<bean id="adminUrlBean" class="com.star72.cmsmain.core.security.CmsAdminUrl">
-		<property name="adminLogin" value="/jeeadmin/star72/login.do"/>
-		<property name="adminPrefix" value="/jeeadmin/star72/"/>
+		<property name="adminLogin" value="/admin/star72/login.do"/>
+		<property name="adminPrefix" value="/admin/star72/"/>
 	</bean>
 	<bean id="authcFilter" class="com.star72.cmsmain.core.security.CmsAuthenticationFilter" parent="adminUrlBean">
-		<property name="adminIndex" value="/jeeadmin/star72/index.do"/>
+		<property name="adminIndex" value="/admin/star72/index.do"/>
 	</bean>
 	<bean id="userFilter" class="com.star72.cmsmain.core.security.CmsUserFilter" parent="adminUrlBean"/>
 	<bean id="logoutFilter" class="com.star72.cmsmain.core.security.CmsLogoutFilter" parent="adminUrlBean"/>

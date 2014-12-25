@@ -2,6 +2,7 @@ package com.star72.common.utils.http;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -33,7 +34,7 @@ public class EmulateLoginBaidu {
 
 	static crifanLib crl;
 	
-	static String CONTENT = "路过不留名 ！";
+	static String CONTENT = null;
 	
 	/**
 	 * @param args
@@ -41,7 +42,7 @@ public class EmulateLoginBaidu {
 	public static void main(String[] args) {
 		crl = new crifanLib();
 		
-		EmulateLoginBaiduUsingJava("", "");
+		EmulateLoginBaiduUsingJava("于卌", "kk4282864");
 		
 	}
 
@@ -153,13 +154,13 @@ public class EmulateLoginBaidu {
 	
 	private static void enterToTiezi(String url, String biebaTitle, String tieziTitle) {
 		
-		System.out.println(biebaTitle + "---" + tieziTitle);
-		
 		String kw = biebaTitle;
 		String content = CONTENT == null ? getRandomContent() : CONTENT;
 		String fid = null;
 		String tbs = null;
 		String tid = FilenameUtils.getBaseName(url);
+		
+		System.out.println(biebaTitle + "---" + tieziTitle + "---" + content + "___" + new Date());
 		
 		Pattern tbsP = Pattern.compile("\"tbs\"  : \"(\\w{10,40}+)\"");
 		Pattern fidP = Pattern.compile("fid: '(\\d{1,20})'");
@@ -274,7 +275,7 @@ public class EmulateLoginBaidu {
 			return false;
 		}
 		
-		if(floorNum > 0 && floorNum < 7) {
+		if(floorNum > 1 && floorNum < 10) {
 			return true;
 		}
 		
@@ -444,12 +445,15 @@ public class EmulateLoginBaidu {
 	public static String getRandomContent() {
 		List<String> list = new ArrayList<String>();
 		list.add("你有没有见过这么整齐的十五字啊。");
-		list.add("我轻轻地来的，正如我轻轻地走。");
+		list.add("我轻轻地来，正如我轻轻地走。");
 		list.add("水帖美如花，养护靠大家！！");
 		list.add("我只是来水点经验。");
 		list.add("万恶意淫为首，百善回帖为先。");
 		list.add("算是前排么？");
 		list.add("如果帖子沉了，不要怪我。");
+		list.add("如果帖子火了，记得@我。");
+		list.add("我唯一能做的就是让楼主的帖子在首页多停一秒。");
+		list.add("长得帅（漂亮）的人都会在此楼留名。");
 		return list.get(RandomUtil.randomInt(0, list.size()));
 	}
 }

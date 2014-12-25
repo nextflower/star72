@@ -1,36 +1,12 @@
 package com.star72.common.utils.http;
 
-/**
- * [File]
- * EmulateLoginBaidu.java
- * 
- * [Function]
- * Use Java code to emulate login baidu
- * 
- * 【教程】模拟登陆百度之Java代码版
- * http://www.crifan.com/emulate_login_baidu_use_java_code
- * 
- * [Version]
- * v1.0, 2013-09-17
- * 
- * [Note]
- * 1. need add apache http lib:
- * 【已解决】Eclipse的java代码出错：The import org.apache cannot be resolved
- * http://www.crifan.com/java_eclipse_the_import_org_apache_cannot_be_resolved/
- * 2.need crifanLib.java
- * http://code.google.com/p/crifanlib/source/browse/trunk/java/crifanLib.java
- * 
- * [History]
- * [v1.0]
- * 1. initial version, finally successfully emulate login baidu using java code.
- */
 
-//import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,18 +21,20 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-//import crifanLib;
+import com.star72.common.utils.MapUtils;
+import com.star72.common.utils.RandomUtil;
+
 
 /**
- * @author CLi
+ * @author larry
  * 
  */
 public class EmulateLoginBaidu {
 
 	static crifanLib crl;
 	
-	static String CONTENT = "前排";
-
+	static String CONTENT = "路过不留名 ！";
+	
 	/**
 	 * @param args
 	 */
@@ -64,7 +42,6 @@ public class EmulateLoginBaidu {
 		crl = new crifanLib();
 		
 		EmulateLoginBaiduUsingJava("", "");
-		
 		
 	}
 
@@ -101,66 +78,77 @@ public class EmulateLoginBaidu {
 		boolean flag = validateLoginSuccess();
         
 		if(flag) {
-			Map<String, String> map = new HashMap<String, String>();
 			
-	        String html = crl.getUrlRespHtml("http://tieba.baidu.com/f/like/mylike");
-	        Document doc = Jsoup.parse(html);
+			//从http://tieba.baidu.com/f/like/mylike读取列表
+			Map<String, String> map = getTiebaListMap();
 	        
-	        //j_pagebar
-	        Element pageE = doc.getElementById("j_pagebar");
-	        
-	        Set<String> pageSet = new HashSet<String>();
-	        pageSet.add("http://tieba.baidu.com/f/like/mylike");
-	        
-	        Elements pageAEs = pageE.getElementsByTag("a");
-	        if(pageAEs != null && pageAEs.size() > 0) {
-	        	for(Element e : pageAEs) {
-	        		pageSet.add("http://tieba.baidu.com" + e.attr("href"));
-	        	}
-	        }
-	        
-	        for(String pageUrl : pageSet) {
-	        	String pageHtml = crl.getUrlRespHtml(pageUrl);
-	        	Document pageDoc = Jsoup.parse(pageHtml);
-	        	Elements tableEs = pageDoc.getElementsByTag("table");
-		        if(tableEs != null && tableEs.size() > 0) {
-		        	Element tableE = tableEs.get(0);
-		        	Elements trEs = tableE.getElementsByTag("tr");
-		        	for(int i=0; i<trEs.size(); i++) {
-		        		if(i > 0) {
-		        			Element trE = trEs.get(i);
-		        			Elements tdEs = trE.getElementsByTag("td");
-		        			if(tdEs != null && tdEs.size() == 4) {
-		        				Element tdE = tdEs.get(0);
-		        				Elements aEs = tdE.getElementsByTag("a");
-		        				if(aEs != null && aEs.size() == 1) {
-		        					Element aE = aEs.get(0);
-		        					String title = aE.attr("title");
-		        					String href = aE.attr("href");
-		        					map.put(title, href);
-		        				}
-		        			}
-		        		}
-		        	}
-		        }
-	        }
-	        
-	        //循环三次
-	        for(int i=0; i<3; i++) {
-	        	for(String key : map.keySet()) {
-		        	enterToTieba(key, map.get(key));
-		        	//一分钟间隔
-		        	try {
-						Thread.sleep(60 * 1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+			for(int i=0; i<1; i++) {
+				Set<String> set = new HashSet<String>();
+				while(set.size() < map.size()) {
+					String randomKey = MapUtils.getRandomKey(map);
+					if(!set.contains(randomKey)) {
+						set.add(randomKey);
+						enterToTieba(randomKey, map.get(randomKey));
+			        	try {
+			        		//休眠时间
+							Thread.sleep((RandomUtil.randomInt(50, 100)) * 1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
-		        }
-	        }
-	        
+				}
+			}
+			
 		}
         
 		return ;
+	}
+
+	private static Map<String, String> getTiebaListMap() {
+		Map<String, String> map = new HashMap<String, String>();
+		
+		String html = crl.getUrlRespHtml("http://tieba.baidu.com/f/like/mylike");
+		Document doc = Jsoup.parse(html);
+		
+		//j_pagebar
+		Element pageE = doc.getElementById("j_pagebar");
+		
+		Set<String> pageSet = new HashSet<String>();
+		pageSet.add("http://tieba.baidu.com/f/like/mylike");
+		
+		Elements pageAEs = pageE.getElementsByTag("a");
+		if(pageAEs != null && pageAEs.size() > 0) {
+			for(Element e : pageAEs) {
+				pageSet.add("http://tieba.baidu.com" + e.attr("href"));
+			}
+		}
+		
+		for(String pageUrl : pageSet) {
+			String pageHtml = crl.getUrlRespHtml(pageUrl);
+			Document pageDoc = Jsoup.parse(pageHtml);
+			Elements tableEs = pageDoc.getElementsByTag("table");
+		    if(tableEs != null && tableEs.size() > 0) {
+		    	Element tableE = tableEs.get(0);
+		    	Elements trEs = tableE.getElementsByTag("tr");
+		    	for(int i=0; i<trEs.size(); i++) {
+		    		if(i > 0) {
+		    			Element trE = trEs.get(i);
+		    			Elements tdEs = trE.getElementsByTag("td");
+		    			if(tdEs != null && tdEs.size() == 4) {
+		    				Element tdE = tdEs.get(0);
+		    				Elements aEs = tdE.getElementsByTag("a");
+		    				if(aEs != null && aEs.size() == 1) {
+		    					Element aE = aEs.get(0);
+		    					String title = aE.attr("title");
+		    					String href = aE.attr("href");
+		    					map.put(title, href);
+		    				}
+		    			}
+		    		}
+		    	}
+		    }
+		}
+		return map;
 	}
 	
 	private static void enterToTiezi(String url, String biebaTitle, String tieziTitle) {
@@ -168,11 +156,10 @@ public class EmulateLoginBaidu {
 		System.out.println(biebaTitle + "---" + tieziTitle);
 		
 		String kw = biebaTitle;
-		String content = CONTENT;
+		String content = CONTENT == null ? getRandomContent() : CONTENT;
 		String fid = null;
 		String tbs = null;
 		String tid = FilenameUtils.getBaseName(url);
-		
 		
 		Pattern tbsP = Pattern.compile("\"tbs\"  : \"(\\w{10,40}+)\"");
 		Pattern fidP = Pattern.compile("fid: '(\\d{1,20})'");
@@ -208,16 +195,16 @@ public class EmulateLoginBaidu {
 			postDict.add(new BasicNameValuePair("tbs", tbs));
 			postDict.add(new BasicNameValuePair("tid", tid));
 			
-			List<NameValuePair> headerDict = new ArrayList<NameValuePair>();
-			headerDict.add(new BasicNameValuePair("Accept", "application/json, text/javascript, */*; q=0.01"));
-			headerDict.add(new BasicNameValuePair("Accept-Encoding", "gzip, deflate"));
-			headerDict.add(new BasicNameValuePair("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3"));
-			headerDict.add(new BasicNameValuePair("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36"));
-			headerDict.add(new BasicNameValuePair("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8"));
-			headerDict.add(new BasicNameValuePair("Connection", "	keep-alive"));
-			headerDict.add(new BasicNameValuePair("Referer", url));
+//			List<NameValuePair> headerDict = new ArrayList<NameValuePair>();
+//			headerDict.add(new BasicNameValuePair("Accept", "application/json, text/javascript, */*; q=0.01"));
+//			headerDict.add(new BasicNameValuePair("Accept-Encoding", "gzip, deflate"));
+//			headerDict.add(new BasicNameValuePair("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3"));
+//			headerDict.add(new BasicNameValuePair("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36"));
+//			headerDict.add(new BasicNameValuePair("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8"));
+//			headerDict.add(new BasicNameValuePair("Connection", "	keep-alive"));
+//			headerDict.add(new BasicNameValuePair("Referer", url));
 			
-			String info = crl.getUrlRespHtml("http://tieba.baidu.com/f/commit/post/add", headerDict, postDict);
+			String info = crl.getUrlRespHtml("http://tieba.baidu.com/f/commit/post/add", getHeaders(), postDict);
 			
 		}
 		
@@ -250,7 +237,7 @@ public class EmulateLoginBaidu {
 				if(numberMatcher.find()) {
 					int repCount = Integer.parseInt(text);
 					//TODO 仅针对前排
-					if(repCount <= 3) {
+					if(validateFloorNum(repCount)) {
 						Elements threadlist_li_rightEs = threadlist_li_leftE.parent().getElementsByClass("threadlist_li_right");
 						if(threadlist_li_rightEs != null) {
 							for(Element threadlist_li_rightE : threadlist_li_rightEs) {
@@ -275,6 +262,23 @@ public class EmulateLoginBaidu {
 			}
 		}
 		
+	}
+
+	/**
+	 * 验证floor层数
+	 * @param repCount
+	 * @return
+	 */
+	private static boolean validateFloorNum(Integer floorNum) {
+		if(floorNum == null || floorNum < 0) {
+			return false;
+		}
+		
+		if(floorNum > 0 && floorNum < 7) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	/**
@@ -363,6 +367,7 @@ public class EmulateLoginBaidu {
 		headerDict.add(new BasicNameValuePair("Accept-Language", "zh-CN,zh;q=0.8"));
 		headerDict.add(new BasicNameValuePair("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36"));
 		headerDict.add(new BasicNameValuePair("Content-Type", "application/x-www-form-urlencoded"));
+		headerDict.add(new BasicNameValuePair("Connection", "	keep-alive"));
 		return headerDict;
 	}
 
@@ -433,5 +438,18 @@ public class EmulateLoginBaidu {
 			System.out.println("错误：没找到bdPass.api.params.login_token !");
 		}
 		return strTokenValue;
+	}
+	
+	
+	public static String getRandomContent() {
+		List<String> list = new ArrayList<String>();
+		list.add("你有没有见过这么整齐的十五字啊。");
+		list.add("我轻轻地来的，正如我轻轻地走。");
+		list.add("水帖美如花，养护靠大家！！");
+		list.add("我只是来水点经验。");
+		list.add("万恶意淫为首，百善回帖为先。");
+		list.add("算是前排么？");
+		list.add("如果帖子沉了，不要怪我。");
+		return list.get(RandomUtil.randomInt(0, list.size()));
 	}
 }

@@ -1,36 +1,5 @@
 package com.star72.common.utils.http;
 
-/**
- * [File]
- * crifanLib.java
- * 
- * [Function]
- * 1. implement crifan's common functions
- * https://code.google.com/p/crifanlib/source/browse/trunk/java/crifanLib.java
- *  
- * [Version]
- * v2.0
- * 
- * [Contact]
- * http://www.crifan.com/about/me/
- * 
- * [Note]
- * 1. need add apache http lib:
- * 【已解决】Eclipse的java代码出错：The import org.apache cannot be resolved
- * http://www.crifan.com/java_eclipse_the_import_org_apache_cannot_be_resolved/
- * 
- * [History]
- * [v2.0, 2013-09-17]
- * 1. update getUrlResponse and getUrlRespHtml
- * 2. add getCurCookieList, getCurCookieStore, setCurCookieStore, setCurCookieList
- *  
- * [v1.4,  2013-07-17]
- * 1. add calcTimeStart, calcTimeEnd
- * 2. add dateToString, outputStringToFile
- * 
- * [v1.0]
- * 1. add http related func and regex related func
- */
 
 //package crifan.com;
 

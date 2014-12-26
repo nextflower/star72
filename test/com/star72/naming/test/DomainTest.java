@@ -9,9 +9,17 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 import com.star72.common.utils.DomainQueryUtil;
-import com.star72.common.utils.PinyinUtil;
 
 public class DomainTest {
+	
+	@Test
+	public void test2() {
+		String domain = "adfaihl.com";
+		boolean flag = DomainQueryUtil.queryByWanWang(domain, false);
+		if(flag) {
+			System.out.println(domain);
+		}
+	}
 	
 	@Test
 	public void test() {

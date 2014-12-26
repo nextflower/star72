@@ -41,9 +41,10 @@ public class DomainQueryUtil {
 				Element prop = propE.get(0);
 				String text = prop.text();
 				if(text.contains("200") && text.contains("210 : Domain name is available")) {
-					System.out.println(text);
+//					System.out.println(text);
+					return true;
 				} else if(showFail){
-					System.out.println(text);
+//					System.out.println(text);
 				}
 			}
 		} catch (Exception e) {

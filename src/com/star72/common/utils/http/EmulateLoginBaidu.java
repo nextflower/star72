@@ -83,7 +83,7 @@ public class EmulateLoginBaidu {
 			//从http://tieba.baidu.com/f/like/mylike读取列表
 			Map<String, String> map = getTiebaListMap();
 	        
-			for(int i=0; i<1; i++) {
+			for(int i=0; i<3; i++) {
 				Set<String> set = new HashSet<String>();
 				while(set.size() < map.size()) {
 					String randomKey = MapUtils.getRandomKey(map);
@@ -92,7 +92,7 @@ public class EmulateLoginBaidu {
 						enterToTieba(randomKey, map.get(randomKey));
 			        	try {
 			        		//休眠时间
-							Thread.sleep((RandomUtil.randomInt(50, 100)) * 1000);
+							Thread.sleep((RandomUtil.randomInt(88, 100)) * 1000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -448,12 +448,15 @@ public class EmulateLoginBaidu {
 		list.add("我轻轻地来，正如我轻轻地走。");
 		list.add("水帖美如花，养护靠大家！！");
 		list.add("我只是来水点经验。");
-		list.add("万恶意淫为首，百善回帖为先。");
+		list.add("百善回帖为先。");
 		list.add("算是前排么？");
 		list.add("如果帖子沉了，不要怪我。");
 		list.add("如果帖子火了，记得@我。");
 		list.add("我唯一能做的就是让楼主的帖子在首页多停一秒。");
 		list.add("长得帅（漂亮）的人都会在此楼留名。");
+		list.add("混个脸熟。。。");
+		list.add("楼主你好");
+		list.add("回帖也是很有乐趣的");
 		return list.get(RandomUtil.randomInt(0, list.size()));
 	}
 }

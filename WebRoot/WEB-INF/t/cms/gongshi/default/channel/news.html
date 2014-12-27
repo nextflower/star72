@@ -56,7 +56,7 @@
 			   <li [#if !channel??]class="active"[/#if]><a href="${base}">全部</a></li>
 			   [@cms_channel_list]
 			   		[#list tag_list as ch]
-						<li><a href="${ch.url}" [#if channel?? && ch.id==channel.id?number]class="active"[/#if]>${ch.name}</a></li>
+						<li [#if channel?? && ch.id==(channel.id)?number]class="active"[/#if]><a href="${ch.url}">${ch.name}</a></li>
 					[/#list]
 			   [/@cms_channel_list]
 			</ul>
@@ -70,20 +70,20 @@
 			<div class="col-sm-6">
 				<table class="table table-bordered text-center">
 				   <tbody>
-					  [@cms_content_list siteId=site.id]
+					  [@cms_content_list channelId=(channel.id)]
 					  	[#if tag_list?size > 0]
-							[#list tag_list?sort_by("topLevel")?reverse as c]
+							[#list tag_list as c]
 								<tr>
-							         <td><span class="label label-default">${c.channel.name}</span><a href="${c.url}"><button type="button" class="btn btn-link">${c.title}</button></a></td>
+							         <td><button type="button" class="btn btn-link">${c.title}</button></td>
 									 <td><button type="button" class="btn btn-success btn-sm" onclick="window.location.href='${c.url}'">点击使用</button></td>
 							      </tr>
 							[/#list]
 						[#else]
 							<tr>
-					         <td colspan="2">
-					         	<h3>当前分类下暂无相关计算器</h3>
-						     </td>
-					      </tr>
+						         <td colspan="2">
+						         	<h3>当前分类下暂无相关计算器</h3>
+							     </td>
+						      </tr>
 						[/#if]
 					  [/@cms_content_list]
 					  <tr>

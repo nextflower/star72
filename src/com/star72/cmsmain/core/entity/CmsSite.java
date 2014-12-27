@@ -15,6 +15,7 @@ import org.apache.commons.lang.StringUtils;
 import com.star72.cmsmain.core.entity.base.BaseCmsSite;
 
 public class CmsSite extends BaseCmsSite {
+	private static final String DEFAULT = "default";
 	private static final long serialVersionUID = 1L;
 	public static final String PV_TOTAL="pvTotal";
 	public static final String VISITORS="visitors";	
@@ -322,8 +323,8 @@ public class CmsSite extends BaseCmsSite {
 		}
 		if (StringUtils.isBlank(getTplSolution())) {
 			//默认路径名作为方案名
-			setTplSolution(getPath());
-			//setTplSolution(DEFAULT);
+			//setTplSolution(getPath());
+			setTplSolution(DEFAULT);
 		}
 		if (getFinalStep() == null) {
 			byte step = 2;

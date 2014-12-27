@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>template</title>
+        <!-- Bootstrap -->
+        <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+		<!--
+        <style type="text/css">
+        body { margin:0; padding:0; background:url(/test/res/images/bg_gongshi.jpg) top center; background-repeat: repeat; }
+        </style>
+		//#CCCCCC
+        -->
+		<style type="text/css">
+        	body { margin:0; padding:0; background-color:#f8f8f8;}
+        </style>
+    </head>
+    <body style="padding:70px;">
+    	
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">七十二颗星</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                	<li><a href="#">古代文献</a></li>
+                    <li class="active"><a href="#">公式大全</a></li>
+                    <li><a href="#">在线工具</a></li>
+                </ul>
+            </div>
+        </nav>
+		
+		
+    	<div class="container">
+    		
+		<!--gongshi list-->
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-10">
+				<div class="panel panel-info">
+				   <div class="panel-heading">
+					  当前位置：
+					<a href="${site.url}"><button type="button" class="btn btn-link btn-sm">${site.name}</button></a>
+					»
+					<a href="${channel.url}"><button type="button" class="btn btn-link btn-sm">${channel.name}</button></a>
+					»
+					<a href="${channel.url}"><button type="button" class="btn btn-link btn-sm">${content.title}</button></a>
+				   </div>
+				   <div class="panel-body">
+				   	
+						<div class="text-center">
+							
+							<div class="panel panel-default">
+							   <div class="panel-body">
+							      <h2><button class="btn btn-success" type="button">组合在线计算</button></h2>
+								  <div><img src="/${res}/img/gongshi_zuhe.png" class="img-thumbnail"/></p></div>
+								  <div>
+									   <form id="zuheForm" class="bs-example bs-example-form" role="form">
+									      <div class="row">
+									      	<div class="col-lg-2">
+									      	</div>
+									         <div class="col-lg-8">
+									            <div class="input-group">
+									               <span class="input-group-btn">
+									                  <button class="btn btn-info" type="button">n值：</button>
+									               </span>
+									               <input name="zuhe_n" id="zuhe_n" type="text" class="form-control" placeholder="支持范围:1<n<1万">
+												   <span class="input-group-btn">&nbsp;&nbsp;</span>
+												   <span class="input-group-btn">
+									                  <button class="btn btn-info" type="button">r值：</button>
+									               </span>
+									               <input name="zuhe_r" id="zuhe_r" type="text" class="form-control" placeholder="r需要大于0且<=n">
+												   <span class="input-group-btn">&nbsp;&nbsp;</span>
+												   <span class="input-group-btn">
+									                  <button class="btn btn-danger" type="button" onclick="$('#zuheForm').submit();">点击计算</button>
+									               </span>
+									            </div><!-- /input-group -->
+												
+												 <textarea id="zuheResult" class="form-control" rows="2" placeholder="计算结果显示在这里"></textarea>
+												
+									         </div><!-- /.col-lg-6 --><br>
+									      </div><!-- /.row -->
+									   </form>
+									</div>
+									<div id="zuheError"></div>
+									<h4></h4>
+									<div class="alert alert-warning">
+									   <a href="#" class="close" data-dismiss="alert">&times;</a>
+									   <p>关于该公式更多信息，详见本页下端说明。若有建议，欢迎<a href="#"><span class="badge">在线留言</span></a>。</p>
+									</div>
+
+							   </div>
+							</div>
+							
+							<div class="panel panel-default">
+							   <div class="panel-body">
+							      <h2><button class="btn btn-success" type="button">排列在线计算</button></h2>
+									<p><img src="/${res}/img/gongshi_pailie.png" class="img-thumbnail"/></p>
+									<div>
+									   <form id="pailieForm" class="bs-example bs-example-form" role="form">
+									      <div class="row">
+									      	<div class="col-lg-2">
+									      	</div>
+									         <div class="col-lg-8">
+									            <div class="input-group">
+									               <span class="input-group-btn">
+									                  <button class="btn btn-info" type="button">
+									                     	n值：
+									                  </button>
+									               </span>
+									               <input name="pailie_n" id="pailie_n" type="text" class="form-control" placeholder="支持范围:1=< n <=1200">
+												   <span class="input-group-btn">&nbsp;&nbsp;</span>
+												   <span class="input-group-btn">
+									                  <button class="btn btn-info" type="button">
+									                     	r值：
+									                  </button>
+									               </span>
+									               <input name="pailie_r" id="pailie_r" type="text" class="form-control" placeholder="0<r<n">
+												   <span class="input-group-btn">&nbsp;&nbsp;</span>
+												   <span class="input-group-btn">
+									                  <button class="btn btn-danger" type="button" onclick="$('#pailieForm').submit();">
+									                     	点击计算
+									                  </button>
+									               </span>
+									            </div><!-- /input-group -->
+												
+												<textarea id="pailieResult" class="form-control" rows="2" placeholder="计算结果显示在这里"></textarea>
+												
+									         </div><!-- /.col-lg-6 --><br>
+									      </div><!-- /.row -->
+									   </form>
+									</div>
+									<div id="pailieError"></div>
+									<h4></h4>
+									<div class="alert alert-warning">
+									   <a href="#" class="close" data-dismiss="alert">&times;</a>
+									   <p>关于该公式更多信息，详见本页下端说明。若有建议，欢迎<a href="#"><span class="badge">在线留言</span></a>。</p>
+									</div>
+									
+							   </div>
+							</div>
+						</div>
+						
+						<!--description-->
+							<div class="panel panel-default">
+							   <div class="panel-body">
+							   		<h2><span class="label label-default">排列组合公式解释</span></h2>
+									<ul class="list-group">
+									   <li class="list-group-item">
+									   		排列组合是组合学最基本的概念。所谓排列，就是指从给定个数的元素中取出指定个数的元素进行排序。
+											组合则是指从给定个数的元素中仅仅取出指定个数的元素，不考虑排序。
+											排列组合的中心问题是研究给定要求的排列和组合可能出现的情况总数。 排列组合与古典概率论关系密切。
+									   </li>
+									   <li class="list-group-item">
+									   		排列的定义及其计算公式：从n个不同元素中，任取m(m≤n,m与n均为自然数,下同）个元素按照一定的顺序排成一列，
+											叫做从n个不同元素中取出m个元素的一个排列；从n个不同元素中取出m(m≤n）个元素的所有排列的个数，
+											叫做从n个不同元素中取出m个元素的排列数，用符号 A(n,m）表示。A(n,m)=n(n-1)(n-2)……(n-m+1)= n!/(n-m)! 
+											此外规定0!=1(n!表示n(n-1)(n-2)...1,也就是6！=6x5x4x3x2x1
+                                       </li>
+									   <li class="list-group-item">
+									   		组合的定义及其计算公式：从n个不同元素中，任取m(m≤n）个元素并成一组，叫做从n个不同元素中取出m个元素的一个组合；
+											从n个不同元素中取出m(m≤n）个元素的所有组合的个数，叫做从n个不同元素中取出m个元素的组合数。
+											用符号 C(n,m) 表示。C(n,m)=A(n,m)/m！；C(n,m)=C(n,n-m）。（n≥m)
+										</li>
+									</ul>
+							   </div>
+							</div>
+							
+							<!--工具说明-->
+							<div class="panel panel-default">
+							   <div class="panel-body">
+									<p>
+										<h2><span class="label label-default">排列组合在线计算说明</span></h2>
+										<ul class="list-group">
+										   <li class="list-group-item">1、当排列组合计算数值较大时，会出现结果溢出的现象。</li>
+										   <li class="list-group-item">
+										   				2、较大的计算结果在实际应用中并没有太大的意义。举例来说，本站支持的最大排列：
+										   				<span class="label label-success">P(1200,1200)</span>，
+														其结果为<span class="label label-success">6.35E3176</span>。
+														通俗来说，就是<span class="label label-success">6后面跟3176个0</span>。
+										   </li>
+										   <li class="list-group-item">3、鉴于上述原因，本站限定了可供计算的值的上限。若不能满足您的计算要求，还望见谅。</li>
+										</ul>
+									</p>
+							   </div>
+							</div>
+					
+				   </div>
+				</div>
+				
+			</div>
+			
+			<div class="col-sm-1"></div>
+		</div>
+		
+		
+		
+			<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+			   <div class="row text-center">
+			     <p><h5><button type="button" class="btn btn-link">网站地图</button>|<button type="button" class="btn btn-link">关于我们</button></h5></p>
+			     <p><h6>©2014 七十二颗星 欢迎您的访问 </h6></p>
+			   </div>
+			</nav>
+		
+		
+		</div>
+		
+        <script src="${base}/res/common/js/jquery.js"></script>
+        <script src="${base}/res/bootstrap/js/bootstrap.min.js"></script>
+		
+		<script type="text/javascript">
+			$().ready(function() {
+				$("#pailieForm").validate({
+					 rules: {
+					   pailie_n: {
+					   	 required: true,
+						 digits:true,
+						 max:1200,
+						 min:1
+					   },
+					   pailie_r: {
+					   	 required: true,
+						 digits:true,
+						 max:1200,
+						 min:1
+					   }
+					  },
+					 messages: {
+					   pailie_n: {
+					   		required: "n不能为空",
+							digits: "请输入数字",
+							max: "n不能超过1200",
+							min: "n不能小于1"
+					   },
+					   pailie_r: {
+					   		required: "r不能为空",
+							digits: "请输入数字",
+							max: "r不能超过1200",
+							min: "r不能小于1"
+					   }
+					 },
+					 errorPlacement: function(error, element) { 
+					 		$('#pailieError').text('');
+							error.appendTo($('#pailieError'));
+					},
+					success: function(label) {
+					    label.html("&nbsp;").addClass("checked");
+					},
+					submitHandler:function(form){
+			            $(form).ajaxSubmit({
+				            type: 'post',
+				            url: '${base}/gongshi/pailie.jspx',
+				            data: {
+				                'n': $('#pailie_n').val(),
+				                'r': $('#pailie_r').val()
+				            },
+				            success: function(data) {
+								$('#pailieResult').text(data);
+				            }
+				        });
+			        }
+				});
+				
+				$("#zuheForm").validate({
+					 rules: {
+					   zuhe_n: {
+					   	 required: true,
+						 digits:true,
+						 max:10000,
+						 min:1
+					   },
+					   zuhe_r: {
+					   	 required: true,
+						 digits:true,
+						 max:10000,
+						 min:1
+					   }
+					  },
+					 messages: {
+					   zuhe_n: {
+					   		required: "n不能为空",
+							digits: "请输入数字",
+							max: "n不能超过10000",
+							min: "n不能小于1"
+					   },
+					   zuhe_r: {
+					   		required: "r不能为空",
+							digits: "请输入数字",
+							max: "r不能超过10000",
+							min: "r不能小于1"
+					   }
+					 },
+					 errorPlacement: function(error, element) { 
+					 		$('#zuheError').text('');
+							error.appendTo($('#zuheError'));
+					},
+					success: function(label) {
+					    label.html("&nbsp;").addClass("checked");
+					},
+					submitHandler:function(form){
+			            $(form).ajaxSubmit({
+				            type: 'post',
+				            url: '${base}/gongshi/zuhe.jspx',
+				            data: {
+				                'n': $('#zuhe_n').val(),
+				                'r': $('#zuhe_r').val()
+				            },
+				            success: function(data) {
+				                $('#zuheResult').text(data);
+				            }
+				        });
+			        }
+				});
+				
+				
+			});
+		</script>
+    </body>
+</html>

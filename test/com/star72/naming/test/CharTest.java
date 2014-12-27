@@ -1,13 +1,22 @@
 package com.star72.naming.test;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
 
 import com.star72.common.utils.StarStringUtils;
+import com.star72.common.utils.math.PLZUUtils;
 
 public class CharTest {
+	
+	@Test
+	public void test2() {
+		BigDecimal paiLie = PLZUUtils.computeZuhe(10000, 5000);
+		System.out.println(paiLie.toString().replace(".0", ""));
+		System.out.println(paiLie.toString().replace(".0", "").length());
+	}
 	
 	@Test
 	public void test() {

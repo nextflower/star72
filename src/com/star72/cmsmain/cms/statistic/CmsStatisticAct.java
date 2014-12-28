@@ -233,7 +233,7 @@ public class CmsStatisticAct {
 			begin=calendar.getTime();
 		}
 		Map<String,List<Object[]>>resultMap=new HashMap<String, List<Object[]>>();
-		Map<String,Integer>totalMap=new HashMap<String, Integer>();
+		Map<String,Long>totalMap=new HashMap<String, Long>();
 		if(flag==1){
 			//选择日期统计
 			for(String v:columnValues){
@@ -256,9 +256,9 @@ public class CmsStatisticAct {
 		}
 		for(String columnValue:columnValues){
 			List<Object[]> li=resultMap.get(columnValue);
-			Integer total=0;
+			Long total=0L;
 			for(Object[]array:li){
-				total+=(Integer)array[0];
+				total+=(Long)array[0];
 			}
 			totalMap.put(columnValue, total);
 		}

@@ -18,51 +18,14 @@
         </style>
         -->
     </head>
-    <body>
+    <body style="padding:70px;">
     	
-		<nav class="navbar navbar-inverse" role="navigation">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">七十二颗星</a>
-            </div>
-            <div>
-                <ul class="nav navbar-nav">
-                	<li><a href="#">古代文献</a></li>
-                    <li class="active"><a href="#">公式大全</a></li>
-                    <li><a href="#">在线工具</a></li>
-                </ul>
-            </div>
-        </nav>
+		[#include "../include/header.html"/]
 		
 		
     	<div class="container">
     		
-					<div class="row text-center">
-						<div class="col-lg-3"></div>
-						<div class="col-lg-6">
-				            <div class="input-group">
-				               <input type="text" class="form-control" placeholder="请输入关键词:例如排列组合">
-				               <span class="input-group-btn">
-				                  <button class="btn btn-warning" type="button">搜索</button>
-				               </span>
-				            </div>
-				         </div>
-					</div>
-					
-					<div class="row"><h7>&nbsp;</h7></div>
-
-		
-		<div class="row" style="border:1px solid #999d9c;">
-           <ul class="nav nav-pills nav-justified">
-			   <li [#if !channel??]class="active"[/#if]><a href="${base}">全部</a></li>
-			   [@cms_channel_list]
-			   		[#list tag_list as ch]
-						<li><a href="${ch.url}" [#if channel?? && ch.id==channel.id?number]class="active"[/#if]>${ch.name}</a></li>
-					[/#list]
-			   [/@cms_channel_list]
-			</ul>
-        </div>
-		
-		<div class="row"><h6>&nbsp;</h6></div>
+			[#include "../include/navi.html"/]
 		
 		<!--gongshi list-->
 		<div class="row">
@@ -112,7 +75,16 @@
 		
 		</div>
 		
-        <script src="${base}/res/jquery/jquery.min.js"></script>
+        <script src="${resSys}/jquery.js"></script>
         <script src="${base}/res/bootstrap/js/bootstrap.min.js"></script>
+		
+		<script src="${resSys}/front.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		$(function() {
+			Cms.siteFlow("${base}", location.href, document.referrer);
+			$.cookie("_site_id_cookie","${site.id!}",{path: '${base}' });
+		});
+		</script>
+
     </body>
 </html>

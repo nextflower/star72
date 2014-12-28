@@ -24,18 +24,7 @@
     </head>
     <body style="padding:70px;">
     	
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">七十二颗星</a>
-            </div>
-            <div>
-                <ul class="nav navbar-nav">
-                	<li><a href="#">古代文献</a></li>
-                    <li class="active"><a href="#">公式大全</a></li>
-                    <li><a href="#">在线工具</a></li>
-                </ul>
-            </div>
-        </nav>
+		[#include "../include/header.html"/]
 		
 		
     	<div class="container">
@@ -212,11 +201,16 @@
 		
 		</div>
 		
-        <script src="${base}/res/common/js/jquery.js"></script>
+        <script src="${resSys}/jquery.js"></script>
         <script src="${base}/res/bootstrap/js/bootstrap.min.js"></script>
+		<script src="${resSys}/front.js" type="text/javascript"></script>
 		
 		<script type="text/javascript">
 			$().ready(function() {
+				
+				Cms.viewCount("${base}","${content.id}");
+				Cms.siteFlow("${base}", location.href, document.referrer);
+				
 				$("#pailieForm").validate({
 					 rules: {
 					   pailie_n: {

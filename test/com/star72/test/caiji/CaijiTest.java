@@ -1,11 +1,13 @@
 package com.star72.test.caiji;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,6 +17,9 @@ import org.junit.Test;
 public class CaijiTest {
 	
 	private String base = "http://wenxian.fanren8.com";
+	private String destPath = "D:/gudian";
+	
+	static int totalCount = 0;
 
 	@Test
 	public void caijiTest() throws MalformedURLException, IOException {
@@ -23,9 +28,8 @@ public class CaijiTest {
 		//http://wenxian.fanren8.com/01/index.htm
 		for(String index : indexes) {
 			String url = "http://wenxian.fanren8.com/" + index + "/index.htm";
-			Document doc = Jsoup.parse(new URL(url), 5000);
+			Document doc = Jsoup.parse(new URL(url), 20000);
 			parse(doc);
-			
 			break;
 		}
 	}
@@ -43,7 +47,7 @@ public class CaijiTest {
 						for(Element aE : as) {
 							String href = aE.attr("href");
 							Document child = Jsoup.parse(new URL(base + href), 5000);
-							System.out.println(base + href);
+							//System.out.println(base + href);
 							parse(child);
 							break;
 						}
@@ -51,6 +55,7 @@ public class CaijiTest {
 				}
 			}
 		} else if(cont != null){
+			totalCount++;
 			//内容
 			Element positionE = doc.getElementById("position");
 			Elements h2E = container.getElementsByTag("h2");
@@ -64,13 +69,33 @@ public class CaijiTest {
 			if(h2E != null && h2E.size() > 0) {
 				pathList.add(h2E.text());
 			}
-			System.out.println(pathList);
-			System.out.println(cont.toString());
+			System.out.println(totalCount + "---" + pathList);
+			
+			String path = destPath + generatePath(pathList);
+			
+			//System.out.println(path);
+			
+			File destFile = new File(path);
+			
+			if(!destFile.exists()) {
+				FileUtils.writeStringToFile(destFile, cont.toString());
+			}
 			
 		} else {
 			System.out.println("未找到");
 		}
 		
+	}
+
+	private String generatePath(List<String> pathList) {
+		if(pathList == null || pathList.size() == 0) {
+			return "";
+		}
+		StringBuffer sb = new StringBuffer();
+		for(String path : pathList) {
+			sb.append("/" + path);
+		}
+		return sb.length() > 0 ? sb.toString() + ".txt" : sb.toString();
 	}
 	
 }

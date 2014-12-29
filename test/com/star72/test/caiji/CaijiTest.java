@@ -23,18 +23,23 @@ public class CaijiTest {
 
 	@Test
 	public void caijiTest() throws MalformedURLException, IOException {
-		
-		String[] indexes = new String[]{"01","02","03","04","05","06","07","08","09","10","11"};
+		//"04","05","06","07","08","09","10","11"
+		String[] indexes = new String[]{"06"};
 		//http://wenxian.fanren8.com/01/index.htm
 		for(String index : indexes) {
 			String url = "http://wenxian.fanren8.com/" + index + "/index.htm";
 			Document doc = Jsoup.parse(new URL(url), 20000);
-			parse(doc);
-			break;
+			parse(doc, index + "/index.htm");
+			//break;
 		}
 	}
 
-	private void parse(Document doc) throws MalformedURLException, IOException {
+	private void parse(Document doc, String preHref) throws IOException {
+		
+		if(doc == null) {
+			return;
+		}
+		
 		Element container = doc.getElementById("container");
 		Element cont = doc.getElementById("cont");
 		if(cont == null && container != null) {
@@ -46,10 +51,24 @@ public class CaijiTest {
 					if(as != null) {
 						for(Element aE : as) {
 							String href = aE.attr("href");
-							Document child = Jsoup.parse(new URL(base + href), 5000);
-							//System.out.println(base + href);
-							parse(child);
-							break;
+							Document child = null;
+							try {
+								child = Jsoup.parse(new URL(base + href), 20000);
+							} catch (MalformedURLException e) {
+								e.printStackTrace();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							
+							if(child == null) {
+								continue;
+							}
+							
+							if(preHref.contains(href)) {
+								continue;
+							}
+							parse(child, href);
+							//break;
 						}
 					}
 				}

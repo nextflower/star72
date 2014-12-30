@@ -2,6 +2,7 @@ package com.star72.test.caiji;
 
 import java.io.File;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 public class FileCountTest {
@@ -11,7 +12,7 @@ public class FileCountTest {
 	
 	@Test
 	public void test() {
-		String path = "F:\\文档\\gudian";
+		String path = "D:\\gudaiwenxian";
 		
 		//15696
 		//216
@@ -37,6 +38,9 @@ public class FileCountTest {
 				}
 			}
 		} else {
+			long totalSpace = file.length();
+			double size = totalSpace * 1.0 / 1024;
+			System.out.println(file.getAbsolutePath() + "---" + size);
 			fileCount++;
 		}
 	}

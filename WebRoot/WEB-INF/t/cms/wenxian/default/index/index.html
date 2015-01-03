@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>template</title>
+        <!-- Bootstrap -->
+        <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+		<!--
+        <style type="text/css">
+        body { margin:0; padding:0; background:url(/test/res/images/bg_gongshi.jpg) top center; background-repeat: repeat; }
+        </style>
+        -->
+		<style type="text/css">
+				body { background-color:#CCCC66;}
+		</style>
+    </head>
+    <body style="padding:70px;">
+    	
+		[#include "../include/header.html"/]
+		
+    	<div class="container">
+    		
+			
+    		<div class="text-center"><img src="${base}/res/images/logo_long.jpg" class="img-circle" width="76" height="80"></div>
+			
+			[#include "../include/search_header.html"/]
+		
+			<div class="row"><h1></h1></div>
+			
+			<hr/>
+			
+			<div class="row"><h1></h1></div>
+			
+			<div class="row text-center">
+				
+				<div class="col-md-4">
+						<div class="panel panel-info">
+						   <div class="panel-heading">
+						      <h1 class="panel-title"><span class="badge">分类导航</span></h1>
+						   </div>
+						   <div class="panel-body">
+								<ul class="list-group">
+								   <li class="list-group-item"><a href="${base}/wenxian/search/cat/易藏.jhtml"><button class="btn btn-default btn-block" type="button">易藏</button></a></li>
+								   <li class="list-group-item"><a href="${base}/wenxian/search/cat/儒藏.jhtml"><button class="btn btn-default btn-block" type="button">儒藏</button></a></li>
+								   <li class="list-group-item"><a href="${base}/wenxian/search/cat/道藏.jhtml"><button class="btn btn-default btn-block" type="button">道藏</button></a></li>
+								   <li class="list-group-item"><a href="${base}/wenxian/search/cat/佛藏.jhtml"><button class="btn btn-default btn-block" type="button">佛藏</button></a></li>
+								   <li class="list-group-item"><a href="${base}/wenxian/search/cat/子藏.jhtml"><button class="btn btn-default btn-block" type="button">子藏</button></a></li>
+								   <li class="list-group-item"><a href="${base}/wenxian/search/cat/史藏.jhtml"><button class="btn btn-default btn-block" type="button">史藏</button></a></li>
+								   <li class="list-group-item"><a href="${base}/wenxian/search/cat/诗藏.jhtml"><button class="btn btn-default btn-block" type="button">诗藏</button></a></li>
+								   <li class="list-group-item"><a href="${base}/wenxian/search/cat/集藏.jhtml"><button class="btn btn-default btn-block" type="button">集藏</button></a></li>
+								   <li class="list-group-item"><a href="${base}/wenxian/search/cat/医藏.jhtml"><button class="btn btn-default btn-block" type="button">医藏</button></a></li>
+								   <li class="list-group-item"><a href="${base}/wenxian/search/cat/艺藏.jhtml"><button class="btn btn-default btn-block" type="button">艺藏</button></a></li>
+								   <li class="list-group-item"><a href="${base}/wenxian/search/cat/诗词.jhtml"><button class="btn btn-default btn-block" type="button">诗词</button></a></li>
+								</ul>
+						   </div>
+						</div>
+				</div>
+				<div class="col-md-4">
+						<div class="panel panel-success">
+						   <div class="panel-heading">
+						   		<h1 class="panel-title"><span class="badge">朝代导航</span></h1>
+						   </div>
+						   <div class="panel-body">
+								  <ul class="list-group">
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">周</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">秦</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">汉</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">晋</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">隋</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">唐</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">宋</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">元</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">明</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">清</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">更多...</button></a></li>
+								</ul>
+						   </div>
+						</div>
+				</div>
+				<div class="col-md-4">
+						<div class="panel panel-warning">
+						   <div class="panel-heading">
+						   		<h1 class="panel-title"><span class="badge">作者导航</span></h1>
+						   </div>
+						   <div class="panel-body">
+						   		 <ul class="list-group">
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">李白</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">杜甫</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">韩愈</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">柳宗元</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">欧阳修</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">王勃</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">汪伦</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">李贽</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">司马迁</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">曹植</button></a></li>
+								   <li class="list-group-item"><a href="#"><button class="btn btn-default btn-block" type="button">更多...</button></a></li>
+								</ul>
+						   </div>
+						</div>
+				</div>
+				
+			</div>
+			
+			
+			[#include "../include/footer.html"/]
+		
+		
+		</div>
+		
+        <script src="${resSys}/jquery.js"></script>
+        <script src="${base}/res/bootstrap/js/bootstrap.min.js"></script>
+		<script src="${resSys}/front.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		$(function() {
+			Cms.siteFlow("${base}", location.href, document.referrer);
+			$.cookie("_site_id_cookie","${site.id!}",{path: '${base}' });
+		});
+		</script>
+
+    </body>
+</html>

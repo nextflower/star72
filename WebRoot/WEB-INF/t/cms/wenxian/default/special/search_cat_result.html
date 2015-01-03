@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>${cat!}_${result.pageNo!}|${site.name}</title>
+        <!-- Bootstrap -->
+        <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+		<!--
+        <style type="text/css">
+        body { margin:0; padding:0; background:url(/test/res/images/bg_gongshi.jpg) top center; background-repeat: repeat; }
+        </style>
+		body { background-color:#CCCC66;}
+        -->
+		
+		<style type="text/css">
+				body{ background-color:#CCCC66;}
+				a.backtop {
+	                background: url("${base}/res/images/logo_top_black.gif") no-repeat scroll center center rgba(0, 0, 0, 0);
+	                bottom: 50px;
+	                cursor: pointer;
+	                display: none;
+	                height: 70px;
+	                position: fixed;
+	                right: 50px;
+	                text-indent: -9999px;
+	                width: 70px;
+	                z-index: 100;
+	            }
+		
+		</style>
+    </head>
+    <body style="padding:70px;">
+    	
+		[#include "../include/header.html"/]
+		
+		<div class="row">
+			
+			<!--left side ads-->
+			<div class="col-md-1 text-center">
+				
+			</div>
+			
+	    	<div class="container col-md-10">
+	    		
+				<!--search input-->
+				[#include "../include/search_header.html"/]
+				
+				<div class="row"><h2></h2></div>
+				
+				<!--result list-->
+				<div class="row">
+					<div class="panel panel-info">
+					   <div class="panel-heading">
+					      <h3 class="panel-title">
+					         	当前位置：
+								<a href="${site.url}"><button type="button" class="btn btn-link btn-sm">${site.name}</button></a>
+								»
+								<button type="button" class="btn btn-link btn-sm disabled">分类导航</button>
+					      </h3>
+					   </div>
+					   <div class="panel-body">
+								
+								<h6>当前分类[${cat!}],共为您找到<span class="badge">${result.totalCount}</span>条记录,当前第${result.pageNo+1}页/共${result.totalPage}页, [@process_time/]</h6>
+								
+					    		<div class="col-md-12">
+					    			
+									[#include "../include/search_result_list.html"/]
+									
+									[#if list?? && list?size gt 0]
+										<div class="text-center">
+											<ul class="pagination">
+											  <li><a href="${base}/wenxian/search/cat/${hrefFormer}.jhtml">首页</a></li>
+											  <li><a href="${base}/wenxian/search/cat/${hrefFormer}_${result.prePage+1}.jhtml">上一页</a></li>
+											  <li><a href="${base}/wenxian/search/cat/${hrefFormer}_${result.nextPage+1}.jhtml">下一页</a></li>
+											  <li><a href="${base}/wenxian/search/cat/${hrefFormer}_${result.totalPage}.jhtml">尾页</a></li>
+											</ul>
+										</div>
+									[#else]
+										<div class="text-center"><h1>暂无结果</h1></div>
+									[/#if]
+										
+								</div>
+								
+					   </div>
+					</div>
+
+					
+				</div>
+				
+				
+				
+			</div>
+			
+			<!--right side ads-->
+			<div class="col-md-1 text-center">
+				<a class="backtop"><h6>返回顶部</h6></a>
+			</div>
+			
+		</div>
+		
+		
+		[#include "../include/footer.html"/]
+			
+		
+        <script src="${resSys}/jquery.js"></script>
+        <script src="${base}/res/bootstrap/js/bootstrap.min.js"></script>
+		
+		<script src="${resSys}/front.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		$(function() {
+			Cms.siteFlow("${base}", location.href, document.referrer);
+			$.cookie("_site_id_cookie","${site.id!}",{path: '${base}' });
+		});
+		
+		$(window).scroll(function () {
+	        if($(window).scrollTop()>=100) {
+	            $(".backtop").fadeIn();
+	        }else {
+	        	$(".backtop").fadeOut();
+	        }
+	    });
+		
+		//返回顶部
+        $(".backtop").click(function(event){
+            $('html,body').animate({
+                scrollTop: 0
+            }, 500);
+            return false;
+        });
+		
+		
+		</script>
+
+    </body>
+</html>

@@ -44,5 +44,6 @@
 	
 	<!--new add-->
 	<bean id="gongshiAct" class="com.star72.cmsmain.cms.action.front.GongshiAct"/>
+	<bean id="starSearchAct" class="com.star72.cmsmain.cms.action.front.StarSearchAct"/>
 	
 </beans>

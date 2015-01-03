@@ -1,0 +1,20 @@
+[#if list??]
+[#list list as wenxian]
+	<div class="panel panel-primary">
+	   <div class="panel-body">
+	   		<h5>[#if cat?? && cat!=''][${cat}]&nbsp;[/#if]<a href="${base}/wenxian/search/id/${wenxian.id}.jhtml" target="_blank">${wenxian.title}</a></h5>
+			<p class="text-muted">
+				<h6>
+					来源：《<a href="#">${wenxian.source}</a>》
+					作者：<a href="#">佚名</a>
+					 朝代：<a href="#">唐</a>
+				 </h6>
+			</p>
+			<h6>
+			[@text_cut s=wenxian.content len='210' append='...'/]
+			[<a href="${base}/wenxian/search/id/${wenxian.id}.jhtml" target="_blank">详细浏览</a>]
+			</h6>
+	   </div>
+	</div>
+[/#list]
+[/#if]

@@ -129,6 +129,7 @@ public abstract class BaseCmsSite  implements Serializable {
 	private java.lang.String tplIndex;
 	private java.lang.String keywords;
 	private java.lang.String description;
+	private java.lang.String solrPath;
 	// many to one
 	private com.star72.cmsmain.core.entity.Ftp uploadFtp;
 	private com.star72.cmsmain.core.entity.CmsConfig config;
@@ -620,6 +621,14 @@ public abstract class BaseCmsSite  implements Serializable {
 
 	public String toString () {
 		return super.toString();
+	}
+
+	public void setSolrPath(java.lang.String solrPath) {
+		this.solrPath = solrPath;
+	}
+
+	public java.lang.String getSolrPath() {
+		return solrPath;
 	}
 
 

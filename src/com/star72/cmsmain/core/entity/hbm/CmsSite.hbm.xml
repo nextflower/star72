@@ -27,6 +27,7 @@
 		<property name="tplIndex" column="tpl_index" type="string" not-null="false" length="255"/>
 		<property name="keywords" column="keywords" type="string" not-null="false" length="255"/>
 		<property name="description" column="description" type="string" not-null="false" length="255"/>
+		<property name="solrPath" column="solr_path" type="string" not-null="false" length="255"/>
 		<one-to-one name="siteCompany" class="CmsSiteCompany" cascade="delete"/>
 		<many-to-one name="uploadFtp" column="ftp_upload_id" class="com.star72.cmsmain.core.entity.Ftp" not-null="false"></many-to-one>
 		<many-to-one name="config" column="config_id" class="CmsConfig" not-null="true"></many-to-one>

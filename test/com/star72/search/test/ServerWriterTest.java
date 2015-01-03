@@ -17,7 +17,9 @@ import org.wltea.analyzer.solr.IKTokenizerFactory;
 
 import com.star72.common.utils.StarStringUtils;
 import com.star72.search.solrmodule.condition.SolrCommonItem;
+import com.star72.search.solrmodule.condition.SolrItem;
 import com.star72.search.solrmodule.condition.SolrSearchCondition;
+import com.star72.search.solrmodule.condition.SolrStringItem;
 import com.star72.search.solrmodule.condition.SortedValue;
 import com.star72.search.solrmodule.page.SolrResult;
 import com.star72.search.solrmodule.query.EPSSolrServerForCommon;
@@ -33,12 +35,12 @@ public class ServerWriterTest {
 	public static final String FIELD_CAT = "CAT";
 	
 	private EPSSolrServerForCommon server = new EPSSolrServerForCommon();
-	private String rootPath = "F:\\文档\\gudaiwenxian"; 
+	private String rootPath = "G:\\文档\\gudaiwenxian"; 
 
 	@Test
 	public void test() {
 		
-		server.setSolrURL("http://localhost:8088/Solr/wenxian");
+		server.setSolrURL("http://localhost:8080/Solr/gudaiwenxian");
 		File rootFile = new File(rootPath);
 		if(!rootFile.isDirectory()) {
 			return ;
@@ -47,7 +49,7 @@ public class ServerWriterTest {
 		File[] files = rootFile.listFiles();
 		if(files != null) {
 			for(File f : files) {
-				if(f.getName().contains("诗藏")) {
+				if(!f.getName().contains("诗藏")) {
 					System.out.println(f.getName());
 					writeToIndex(f);
 				}
@@ -120,10 +122,10 @@ public class ServerWriterTest {
 	public void testQuery() {
 		
 		EPSSolrServerForCommon server = new EPSSolrServerForCommon();
-		server.setSolrURL("http://localhost:8088/Solr/wenxian");
+		server.setSolrURL("http://localhost:8080/Solr/gudaiwenxian");
 		//单独的查询条件
-		SolrCommonItem item = new SolrCommonItem("CONTENT", "大乘");
-		
+//		SolrCommonItem item = new SolrCommonItem("CONTENT", "大乘");
+		SolrItem item = new SolrStringItem("*:*");
 		//分页设置（可选）
 		Integer pageNo = 1;
 		Integer pageSize = 10;
@@ -132,46 +134,17 @@ public class ServerWriterTest {
 		//SortedValue sortedValue = new SortedValue("PUBLISHDATE", SolrQuery.ORDER.desc);
 		SolrSearchCondition condition = new SolrSearchCondition(item, null, pageNo, pageSize);//new SolrSearchCondition(item);
 		
-		condition.openHighlight("TITLE", "CONTENT");
-		condition.setPageNo(pageNo);
-		condition.setPageSize(pageSize);
+//		condition.openHighlight("TITLE", "CONTENT");
+//		condition.setPageNo(pageNo);
+//		condition.setPageSize(pageSize);
+		
+		condition.openFacet("CAT");
+		condition.setFacetLimit(5);
+		condition.setFacetSort("CAT");
 		
 		SolrResult result = server.query(condition);
 		
 		System.out.println(result);
-	}
-	
-	@Test
-	public void testStringPart() {
-		String s = "中华人民共和国中华人民共和国中华人民共和国中华人民共和国中华人民共和国";
-		List<String> list = StarStringUtils.partedStringByLength(s, 5);
-		for(String key : list) {
-			System.out.println(key);
-		}
-	}
-	
-	@Test
-	public void solrTest() {
-		server.setSolrURL("http://localhost:8088/Solr/wenxian");
-		EpsSolrDocument doc = new EpsSolrDocument();
-		doc.addField(FIELD_ID, UUID.randomUUID().toString());
-		doc.addField(FIELD_SORT_VALUE, 12);
-		doc.addField(FIELD_SOURCE, "红高粱");
-//		doc.addField(FIELD_CONTENT, "红高粱正文");
-//		doc.addField(FIELD_TITLE, "红高粱标题");
-		server.addDocument(doc, false);
-		
-	}
-	
-	@Test
-	public void readLinesByStream() throws IOException {
-		File f = new File("F:\\文档\\gudaiwenxian\\诗藏\\诗集\\全宋诗.txt");
-		LineIterator lineIterator = FileUtils.lineIterator(f);
-		int count = 0;
-		while(lineIterator.hasNext()) {
-			String line = lineIterator.nextLine();
-			System.out.println(++count);
-		}
 	}
 	
 }

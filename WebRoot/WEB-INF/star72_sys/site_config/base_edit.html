@@ -48,7 +48,11 @@ $(function() {
 <@p.text colspan="1" width="50" label="cmsSite.finalStep" name="finalStep" value=cmsSite.finalStep required="true" class="required digits"/>
 
 <@p.select colspan="1" width="50" label="cmsSite.afterCheck" name="afterCheck" value=cmsSite.afterCheck list={"1":"cmsSite.afterCheck.1","2":"cmsSite.afterCheck.2","3":"cmsSite.afterCheck.3"} required="required"/><@p.tr/>
-<@p.select colspan="2" width="100" label="cmsSite.tplIndex" name="tplIndex" value=tplIndex headerKey="" headerValue="global.default" list=indexTplList required="required"/><@p.tr/>
+
+<@p.select colspan="1" width="50" label="cmsSite.tplIndex" name="tplIndex" value=tplIndex headerKey="" headerValue="global.default" list=indexTplList required="required"/>
+
+<@p.text colspan="1" width="50" label="solr路径" name="solrPath" value=cmsSite.solrPath/>
+<@p.tr/>
 <@p.td colspan="2">
 	<@p.hidden name="id" value=cmsSite.id/><@p.submit code="global.submit"/> &nbsp; <@p.reset code="global.reset"/>
 </@p.td>

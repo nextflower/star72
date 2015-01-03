@@ -1,0 +1,27 @@
+<div class="row text-center">
+	<div class="col-lg-3"></div>
+	<div class="col-lg-6">
+        <div class="input-group">
+           <input type="text" class="form-control" placeholder="请输入关键词:例如排列组合">
+           <span class="input-group-btn">
+              <button class="btn btn-warning" type="button">搜索</button>
+           </span>
+        </div>
+     </div>
+</div>
+
+<div class="row"><h7>&nbsp;</h7></div>
+
+
+<div class="row" style="border:1px solid #999d9c;">
+   <ul class="nav nav-pills nav-justified">
+	   <li [#if !channel??]class="active"[/#if]><a href="${base}">全部</a></li>
+	   [@cms_channel_list]
+	   		[#list tag_list as ch]
+				<li [#if channel?? && ch.id==channel.id?number]class="active"[/#if]><a href="${ch.url}">${ch.name}</a></li>
+			[/#list]
+	   [/@cms_channel_list]
+	</ul>
+</div>
+
+<div class="row"><h6>&nbsp;</h6></div>

@@ -142,6 +142,7 @@ public class SolrSearchCondition {
 			q.setFacetLimit(this.facetLimit);
 			q.setFacetMinCount(this.facetMinCount);
 			q.setFacetMissing(this.facetMissing);
+			q.setFacetSort(this.facetSort);
 			
 		} if (this.useGroup != null && this.useGroup) {
 			

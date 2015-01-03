@@ -12,7 +12,7 @@ public class FileCountTest {
 	
 	@Test
 	public void test() {
-		String path = "D:\\gudaiwenxian";
+		String path = "G:\\文档\\gudaiwenxian";
 		
 		//15696
 		//216
@@ -38,9 +38,6 @@ public class FileCountTest {
 				}
 			}
 		} else {
-			long totalSpace = file.length();
-			double size = totalSpace * 1.0 / 1024;
-			System.out.println(file.getAbsolutePath() + "---" + size);
 			fileCount++;
 		}
 	}

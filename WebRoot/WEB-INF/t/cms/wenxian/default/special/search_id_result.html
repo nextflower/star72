@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>${bean.title!}|${site.name}</title>
+        <!-- Bootstrap -->
+        <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+		<!--
+        <style type="text/css">
+        body { margin:0; padding:0; background:url(/test/res/images/bg_gongshi.jpg) top center; background-repeat: repeat; }
+        </style>
+		body { background-color:#CCCC66;}
+        -->
+		
+		<style type="text/css">
+				body{ background-color:#CCCC66;}
+				a.backtop {
+	                background: url("${base}/res/images/logo_top_black.gif") no-repeat scroll center center rgba(0, 0, 0, 0);
+	                bottom: 50px;
+	                cursor: pointer;
+	                display: none;
+	                height: 70px;
+	                position: fixed;
+	                right: 50px;
+	                text-indent: -9999px;
+	                width: 70px;
+	                z-index: 100;
+	            }
+		
+		</style>
+    </head>
+    <body style="padding:70px;">
+    	
+		[#include "../include/header.html"/]
+		
+		<div class="row">
+			
+			<!--left side ads-->
+			<div class="col-md-1 text-center">
+				
+			</div>
+			
+	    	<div class="container col-md-10">
+	    		
+				<div class="row"><h2></h2></div>
+				
+				<!--result list-->
+				<div class="row">
+					<div class="panel panel-info">
+					   <div class="panel-heading">
+					      <h3 class="panel-title">
+					         	当前位置：
+								<a href="${site.url}"><button type="button" class="btn btn-link btn-sm">${site.name}</button></a>
+								»
+								[#if bean?? && bean.cats?size gt 0]
+									[#list bean.cats as cat]
+										<a href="${base}/wenxian/search/cat/${cat}.jhtml"><button type="button" class="btn btn-link btn-sm">${cat}</button></a>
+										[#if cat_has_next]»[/#if]
+									[/#list]
+								[/#if]
+								»
+								<button type="button" class="btn btn-link btn-sm">${bean.title!}</button>
+					      </h3>
+					   </div>
+					   <div class="panel-body">
+								<div class="panel panel-primary">
+								   <div class="panel-body">
+								   	<div class="text-center"><h4>${bean.title!}</h4></div>
+									<p class="text-muted">
+										<h6>
+											来源：《<a href="#">${bean.source!}</a>》
+											作者：<a href="#">${bean.author!'佚名'}</a>
+											 朝代：<a href="#">${bean.chaodai!'不详'}</a>
+										 </h6>
+									</p>
+									<hr>
+								   	${bean.content!}
+								   </div>
+								</div>
+					   </div>
+					</div>
+
+					
+				</div>
+				
+				
+				
+			</div>
+			
+			<!--right side ads-->
+			<div class="col-md-1 text-center">
+				<a class="backtop"><h6>返回顶部</h6></a>
+			</div>
+			
+		</div>
+		
+		    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+			   <div class="text-center">
+			   	<p class="navbar-text"><h6>©2014 七十二颗星 欢迎您的访问 </h6></p>
+			   </div>
+			</nav>
+			
+		
+        <script src="${resSys}/jquery.js"></script>
+        <script src="${base}/res/bootstrap/js/bootstrap.min.js"></script>
+		
+		<script src="${resSys}/front.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		$(function() {
+			Cms.siteFlow("${base}", location.href, document.referrer);
+			$.cookie("_site_id_cookie","${site.id!}",{path: '${base}' });
+		});
+		
+		$(window).scroll(function () {
+	        if($(window).scrollTop()>=100) {
+	            $(".backtop").fadeIn();
+	        }else {
+	        	$(".backtop").fadeOut();
+	        }
+	    });
+		
+		//返回顶部
+        $(".backtop").click(function(event){
+            $('html,body').animate({
+                scrollTop: 0
+            }, 500);
+            return false;
+        });
+		
+		
+		</script>
+
+    </body>
+</html>

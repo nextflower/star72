@@ -32,8 +32,41 @@ public class DicReader {
 	private static Map<String, Set<String>> ShengxiaoBushou_xi = null;
 	private static Map<String, Set<String>> ShengxiaoBushou_ji = null;
 	private static Set<String> Xingshi_set = null;
-	
+	private static Map<String, String> FAN_JIAN_MAP = null;//
+	private static Map<String, String> JIAN_FAN_MAP = null;//
 	private DicReader() {}
+	
+	public static Map<String, String> getFanJianMap() {
+		if(FAN_JIAN_MAP != null) {
+			return FAN_JIAN_MAP;
+		}
+		readFanJianFromDic();
+		return FAN_JIAN_MAP == null ? new HashMap<String, String>() : FAN_JIAN_MAP;
+	}
+	
+	public static Map<String, String> getJianFanMap() {
+		if(JIAN_FAN_MAP != null) {
+			return JIAN_FAN_MAP;
+		}
+		readFanJianFromDic();
+		return JIAN_FAN_MAP == null ? new HashMap<String, String>() : JIAN_FAN_MAP;
+	}
+
+	private static void readFanJianFromDic() {
+		String dicPath = "com/star72/naming/dic/繁简体对照表.txt";
+		List<String> lines = readLines(dicPath);
+		if(lines != null) {
+			FAN_JIAN_MAP = new HashMap<String, String>();
+			JIAN_FAN_MAP = new HashMap<String, String>();
+			for(String line : lines) {
+				String[] split = line.split("=");
+				if(split.length == 2) {
+					FAN_JIAN_MAP.put(split[1], split[0]);
+					JIAN_FAN_MAP.put(split[0], split[1]);
+				}
+			}
+		}
+	}
 	
 	public static Set<String> getXingShi() {
 		if(Xingshi_set != null) {

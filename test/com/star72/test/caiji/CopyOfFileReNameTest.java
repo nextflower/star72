@@ -36,14 +36,16 @@ public class CopyOfFileReNameTest {
 	
 	@Test
 	public void test() {
-		String rightPath = "G:\\文档\\gudaiwenxian";
-		String errorPath = "G:\\文档\\gudian\\首页";
+		String rightPath = "F:\\文档\\gudaiwenxian";
+		String errorPath = "F:\\文档\\gudian\\首页";
 		
 		Map<String, List<String>> map = new HashMap<String, List<String>>();
 		List<String> list = new ArrayList<String>();
 		getNameMap(new File(rightPath), map);
 		
 		getErrorNameList(new File(errorPath), list);
+		
+		Set<String> aaSet = new HashSet<String>();
 		
 		for(String s : list) {
 			System.out.println(s);
@@ -118,8 +120,8 @@ public class CopyOfFileReNameTest {
 			}
 			
 		} else {
-			String absPath = file.getAbsolutePath();
-			if(absPath.contains(FLAG_STR)) {
+			String n = file.getName();
+			if(n.contains(FLAG_STR)) {
 				list.add(file.getAbsolutePath());
 			}
 		}

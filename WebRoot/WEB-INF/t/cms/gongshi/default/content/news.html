@@ -46,7 +46,7 @@
 				   	
 						<div class="text-center">
 							
-							<div class="panel panel-default">
+							<div class="panel panel-primary">
 							   <div class="panel-body">
 							      <h2><button class="btn btn-success" type="button">组合在线计算</button></h2>
 								  <div><img src="/${res}/img/gongshi_zuhe.png" class="img-thumbnail"/></p></div>
@@ -58,12 +58,12 @@
 									         <div class="col-lg-8">
 									            <div class="input-group">
 									               <span class="input-group-btn">
-									                  <button class="btn btn-info" type="button">n值：</button>
+									                  <button class="btn btn-warning" type="button">n值：</button>
 									               </span>
 									               <input name="zuhe_n" id="zuhe_n" type="text" class="form-control" placeholder="支持范围:1<n<1万">
 												   <span class="input-group-btn">&nbsp;&nbsp;</span>
 												   <span class="input-group-btn">
-									                  <button class="btn btn-info" type="button">r值：</button>
+									                  <button class="btn btn-warning" type="button">r值：</button>
 									               </span>
 									               <input name="zuhe_r" id="zuhe_r" type="text" class="form-control" placeholder="r需要大于0且<=n">
 												   <span class="input-group-btn">&nbsp;&nbsp;</span>
@@ -89,7 +89,7 @@
 							   </div>
 							</div>
 							
-							<div class="panel panel-default">
+							<div class="panel panel-primary">
 							   <div class="panel-body">
 							      <h2><button class="btn btn-success" type="button">排列在线计算</button></h2>
 									<p><img src="/${res}/img/gongshi_pailie.png" class="img-thumbnail"/></p>
@@ -101,14 +101,14 @@
 									         <div class="col-lg-8">
 									            <div class="input-group">
 									               <span class="input-group-btn">
-									                  <button class="btn btn-info" type="button">
+									                  <button class="btn btn-warning" type="button">
 									                     	n值：
 									                  </button>
 									               </span>
 									               <input name="pailie_n" id="pailie_n" type="text" class="form-control" placeholder="支持范围:1=< n <=1200">
 												   <span class="input-group-btn">&nbsp;&nbsp;</span>
 												   <span class="input-group-btn">
-									                  <button class="btn btn-info" type="button">
+									                  <button class="btn btn-warning" type="button">
 									                     	r值：
 									                  </button>
 									               </span>
@@ -225,7 +225,7 @@
 					   	 required: true,
 						 digits:true,
 						 max:1200,
-						 min:1
+						 min:0
 					   }
 					  },
 					 messages: {
@@ -239,7 +239,7 @@
 					   		required: "r不能为空",
 							digits: "请输入数字",
 							max: "r不能超过1200",
-							min: "r不能小于1"
+							min: "r不能小于0"
 					   }
 					 },
 					 errorPlacement: function(error, element) { 
@@ -247,7 +247,7 @@
 							error.appendTo($('#pailieError'));
 					},
 					success: function(label) {
-					    label.html("&nbsp;").addClass("checked");
+					    //label.html("&nbsp;").addClass("checked");
 					},
 					submitHandler:function(form){
 			            $(form).ajaxSubmit({
@@ -258,7 +258,7 @@
 				                'r': $('#pailie_r').val()
 				            },
 				            success: function(data) {
-								$('#pailieResult').text(data);
+								$('#pailieResult').val(data);
 				            }
 				        });
 			        }
@@ -276,7 +276,7 @@
 					   	 required: true,
 						 digits:true,
 						 max:10000,
-						 min:1
+						 min:0
 					   }
 					  },
 					 messages: {
@@ -290,7 +290,7 @@
 					   		required: "r不能为空",
 							digits: "请输入数字",
 							max: "r不能超过10000",
-							min: "r不能小于1"
+							min: "r不能小于0"
 					   }
 					 },
 					 errorPlacement: function(error, element) { 
@@ -298,7 +298,7 @@
 							error.appendTo($('#zuheError'));
 					},
 					success: function(label) {
-					    label.html("&nbsp;").addClass("checked");
+					    //label.html("&nbsp;").addClass("checked");
 					},
 					submitHandler:function(form){
 			            $(form).ajaxSubmit({
@@ -309,7 +309,7 @@
 				                'r': $('#zuhe_r').val()
 				            },
 				            success: function(data) {
-				                $('#zuheResult').text(data);
+				                $('#zuheResult').val(data);
 				            }
 				        });
 			        }

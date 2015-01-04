@@ -32,7 +32,7 @@ public class GongshiAct {
 			info = "r不能大于n";
 		} else {
 			BigDecimal result = PLZUUtils.computePaiLie(n, r);
-			info = "您计算的公式为：C(" + n + "," + r + "), 计算结果如下：\r\n" + getFormatString(result);
+			info = "您计算的公式为：P(" + n + "," + r + "), 计算结果如下：\r\n" + getFormatString(result);
 		}
 		ResponseUtils.renderText(response, info);
 	}
@@ -47,7 +47,7 @@ public class GongshiAct {
 			info = "r不能大于n";
 		} else {
 			BigDecimal result = PLZUUtils.computeZuhe(n, r);
-			info = "您计算的公式为：P(" + n + "," + r + "), 计算结果如下：\r\n" + getFormatString(result);
+			info = "您计算的公式为：C(" + n + "," + r + "), 计算结果如下：\r\n" + getFormatString(result);
 		}
 		ResponseUtils.renderText(response, info);
 	}

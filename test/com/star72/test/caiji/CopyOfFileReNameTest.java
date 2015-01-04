@@ -1,6 +1,7 @@
 package com.star72.test.caiji;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 import com.star72.common.utils.StarStringUtils;
@@ -36,8 +38,8 @@ public class CopyOfFileReNameTest {
 	
 	@Test
 	public void test() {
-		String rightPath = "F:\\文档\\gudaiwenxian";
-		String errorPath = "F:\\文档\\gudian\\首页";
+		String rightPath = "G:\\文档\\gudaiwenxian";
+		String errorPath = "G:\\文档\\gudian\\首页";
 		
 		Map<String, List<String>> map = new HashMap<String, List<String>>();
 		List<String> list = new ArrayList<String>();
@@ -48,7 +50,9 @@ public class CopyOfFileReNameTest {
 		Set<String> aaSet = new HashSet<String>();
 		
 		for(String s : list) {
+			
 			System.out.println(s);
+			
 			String[] dirs = s.split("\\\\");
 			String last = dirs[dirs.length - 1];
 			String[] namesplit = last.split("-");
@@ -58,45 +62,159 @@ public class CopyOfFileReNameTest {
 			}
 			
 			if(name != null && name.contains(FLAG_STR)) {
-				for(String key : map.keySet()) {
-					if(key.length() == name.length()) {
-						List<String> keyList = StarStringUtils.parseStr2SingleStrList(name);
-						boolean flag = true;
-						for(String ks : keyList) {
-							if(FLAG_STR.equals(ks) || key.contains(ks)) {
-								
-							} else {
-								flag = false;
-								break;
-							}
+				
+				String[] split = name.split("-");
+				if(split.length == 4) {
+					
+				} else {
+					//findHit(s, map);//找到内容中匹配的对象
+				}
+				
+				//renameByCompare(map, s, name);//根据名字进行替换,已经完成
+			}
+		}
+		
+	}
+
+	public void findHit(String s, Map<String, List<String>> map) {
+		System.out.println(s);
+		
+		String[] dirs = s.split("\\\\");
+		String last = dirs[dirs.length - 1];
+		String parent = dirs[dirs.length - 2];
+		String[] namesplit = parent.split("-");
+		String[] indexStrArr = last.split("-");
+		String name = null;
+		String indexStr = null;
+		String indexStrSource = null;
+		if(namesplit.length >= 2) {
+			name = namesplit[1];
+		}
+		if(indexStrArr.length == 2) {
+			indexStrSource = FilenameUtils.getBaseName(indexStrArr[1]);
+			indexStr = StringUtils.deleteWhitespace(indexStrSource);
+			System.out.println(indexStr);
+		}
+		
+		
+		if(name != null && indexStr != null) {
+			for(String key : map.keySet()) {
+				if(key.length() == name.length()) {
+					List<String> keyList = StarStringUtils.parseStr2SingleStrList(name);
+					boolean flag = true;
+					for(String ks : keyList) {
+						if(FLAG_STR.equals(ks) || key.contains(ks)) {
+							
+						} else {
+							flag = false;
+							break;
 						}
-						
-						if(flag) {
-							List<String> ll = map.get(key);
-							if(ll != null) {
-								//System.out.println(s);
-								String dest = s.replace(name, key);
-								File file = new File(s);
-								System.out.println();
-								System.out.println();
-								System.out.println(dest);
-								System.out.println();
-								System.out.println();
-								if(openRename) {
-									file.renameTo(new File(dest));
+					}
+					
+					if(flag) {
+						List<String> ll = map.get(key);
+						if(ll.size() == 1) {
+							String realPath = ll.get(0);
+							File file = new File(realPath);
+							if(file.exists()) {
+								
+								try {
+									
+									long length = file.length();
+									if(length * 1.0 / (1024 * 1024) > 20) {
+										System.out.println(length * 1.0 / (1024 * 1024));
+										continue;
+									}
+									
+									List<String> readLines = FileUtils.readLines(file);
+									
+									for(String line : readLines) {
+										String lineTemp = StringUtils.deleteWhitespace(line);
+										if(lineTemp.length() >= indexStr.length()) {
+											lineTemp = lineTemp.substring(0, indexStr.length());
+											List<String> lineKeyList = StarStringUtils.parseStr2SingleStrList(indexStr);
+											boolean flag2 = true;
+											for(String ks : lineKeyList) {
+												if(FLAG_STR.equals(ks) || StringUtils.isBlank(ks) || lineTemp.contains(ks)) {
+													
+												} else {
+													flag2 = false;
+													break;
+												}
+											}
+											if(flag2) {
+												String dest = s.replace(indexStrSource, lineTemp);
+												File ff = new File(s);
+												System.out.println();
+												System.out.println();
+												System.out.println(dest);
+												System.out.println();
+												System.out.println();
+												if(openRename) {
+													ff.renameTo(new File(dest));
+												}
+												break;
+											}
+										}
+									}
+									
+//									System.out.println(name + "——" + indexStr);//第四十六回润甫巧说裴仁基世�智取黎阳仓.txt
+//									System.out.println(realPath);
+//									System.out.println();
+//									System.out.println();
+									
+								} catch (IOException e) {
+									System.out.println(e.getMessage());
+								} catch(Throwable e) {
+									System.out.println(e.getMessage());
 								}
 							}
+							
 						}
 						
 					}
 				}
 			}
 		}
-		
+
 	}
-	
-	
-	
+
+	public void renameByCompare(Map<String, List<String>> map, String s,
+			String name) {
+		for(String key : map.keySet()) {
+			if(key.length() == name.length()) {
+				List<String> keyList = StarStringUtils.parseStr2SingleStrList(name);
+				boolean flag = true;
+				for(String ks : keyList) {
+					if(FLAG_STR.equals(ks) || key.contains(ks)) {
+						
+					} else {
+						flag = false;
+						break;
+					}
+				}
+				
+				if(flag) {
+					List<String> ll = map.get(key);
+					if(ll != null) {
+						//System.out.println(s);
+						String dest = s.replace(name, key);
+						File file = new File(s);
+						System.out.println();
+						System.out.println();
+						System.out.println(dest);
+						System.out.println();
+						System.out.println();
+						if(openRename) {
+							file.renameTo(new File(dest));
+						}
+					}
+				}
+				
+			}
+		}
+	}
+
 	private void getErrorNameList(File file, List<String> list) {
 		if(file == null) {
 			return;

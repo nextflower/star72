@@ -38,8 +38,8 @@ public class CopyOfFileReNameTest {
 	
 	@Test
 	public void test() {
-		String rightPath = "G:\\文档\\gudaiwenxian";
-		String errorPath = "G:\\文档\\gudian\\首页";
+		String rightPath = "F:\\文档\\gudaiwenxian";
+		String errorPath = "F:\\文档\\gudian\\首页";
 		
 		Map<String, List<String>> map = new HashMap<String, List<String>>();
 		List<String> list = new ArrayList<String>();

@@ -16,15 +16,34 @@
         <style type="text/css">
         body { margin:0; padding:0; background:url(/test/res/images/bg_gongshi.jpg) top center; background-repeat: repeat; }
         </style>
-		body { background-color:#CCCC66;}
+		body { background-color:#CCCC66;}color: #2d78f4;
         -->
 		<style type="text/css">
-				body { margin:0; padding:0; background:url(${base}/res/images/bg_huang.jpg) top center; background-repeat: repeat; }
+				a.nav-a {
+				    color: #333;
+				    float: left;
+				    font-size: 13px;
+				    font-weight: bold;
+				    line-height: 24px;
+				    margin-right: 20px;
+				    text-decoration: underline;
+				}
+				span.glyphicon {
+					color: #CD0000;
+					text-decoration: underline;
+				}
+				a.nav-a:hover {
+					color: #00c;
+				}
 		</style>
+		
     </head>
-    <body>
+    <body style="padding:20px;">
     	
-		[#include "../include/header.html"/]
+		[#include "../include/header_index.html"/]
+		
+		<div class="row"><h1>&nbsp;</h1></div>
+		<div class="row"><h1>&nbsp;</h1></div>
 		
     	<div class="container">
     		
@@ -33,12 +52,13 @@
 			-->
 			[#include "../include/search_header.html"/]
 		
-			<div class="row"><h1></h1></div>
-			
-			<hr/>
+			<div class="row"><h1>&nbsp;</h1></div>
 			
 			<div class="row"><h1></h1></div>
+			<div class="row"><h1></h1></div>
+			<div class="row"><h1></h1></div>
 			
+			<!--
 			<div class="row text-center">
 				
 				<div class="col-md-4">
@@ -109,7 +129,7 @@
 				</div>
 				
 			</div>
-			
+			-->
 			
 			[#include "../include/footer.html"/]
 		

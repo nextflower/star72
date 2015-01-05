@@ -20,7 +20,23 @@
         -->
 		
 		<style type="text/css">
-				body{ background-color:#CCCC66;}
+				a.nav-a {
+				    color: #333;
+				    float: left;
+				    font-size: 13px;
+				    font-weight: bold;
+				    line-height: 24px;
+				    margin-right: 20px;
+				    text-decoration: underline;
+				}
+				span.glyphicon {
+					color: #CD0000;
+					text-decoration: underline;
+				}
+				a.nav-a:hover {
+					color: #00c;
+				}
+				
 				a.backtop {
 	                background: url("${base}/res/images/logo_top_black.gif") no-repeat scroll center center rgba(0, 0, 0, 0);
 	                bottom: 50px;
@@ -36,21 +52,18 @@
 		
 		</style>
     </head>
-    <body style="padding:70px;">
+    <body style="padding:20px;">
     	
 		[#include "../include/header.html"/]
 		
 		<div class="row">
 			
 			<!--left side ads-->
-			<div class="col-md-1 text-center">
+			<div class="col-md-2 text-center">
 				
 			</div>
 			
-	    	<div class="container col-md-10">
-	    		
-				<!--search input-->
-				[#include "../include/search_header.html"/]
+	    	<div class="container col-md-8">
 	    		
 				
 				<div class="row"><h2></h2></div>
@@ -98,7 +111,7 @@
 			</div>
 			
 			<!--right side ads-->
-			<div class="col-md-1 text-center">
+			<div class="col-md-2 text-center">
 				<a class="backtop"><h6>返回顶部</h6></a>
 			</div>
 			

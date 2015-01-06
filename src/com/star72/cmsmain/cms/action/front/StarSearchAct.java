@@ -71,6 +71,8 @@ public class StarSearchAct {
 		
 		SolrSearchCondition condition = new SolrSearchCondition(item, null, pageNo-1, 20);//页码需要从0开始
 		
+		condition.openHighlight("CONTENT", "TITLE");
+		
 		SolrResult result = server.query(condition);
 		
 		List<WenxianBean> wenxianList = getResultList(result);
@@ -167,12 +169,16 @@ public class StarSearchAct {
 		if(list == null) {
 			return wenxianList;
 		}
+		//System.out.println(hl.getClass());
 		for(Map<String, Object> map : list) {
 			List<String> cats = (List<String>) map.get("CAT");
 			String id = (String) map.get("ID");
 			String content = (String) map.get("CONTENT");
 			String title = (String) map.get("TITLE");
 			String source = (String) map.get("SOURCE");
+			Map<String, String> hl = (Map<String, String>) map.get(SolrResult.HIGH_LIGHT_KEY);
+			String hlTitle = hl.get("TITLE");
+			String hlContent = hl.get("CONTENT");
 			WenxianBean bean = new WenxianBean();
 			bean.setId(id);
 			bean.setCats(cats);
@@ -180,6 +186,8 @@ public class StarSearchAct {
 			bean.setTitle(title);
 			bean.setSource(source);
 			wenxianList.add(bean);
+			bean.setHlContent(hlContent);
+			bean.setHlTitle(hlTitle);
 		}
 		return wenxianList;
 	}

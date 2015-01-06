@@ -21,6 +21,8 @@ public class WenxianBean implements Serializable {
 	private String source;
 	private String content;
 	private String title;
+	private String hlTitle;
+	private String hlContent;
 	private List<String> cats;
 	public String getId() {
 		return id;
@@ -56,6 +58,18 @@ public class WenxianBean implements Serializable {
 	public String toString() {
 		return "WenxianBean [id=" + id + ", source=" + source + ", content="
 				+ content + ", title=" + title + ", cats=" + cats + "]";
+	}
+	public void setHlTitle(String hlTitle) {
+		this.hlTitle = hlTitle;
+	}
+	public String getHlTitle() {
+		return hlTitle;
+	}
+	public void setHlContent(String hlContent) {
+		this.hlContent = hlContent;
+	}
+	public String getHlContent() {
+		return hlContent;
 	}
 	
 }

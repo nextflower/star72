@@ -2,7 +2,7 @@
 [#list list as wenxian]
 	<div class="panel panel-primary">
 	   <div class="panel-body">
-	   		<h5>[#if cat?? && cat!=''][${cat}]&nbsp;[/#if]<a href="${base}/wenxian/search/id/${wenxian.id}.jhtml" target="_blank">${wenxian.title}</a></h5>
+	   		<h5>[#if cat?? && cat!=''][${cat}]&nbsp;[/#if]<a href="${base}/wenxian/search/id/${wenxian.id}.jhtml" target="_blank">${wenxian.hlTitle!}</a></h5>
 			<p class="text-muted">
 				<h6>
 					来源：《<a href="#">${wenxian.source}</a>》
@@ -11,7 +11,7 @@
 				 </h6>
 			</p>
 			<h6>
-			[@text_cut s=wenxian.content len='210' append='...'/]
+				${wenxian.hlContent!}
 			[<a href="${base}/wenxian/search/id/${wenxian.id}.jhtml" target="_blank">详细浏览</a>]
 			</h6>
 	   </div>

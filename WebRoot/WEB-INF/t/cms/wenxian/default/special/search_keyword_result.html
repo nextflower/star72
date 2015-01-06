@@ -16,10 +16,14 @@
         <style type="text/css">
         body { margin:0; padding:0; background:url(/test/res/images/bg_gongshi.jpg) top center; background-repeat: repeat; }
         </style>
-		body { background-color:#CCCC66;}
+		
         -->
 		
 		<style type="text/css">
+			body { background-color:#CCCC99;}
+			.highlight {
+				color:red;
+			}
 				a.nav-a {
 				    color: #333;
 				    float: left;
@@ -55,7 +59,7 @@
     <body style="padding:20px;">
     	
 		[#include "../include/header.html"/]
-		
+		<hr>
 		<div class="row">
 			
 			<!--left side ads-->
@@ -65,46 +69,52 @@
 			
 	    	<div class="container col-md-8">
 	    		
+				<div class="ad"><h1></h1></div>
+	    		
+				<form action="#" method="post">
+					<ul class="nav nav-tabs">
+					   <li><a href="#">全部</a></li>
+					   <li><a href="#">易藏</a></li>
+					   <li class="active"><a href="#">儒藏</a></li>
+					   <li><a href="#">道藏</a></li>
+					   <li><a href="#">佛藏</a></li>
+					   <li><a href="#">子藏</a></li>
+					   <li><a href="#">史藏</a></li>
+					   <li><a href="#">诗藏</a></li>
+					   <li><a href="#">集藏</a></li>
+					   <li><a href="#">医藏</a></li>
+					   <li><a href="#">艺藏</a></li>
+					   <li><a href="#">诗词</a></li>
+					</ul>
+				</form>
+	    		
 				
-				<div class="row"><h2></h2></div>
+				<h6>共为您找到${result.totalCount}条记录,当前第${result.pageNo+1}页/共${result.totalPage}页, [@process_time/]</h6>
 				
-				<!--result list-->
-				<div class="row">
-					<div class="panel panel-info">
-					   <div class="panel-heading">
-					      <h3 class="panel-title">
-					         	当前位置：
-								<a href="${site.url}"><button type="button" class="btn btn-link btn-sm">${site.name}</button></a>
-								»
-								<button type="button" class="btn btn-link btn-sm disabled">全文检索</button>
-					      </h3>
-					   </div>
-					   <div class="panel-body">
-					      		<!--分类导航-->
-								<h6>共为您找到<span class="badge">${result.totalCount}</span>条记录,当前第${result.pageNo+1}页/共${result.totalPage}页, [@process_time/]</h6>
-					    		<div class="col-md-12">
-					    				
-										[#include "../include/search_result_list.html"/]
-										
-										[#if list?? && list?size gt 0]
-											<div class="text-center">
-												<ul class="pagination">
-												  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search.jspx?keyword=${keyword!}&cat=${cat!}')">首页</a></li>
-												  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.prePage+1}.jspx?keyword=${keyword!}&cat=${cat!}')" >上一页</a></li>
-												  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.nextPage+1}.jspx?keyword=${keyword!}&cat=${cat!}')">下一页</a></li>
-												  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.totalPage}.jspx?keyword=${keyword!}&cat=${cat!}')">尾页</a></li>
-												</ul>
-											</div>
-										[#else]
-											<div class="text-center"><h1>暂无结果</h1></div>
-										[/#if]
-								</div>
-								
-					   </div>
-					</div>
-
-					
+				<div>
+					朝代：
+						<a href="#">不限 <span class="badge">${result.totalCount}</span></a>、
+						<a href="#">夏 <span class="badge">56542</span></a>、
+						<a href="#">商 <span class="badge">56542</span></a>、
+						<a href="#">西周 <span class="badge">56542</span></a>、
+						<a href="#">春秋 <span class="badge">56542</span></a>、
+						<a href="#">战国 <span class="badge">56542</span></a>、
 				</div>
+			    <div class="ad"><h1></h1></div>  		
+				[#include "../include/search_result_list.html"/]
+				
+				[#if list?? && list?size gt 0]
+					<div class="text-center">
+						<ul class="pagination">
+						  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search.jspx?keyword=${keyword!}&cat=${cat!}')">首页</a></li>
+						  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.prePage+1}.jspx?keyword=${keyword!}&cat=${cat!}')" >上一页</a></li>
+						  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.nextPage+1}.jspx?keyword=${keyword!}&cat=${cat!}')">下一页</a></li>
+						  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.totalPage}.jspx?keyword=${keyword!}&cat=${cat!}')">尾页</a></li>
+						</ul>
+					</div>
+				[#else]
+					<div class="text-center"><h1>暂无结果</h1></div>
+				[/#if]				
 				
 				
 				

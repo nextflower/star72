@@ -12,9 +12,9 @@ public class FileReNameTest {
 	
 	@Test
 	public void test() {
-		String path = "G:\\文档\\gudian\\首页";
-		String oldS = "金刚�释文";
-		String newS = "金刚錍论释文";
+		String path = "F:\\文档\\gudian\\首页";
+		String oldS = "-元-沙�巴";
+		String newS = "-元-沙啰巴";
 		list(new File(path), oldS, newS);
 		
 		for(String key : map.keySet()) {

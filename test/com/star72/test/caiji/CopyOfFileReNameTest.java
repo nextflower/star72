@@ -2,6 +2,8 @@ package com.star72.test.caiji;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,10 +11,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.junit.Test;
 
 import com.star72.common.utils.StarStringUtils;
@@ -47,11 +54,13 @@ public class CopyOfFileReNameTest {
 		
 		getErrorNameList(new File(errorPath), list);
 		
+		//getInfoFromInternet(list);
+		
 		Set<String> aaSet = new HashSet<String>();
 		
 		for(String s : list) {
 			
-			System.out.println(s);
+			//System.out.println(s);
 			
 			String[] dirs = s.split("\\\\");
 			String last = dirs[dirs.length - 1];
@@ -74,6 +83,68 @@ public class CopyOfFileReNameTest {
 			}
 		}
 		
+	}
+
+	private void getInfoFromInternet(List<String> list) {
+		if(list == null) {
+			return ;
+		}
+		
+		String url = "http://www.baidu.com/s?rsv_spt=1&issp=1&f=8&rsv_bp=0&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&wd=";
+		for(String path : list) {
+			
+			System.out.println(path);
+			
+			String baseName = FilenameUtils.getBaseName(path);
+			String[] arr = baseName.split("-");
+			if(arr.length == 4) {
+				String title = arr[1];
+				String author = arr[3];
+				
+				String auRe = author.replace(FLAG_STR, ".{1}");
+				
+				try {
+					Document doc = Jsoup.parse(new URL(url + title), 10000);
+					if(doc == null) {
+						return;
+					}
+					
+					Element doc1 = doc.getElementById("1");
+					Element doc2 = doc.getElementById("2");
+					Element doc3 = doc.getElementById("3");
+					Element doc4 = doc.getElementById("4");
+					Element doc5 = doc.getElementById("5");
+					Element doc6 = doc.getElementById("6");
+					
+					hitAuthor(path, auRe, doc1);
+					hitAuthor(path, auRe, doc2);
+					hitAuthor(path, auRe, doc3);
+//					hitAuthor(path, auRe, doc4);
+//					hitAuthor(path, auRe, doc5);
+//					hitAuthor(path, auRe, doc6);
+					
+					System.out.println();
+					
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		}
+	}
+
+	private void hitAuthor(String path, String auRe, Element doc1) {
+		if(doc1 != null) {
+			String text = doc1.text();
+			Pattern pattern = Pattern.compile(auRe);
+			Matcher m = pattern.matcher(text);
+			if(m.find()) {
+				String group = m.group();
+				System.out.print("===" + group);
+			}
+		}
 	}
 
 	public void findHit(String s, Map<String, List<String>> map) {

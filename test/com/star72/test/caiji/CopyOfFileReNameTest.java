@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -46,7 +45,7 @@ public class CopyOfFileReNameTest {
 	@Test
 	public void test() {
 		String rightPath = "F:\\文档\\gudaiwenxian";
-		String errorPath = "F:\\文档\\gudian\\首页";
+		String errorPath = "F:\\文档\\gudian\\首页\\11诗词";
 		
 		Map<String, List<String>> map = new HashMap<String, List<String>>();
 		List<String> list = new ArrayList<String>();
@@ -76,7 +75,7 @@ public class CopyOfFileReNameTest {
 				if(split.length == 4) {
 					
 				} else {
-					//findHit(s, map);//找到内容中匹配的对象
+					findHit(s, map);//找到内容中匹配的对象
 				}
 				
 				//renameByCompare(map, s, name);//根据名字进行替换,已经完成
@@ -148,6 +147,7 @@ public class CopyOfFileReNameTest {
 	}
 
 	public void findHit(String s, Map<String, List<String>> map) {
+		
 		System.out.println(s);
 		
 		String[] dirs = s.split("\\\\");
@@ -167,9 +167,14 @@ public class CopyOfFileReNameTest {
 			System.out.println(indexStr);
 		}
 		
+		//不考虑全宋诗和全唐诗
+		if(name.equals("全宋诗") || name.equals("全唐诗")) {
+			return;
+		}
 		
 		if(name != null && indexStr != null) {
 			for(String key : map.keySet()) {
+				//key:正确的目录   name:错误的文件名
 				if(key.length() == name.length()) {
 					List<String> keyList = StarStringUtils.parseStr2SingleStrList(name);
 					boolean flag = true;
@@ -182,6 +187,7 @@ public class CopyOfFileReNameTest {
 						}
 					}
 					
+					//找到匹配的文件
 					if(flag) {
 						List<String> ll = map.get(key);
 						if(ll.size() == 1) {
@@ -229,7 +235,7 @@ public class CopyOfFileReNameTest {
 										}
 									}
 									
-//									System.out.println(name + "——" + indexStr);//第四十六回润甫巧说裴仁基世�智取黎阳仓.txt
+//									System.out.println(name + "——" + indexStr);//
 //									System.out.println(realPath);
 //									System.out.println();
 //									System.out.println();
@@ -291,10 +297,10 @@ public class CopyOfFileReNameTest {
 			return;
 		}
 		
-		String name = file.getName();
-		if(name.contains("11诗词")) {
-			return;
-		}
+//		String name = file.getName();
+//		if(name.contains("11诗词")) {
+//			return;
+//		}
 		
 		if(file.isDirectory()) {
 			File[] listFiles = file.listFiles();

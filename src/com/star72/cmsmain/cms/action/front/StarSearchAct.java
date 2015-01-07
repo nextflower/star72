@@ -43,6 +43,22 @@ public class StarSearchAct {
 	public static final String SEARCH_CAT_RESULT = "tpl.searchCatResult";
 	public static final String SEARCH_ID_RESULT = "tpl.searchIdResult";
 	public static final String SEARCH_KEYWORD_RESULT = "tpl.searchKeywordResult";
+	public static final String NAVI_CAT = "tpl.naviCat";
+	public static final String NAVI_CHAODAI = "tpl.naviChaodai";
+	public static final String NAVI_AUTHOR = "tpl.naviAuthor";
+	
+	@RequestMapping(value = "/wenxian/navi/cat.jhtml")
+	public String navigationCat(HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
+		
+		CmsSite site = CmsUtils.getSite(request);
+		
+		model.putAll(RequestUtils.getQueryParams(request));
+		FrontUtils.frontData(request, model, site);
+		
+		return FrontUtils.getTplPath(request, site.getSolutionPath(),
+				TPLDIR_SPECIAL, NAVI_CAT);
+	}
 	
 	@RequestMapping(value = "/wenxian/search/keyword/search*.jspx")
 	public String wenxianSearch(HttpServletRequest request,

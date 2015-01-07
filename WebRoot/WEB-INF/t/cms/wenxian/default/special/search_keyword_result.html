@@ -7,53 +7,15 @@
         <title>检索结果列表|${site.name}</title>
         <!-- Bootstrap -->
         <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/${res}/css/style.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
             <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-		<!--
-        <style type="text/css">
-        body { margin:0; padding:0; background:url(/test/res/images/bg_gongshi.jpg) top center; background-repeat: repeat; }
-        </style>
-		
-        -->
 		
 		<style type="text/css">
-			body { background-color:#CCCC99;}
-			.highlight {
-				color:red;
-			}
-				a.nav-a {
-				    color: #333;
-				    float: left;
-				    font-size: 13px;
-				    font-weight: bold;
-				    line-height: 24px;
-				    margin-right: 20px;
-				    text-decoration: underline;
-				}
-				span.glyphicon {
-					color: #CD0000;
-					text-decoration: underline;
-				}
-				a.nav-a:hover {
-					color: #00c;
-				}
-				
-				a.backtop {
-	                background: url("${base}/res/images/logo_top_black.gif") no-repeat scroll center center rgba(0, 0, 0, 0);
-	                bottom: 50px;
-	                cursor: pointer;
-	                display: none;
-	                height: 70px;
-	                position: fixed;
-	                right: 50px;
-	                text-indent: -9999px;
-	                width: 70px;
-	                z-index: 100;
-	            }
-		
+			body { margin:0; padding:0; background:url(${base}/res/images/bj.gif) top center; background-repeat: repeat; }
 		</style>
     </head>
     <body style="padding:20px;">
@@ -88,35 +50,75 @@
 					</ul>
 				</form>
 	    		
-				
-				<h6>共为您找到${result.totalCount}条记录,当前第${result.pageNo+1}页/共${result.totalPage}页, [@process_time/]</h6>
-				
-				<div>
-					朝代：
-						<a href="#">不限 <span class="badge">${result.totalCount}</span></a>、
-						<a href="#">夏 <span class="badge">56542</span></a>、
-						<a href="#">商 <span class="badge">56542</span></a>、
-						<a href="#">西周 <span class="badge">56542</span></a>、
-						<a href="#">春秋 <span class="badge">56542</span></a>、
-						<a href="#">战国 <span class="badge">56542</span></a>、
-				</div>
-			    <div class="ad"><h1></h1></div>  		
-				[#include "../include/search_result_list.html"/]
-				
-				[#if list?? && list?size gt 0]
-					<div class="text-center">
-						<ul class="pagination">
-						  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search.jspx?keyword=${keyword!}&cat=${cat!}')">首页</a></li>
-						  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.prePage+1}.jspx?keyword=${keyword!}&cat=${cat!}')" >上一页</a></li>
-						  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.nextPage+1}.jspx?keyword=${keyword!}&cat=${cat!}')">下一页</a></li>
-						  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.totalPage}.jspx?keyword=${keyword!}&cat=${cat!}')">尾页</a></li>
-						</ul>
+				<div class="panel panel-primary">
+	   				<div class="panel-body">
+						
+						<h6>共为您找到${result.totalCount}条记录,当前第${result.pageNo+1}页/共${result.totalPage}页, [@process_time/]</h6>
+						
+						<div class="row">
+							<div class="col-md-1">
+								<button type="button" class="btn btn-info btn-xs" disabled="disabled">朝代筛选</button>
+							</div>
+							<div class="col-md-10">
+								<label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1"> 夏(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 商(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 西周(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 春秋(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 战国(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 秦(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 汉(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 隋(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 唐(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 五代(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 宋(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 明(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 清(56542)
+							   </label>
+							</div>
+						</div>
+					    <div class="ad"><h1></h1></div>  		
+						[#include "../include/search_result_list.html"/]
+						
+						[#if list?? && list?size gt 0]
+							<div class="text-center">
+								<ul class="pagination">
+								  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search.jspx?keyword=${keyword!}&cat=${cat!}')">首页</a></li>
+								  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.prePage+1}.jspx?keyword=${keyword!}&cat=${cat!}')" >上一页</a></li>
+								  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.nextPage+1}.jspx?keyword=${keyword!}&cat=${cat!}')">下一页</a></li>
+								  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.totalPage}.jspx?keyword=${keyword!}&cat=${cat!}')">尾页</a></li>
+								</ul>
+							</div>
+						[#else]
+							<div class="text-center"><h1>暂无结果</h1></div>
+						[/#if]				
+					
 					</div>
-				[#else]
-					<div class="text-center"><h1>暂无结果</h1></div>
-				[/#if]				
-				
-				
+				</div>
 				
 			</div>
 			

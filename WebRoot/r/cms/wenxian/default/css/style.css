@@ -1,0 +1,37 @@
+a.nav-a {
+    color: #fff;
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 24px;
+    margin-right: 20px;
+    text-decoration: underline;
+}
+span.glyphicon {
+	color: #CD0000;
+	text-decoration: underline;
+}
+a.nav-a:hover {
+	color: #00c;
+}
+
+.highlight {
+	color:red;
+}
+	
+a.backtop {
+    background: url("${base}/res/images/logo_top_black.gif") no-repeat scroll center center rgba(0, 0, 0, 0);
+    bottom: 50px;
+    cursor: pointer;
+    display: none;
+    height: 70px;
+    position: fixed;
+    right: 50px;
+    text-indent: -9999px;
+    width: 70px;
+    z-index: 100;
+}
+
+.wenxian {
+	color: #fff;
+}

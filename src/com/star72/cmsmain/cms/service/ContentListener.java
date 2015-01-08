@@ -54,4 +54,7 @@ public interface ContentListener {
 	 * @param content
 	 */
 	public void afterDelete(Content content);
+	
+	
+	
 }

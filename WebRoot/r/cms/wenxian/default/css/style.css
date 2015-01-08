@@ -18,19 +18,6 @@ a.nav-a:hover {
 .highlight {
 	color:red;
 }
-	
-a.backtop {
-    background: url("${base}/res/images/logo_top_black.gif") no-repeat scroll center center rgba(0, 0, 0, 0);
-    bottom: 50px;
-    cursor: pointer;
-    display: none;
-    height: 70px;
-    position: fixed;
-    right: 50px;
-    text-indent: -9999px;
-    width: 70px;
-    z-index: 100;
-}
 
 .wenxian {
 	color: #fff;

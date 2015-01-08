@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>${cat!}_${result.pageNo!}|${site.name}</title>
+        <title>${chaodai!}_${result.pageNo!}|${site.name}</title>
         <!-- Bootstrap -->
         <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/${res}/css/style.css" rel="stylesheet">
@@ -46,18 +46,19 @@
 	    		
 				<form action="#" method="post">
 					<ul class="nav nav-tabs">
-					   <li><a href="#">全部</a></li>
-					   <li><a href="#">易藏</a></li>
-					   <li class="active"><a href="#">儒藏</a></li>
-					   <li><a href="#">道藏</a></li>
-					   <li><a href="#">佛藏</a></li>
-					   <li><a href="#">子藏</a></li>
-					   <li><a href="#">史藏</a></li>
-					   <li><a href="#">诗藏</a></li>
-					   <li><a href="#">集藏</a></li>
-					   <li><a href="#">医藏</a></li>
-					   <li><a href="#">艺藏</a></li>
-					   <li><a href="#">诗词</a></li>
+					   <li class="active"><a href="#">全部</a></li>
+					   <li><a href="#">夏</a></li>
+					   <li><a href="#">商</a></li>
+					   <li><a href="#">西周</a></li>
+					   <li><a href="#">春秋</a></li>
+					   <li><a href="#">战国</a></li>
+					   <li><a href="#">秦</a></li>
+					   <li><a href="#">汉</a></li>
+					   <li><a href="#">三国</a></li>
+					   <li><a href="#">晋</a></li>
+					   <li><a href="#">南北朝</a></li>
+					   <li><a href="#">隋</a></li>
+					   <li><a href="#">唐</a></li>
 					</ul>
 				</form>
 				
@@ -68,7 +69,7 @@
 						<div class="row">
 							<div class="panel panel-info">
 							   <div class="panel-body">
-										<h6>当前分类[${cat!}],共为您找到${result.totalCount}条记录,当前第${result.pageNo+1}页/共${result.totalPage}页, [@process_time/]</h6>
+										<h6>当前朝代[${chaodai!}],共为您找到${result.totalCount}条记录,当前第${result.pageNo+1}页/共${result.totalPage}页, [@process_time/]</h6>
 							    		<div class="col-md-12">
 							    			
 											[#include "../include/search_result_list.html"/]

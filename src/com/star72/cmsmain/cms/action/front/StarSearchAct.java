@@ -41,6 +41,7 @@ import com.sysc.remotesolr.service.SolrConstantFront;
 public class StarSearchAct {
 	
 	public static final String SEARCH_CAT_RESULT = "tpl.searchCatResult";
+	public static final String SEARCH_CHAODAI_RESULT = "tpl.searchChaodaiResult";
 	public static final String SEARCH_ID_RESULT = "tpl.searchIdResult";
 	public static final String SEARCH_KEYWORD_RESULT = "tpl.searchKeywordResult";
 	public static final String NAVI_CAT = "tpl.naviCat";
@@ -58,6 +59,32 @@ public class StarSearchAct {
 		
 		return FrontUtils.getTplPath(request, site.getSolutionPath(),
 				TPLDIR_SPECIAL, NAVI_CAT);
+	}
+	
+	@RequestMapping(value = "/wenxian/navi/chaodai.jhtml")
+	public String navigationChaodai(HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
+		
+		CmsSite site = CmsUtils.getSite(request);
+		
+		model.putAll(RequestUtils.getQueryParams(request));
+		FrontUtils.frontData(request, model, site);
+		
+		return FrontUtils.getTplPath(request, site.getSolutionPath(),
+				TPLDIR_SPECIAL, NAVI_CHAODAI);
+	}
+	
+	@RequestMapping(value = "/wenxian/navi/author.jhtml")
+	public String navigationAuthor(HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
+		
+		CmsSite site = CmsUtils.getSite(request);
+		
+		model.putAll(RequestUtils.getQueryParams(request));
+		FrontUtils.frontData(request, model, site);
+		
+		return FrontUtils.getTplPath(request, site.getSolutionPath(),
+				TPLDIR_SPECIAL, NAVI_AUTHOR);
 	}
 	
 	@RequestMapping(value = "/wenxian/search/keyword/search*.jspx")
@@ -170,6 +197,88 @@ public class StarSearchAct {
 		
 		return FrontUtils.getTplPath(request, site.getSolutionPath(),
 				TPLDIR_SPECIAL, SEARCH_CAT_RESULT);
+	}
+	
+	/**
+	 * 针对朝代进行查询
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/wenxian/search/chaodai/*.jhtml")
+	public String chaodaiSearch(HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
+		
+		CmsSite site = CmsUtils.getSite(request);
+		
+		EPSSolrServerForCommon server = new EPSSolrServerForCommon();
+		server.setSolrURL(site.getSolrPath());
+		
+		int pageNo = URLHelper.getPageNo(request);//从1开始
+		PageInfo info = URLHelper.getPageInfo(request);
+		String hrefFormer = info.getHrefFormer();//易藏
+		
+		SolrItem item = new SolrCommonItem("CHAODAI", hrefFormer);
+		
+		SolrSearchCondition condition = new SolrSearchCondition(item, null, pageNo-1, 20);//页码需要从0开始
+		
+		SolrResult result = server.query(condition);
+		
+		
+		List<WenxianBean> wenxianList = getResultList(result);
+		
+		model.put("result", result);
+		model.put("list", wenxianList);
+		model.put("chaodai", hrefFormer);
+		
+		model.putAll(RequestUtils.getQueryParams(request));
+		FrontUtils.frontData(request, model, site);
+		FrontUtils.frontPageData(request, model);
+		
+		return FrontUtils.getTplPath(request, site.getSolutionPath(),
+				TPLDIR_SPECIAL, SEARCH_CHAODAI_RESULT);
+	}
+	
+	/**
+	 * 针对作者进行查询
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/wenxian/search/author/*.jhtml")
+	public String authorSearch(HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
+		
+		CmsSite site = CmsUtils.getSite(request);
+		
+		EPSSolrServerForCommon server = new EPSSolrServerForCommon();
+		server.setSolrURL(site.getSolrPath());
+		
+		int pageNo = URLHelper.getPageNo(request);//从1开始
+		PageInfo info = URLHelper.getPageInfo(request);
+		String hrefFormer = info.getHrefFormer();//易藏
+		
+		SolrItem item = new SolrCommonItem("AUTHOR", hrefFormer);
+		
+		SolrSearchCondition condition = new SolrSearchCondition(item, null, pageNo-1, 20);//页码需要从0开始
+		
+		SolrResult result = server.query(condition);
+		
+		
+		List<WenxianBean> wenxianList = getResultList(result);
+		
+		model.put("result", result);
+		model.put("list", wenxianList);
+		model.put("author", hrefFormer);
+		
+		model.putAll(RequestUtils.getQueryParams(request));
+		FrontUtils.frontData(request, model, site);
+		FrontUtils.frontPageData(request, model);
+		
+		return FrontUtils.getTplPath(request, site.getSolutionPath(),
+				TPLDIR_SPECIAL, SEARCH_KEYWORD_RESULT);
 	}
 
 	/**

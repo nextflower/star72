@@ -8,6 +8,7 @@
         <!-- Bootstrap -->
         <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/${res}/css/style.css" rel="stylesheet">
+		<link href="${base}/res/bootstrap/css/normalize.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
             <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -16,6 +17,18 @@
 		
 		<style type="text/css">
 			body { margin:0; padding:0; background:url(${base}/res/images/bj.gif) top center; background-repeat: repeat; }
+			a.backtop {
+			    background: url("${base}/res/images/logo_top_black.gif") no-repeat scroll center center rgba(0, 0, 0, 0);
+			    bottom: 50px;
+			    cursor: pointer;
+			    display: none;
+			    height: 70px;
+			    position: fixed;
+			    right: 50px;
+			    text-indent: -9999px;
+			    width: 70px;
+			    z-index: 100;
+			}
 		</style>
     </head>
     <body style="padding:20px;">
@@ -26,7 +39,6 @@
 			
 			<!--left side ads-->
 			<div class="col-md-2 text-center">
-				
 			</div>
 			
 	    	<div class="container col-md-8">
@@ -120,6 +132,8 @@
 					</div>
 				</div>
 				
+				[#include "../include/footer.html"/]
+				
 			</div>
 			
 			<!--right side ads-->
@@ -130,7 +144,7 @@
 		</div>
 		
 		    
-		[#include "../include/footer.html"/]
+		
 			
 		
         <script src="${resSys}/jquery.js"></script>

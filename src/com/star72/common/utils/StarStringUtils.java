@@ -64,6 +64,12 @@ public class StarStringUtils {
 		return result;
 	}
 	
+	/**
+	 * 根据长度截取字符串
+	 * @param source
+	 * @param length
+	 * @return
+	 */
 	public static List<String> partedStringByLength(String source, int length) {
 		if(source == null) {
 			return new ArrayList<String>();
@@ -80,6 +86,17 @@ public class StarStringUtils {
 		} while (source.length() > length);
 		
 		return result;
+	}
+	
+	
+	/**
+	 * 删除标点符号:    
+	 *    !！？%*）%！,，。!.*
+	 * @param str
+	 * @return
+	 */
+	public static String deleteBiaodian(String str) {
+       return str.replaceAll("[\\pP\\p{Punct}]", ""); 
 	}
 
 }

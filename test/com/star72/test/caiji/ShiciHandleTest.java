@@ -8,8 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
+
+import com.star72.common.utils.StarStringUtils;
 
 /**
  * 
@@ -19,28 +22,70 @@ import org.junit.Test;
 public class ShiciHandleTest{
 	
 	@Test
-	public void testYueFuShiJi() throws IOException {
-		String destPath = "D:\\TEST\\star\\yuefushiji\\";
-		String path = "D:\\TEST\\star\\yuefushiji.txt";//乐府诗集 宋 郭茂倩
+	public void test() throws IOException {
+		String path = "D:\\TEST\\star\\yuefushiji.txt";
+		String destPath = FilenameUtils.getFullPath(path) + FilenameUtils.getBaseName(path);
 		List<String> readLines = FileUtils.readLines(new File(path));
-		List<String> contentList = new ArrayList<String>();
-		String title = null;
 		
+		//稿件容器
+		List<String> contentList = new ArrayList<String>();
+		//标题变量
+		String title = null;
+		//计数器
 		int count = 0;
+		
 		
 		for(String line : readLines) {
 			
-			//○
-			if(line.contains("○")) {
+			//如果是标题
+			if(isTitle(line)) {
 				count++;
-				title = count + "-" + line;
-				System.out.println(title);
+				
+				if(title != null) {
+					//进行处理
+					FileUtils.writeLines(new File(destPath + File.separator + title + ".txt"), contentList);
+					
+					title = null;
+					contentList.clear();
+					
+				} else if(contentList.size() > 0) {
+					contentList.clear();
+				}
+				
+				//重新初始化
+				title = count + "-" + StarStringUtils.deleteBiaodian(line);
+				
+			} else {
+				contentList.add(line);
 			}
 			
 		}
 		
+		if(title != null) {
+			FileUtils.writeLines(new File(destPath + File.separator + title + ".txt"), contentList);
+		}
+		
 	}
 	
+	
+	//是否为标题
+	private boolean isTitle(String line) {
+		boolean falg = false;
+		
+		falg = isTitle_yuefushiji(line);
+		
+		return falg;
+	}
+	
+
+	private boolean isTitle_yuefushiji(String line) {
+		if(line != null && line.contains("○")) {
+			return true;
+		}
+		return false;
+	}
+
+
 	public void testSong() throws IOException {
 		String destPath = "D:\\TEST\\star\\quansong4\\";
 		String path = "D:\\TEST\\star\\quansong4.txt";

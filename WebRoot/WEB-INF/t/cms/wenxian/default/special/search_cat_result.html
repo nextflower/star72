@@ -44,6 +44,7 @@
 			
 	    	<div class="container col-md-8">
 	    		
+				<!--
 				<form action="#" method="post">
 					<ul class="nav nav-tabs">
 					   <li><a href="#">全部</a></li>
@@ -60,6 +61,7 @@
 					   <li><a href="#">诗词</a></li>
 					</ul>
 				</form>
+				-->
 				
 				<div class="panel panel-primary">
 		   			<div class="panel-body">
@@ -68,7 +70,7 @@
 						<div class="row">
 							<div class="panel panel-info">
 							   <div class="panel-body">
-										<h6>当前分类[${cat!}],共为您找到${result.totalCount}条记录,当前第${result.pageNo+1}页/共${result.totalPage}页, [@process_time/]</h6>
+										<h6>当前分类<span class="badge">${cat!}</span>,共为您找到${result.totalCount}条记录,当前${result.pageNo+1}/${result.totalPage}页, [@process_time/]</h6>
 							    		<div class="col-md-12">
 							    			
 											[#include "../include/search_result_list.html"/]

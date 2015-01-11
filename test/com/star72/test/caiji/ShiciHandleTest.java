@@ -23,7 +23,7 @@ public class ShiciHandleTest{
 	
 	@Test
 	public void test() throws IOException {
-		String path = "D:\\TEST\\star\\yuefushiji.txt";
+		String path = "D:\\temp\\元诗选.txt";
 		String destPath = FilenameUtils.getFullPath(path) + FilenameUtils.getBaseName(path);
 		List<String> readLines = FileUtils.readLines(new File(path));
 		
@@ -39,10 +39,20 @@ public class ShiciHandleTest{
 			
 			//如果是标题
 			if(isTitle(line)) {
-				count++;
 				
 				if(title != null) {
 					//进行处理
+					String[] split = title.trim().split(" ");
+					//System.out.println(split[0]);
+					if(split[0].length() > 30) {
+						contentList.add(0, title);
+						title = split[0].substring(0, 30);
+					} else {
+						if(title.length() > 30) {
+							contentList.add(0, title);	
+						}
+						title = split[0];
+					}
 					FileUtils.writeLines(new File(destPath + File.separator + title + ".txt"), contentList);
 					
 					title = null;
@@ -53,7 +63,7 @@ public class ShiciHandleTest{
 				}
 				
 				//重新初始化
-				title = count + "-" + StarStringUtils.deleteBiaodian(line);
+				title = (++count) + "-" + StarStringUtils.deleteBiaodian(line);
 				
 			} else {
 				contentList.add(line);
@@ -72,11 +82,20 @@ public class ShiciHandleTest{
 	private boolean isTitle(String line) {
 		boolean falg = false;
 		
-		falg = isTitle_yuefushiji(line);
+//		falg = isTitle_yuefushiji(line);//乐府诗集
+		falg = isTitle_yuanshixuan(line);//元诗选
 		
 		return falg;
 	}
 	
+	private boolean isTitle_yuanshixuan(String line) {
+		if(line != null) {
+			if(line.contains("◆") || line.contains("○")) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	private boolean isTitle_yuefushiji(String line) {
 		if(line != null && line.contains("○")) {

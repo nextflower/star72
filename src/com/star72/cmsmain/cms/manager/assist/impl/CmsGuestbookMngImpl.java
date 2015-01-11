@@ -45,7 +45,9 @@ public class CmsGuestbookMngImpl implements CmsGuestbookMng {
 
 	public CmsGuestbook save(CmsGuestbook bean, CmsGuestbookExt ext,
 			Integer ctgId, String ip) {
-		bean.setCtg(cmsGuestbookCtgMng.findById(ctgId));
+		if(ctgId != null) {
+			bean.setCtg(cmsGuestbookCtgMng.findById(ctgId));
+		}
 		bean.setIp(ip);
 		bean.setCreateTime(new Timestamp(System.currentTimeMillis()));
 		bean.init();

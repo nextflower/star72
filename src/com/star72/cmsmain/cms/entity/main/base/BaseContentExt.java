@@ -94,6 +94,12 @@ public abstract class BaseContentExt  implements Serializable {
 	private java.lang.String link;
 	private java.lang.String tplContent;
 	private java.lang.Boolean needRegenerate;
+	//扩展字段
+	private java.lang.String common1;
+	private java.lang.String common2;
+	private java.lang.String common3;
+	private java.lang.String common4;
+	private java.lang.String common5;
 
 	// one to one
 	private com.star72.cmsmain.cms.entity.main.Content content;
@@ -435,6 +441,46 @@ public abstract class BaseContentExt  implements Serializable {
 
 	public String toString () {
 		return super.toString();
+	}
+
+	public void setCommon1(java.lang.String common1) {
+		this.common1 = common1;
+	}
+
+	public java.lang.String getCommon1() {
+		return common1;
+	}
+
+	public void setCommon2(java.lang.String common2) {
+		this.common2 = common2;
+	}
+
+	public java.lang.String getCommon2() {
+		return common2;
+	}
+
+	public void setCommon3(java.lang.String common3) {
+		this.common3 = common3;
+	}
+
+	public java.lang.String getCommon3() {
+		return common3;
+	}
+
+	public void setCommon4(java.lang.String common4) {
+		this.common4 = common4;
+	}
+
+	public java.lang.String getCommon4() {
+		return common4;
+	}
+
+	public void setCommon5(java.lang.String common5) {
+		this.common5 = common5;
+	}
+
+	public java.lang.String getCommon5() {
+		return common5;
 	}
 
 

@@ -24,6 +24,13 @@
 		<property name="link" column="link" type="string" not-null="false" length="255"/>
 		<property name="tplContent" column="tpl_content" type="string" not-null="false" length="100"/>
 		<property name="needRegenerate" column="need_regenerate" type="java.lang.Boolean" not-null="true"/>
+		
+		<property name="common1" column="common1" type="string" not-null="false" length="255"/>
+		<property name="common2" column="common2" type="string" not-null="false" length="255"/>
+		<property name="common3" column="common3" type="string" not-null="false" length="255"/>
+		<property name="common4" column="common4" type="string" not-null="false" length="255"/>
+		<property name="common5" column="common5" type="string" not-null="false" length="255"/>
+		
 		<one-to-one name="content" class="Content" constrained="true"/>
 	</class>
 </hibernate-mapping>

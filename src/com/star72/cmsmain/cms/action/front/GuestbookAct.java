@@ -103,6 +103,7 @@ public class GuestbookAct {
 			HttpServletResponse response, ModelMap model) throws JSONException {
 		CmsSite site = CmsUtils.getSite(request);
 		CmsUser member = CmsUtils.getUser(request);
+		
 		if (siteId == null) {
 			siteId = site.getId();
 		}

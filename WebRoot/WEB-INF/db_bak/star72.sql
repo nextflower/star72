@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2014-12-26 19:26:13
+Date: 2015-01-10 23:02:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -250,7 +250,7 @@ CREATE TABLE `jc_channel` (
   CONSTRAINT `fk_jc_channel_model` FOREIGN KEY (`model_id`) REFERENCES `jc_model` (`model_id`),
   CONSTRAINT `fk_jc_channel_parent` FOREIGN KEY (`parent_id`) REFERENCES `jc_channel` (`channel_id`),
   CONSTRAINT `fk_jc_channel_site` FOREIGN KEY (`site_id`) REFERENCES `jc_site` (`site_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COMMENT='CMS栏目表';
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COMMENT='CMS栏目表';
 
 -- ----------------------------
 -- Records of jc_channel
@@ -275,6 +275,11 @@ INSERT INTO `jc_channel` VALUES ('50', '6', '1', '46', 'jlp', '32', '33', '10', 
 INSERT INTO `jc_channel` VALUES ('57', '4', '1', '9', 'syzs', '16', '17', '10', '1', '1');
 INSERT INTO `jc_channel` VALUES ('60', '1', '1', null, 'wldc', '35', '36', '9', '1', '1');
 INSERT INTO `jc_channel` VALUES ('61', '8', '1', null, 'job', '37', '38', '8', '1', '1');
+INSERT INTO `jc_channel` VALUES ('62', '1', '2', null, 'shuxue', '1', '2', '10', '1', '1');
+INSERT INTO `jc_channel` VALUES ('63', '1', '2', null, 'wuli', '3', '4', '10', '1', '1');
+INSERT INTO `jc_channel` VALUES ('64', '1', '2', null, 'gongcheng', '5', '6', '10', '1', '1');
+INSERT INTO `jc_channel` VALUES ('65', '1', '2', null, 'jixie', '7', '8', '10', '1', '1');
+INSERT INTO `jc_channel` VALUES ('66', '1', '2', null, 'qita', '9', '10', '10', '1', '1');
 
 -- ----------------------------
 -- Table structure for `jc_channel_attr`
@@ -329,6 +334,11 @@ INSERT INTO `jc_channel_count` VALUES ('50', '20', '0', '0', '0');
 INSERT INTO `jc_channel_count` VALUES ('57', '0', '0', '0', '0');
 INSERT INTO `jc_channel_count` VALUES ('60', '0', '0', '0', '0');
 INSERT INTO `jc_channel_count` VALUES ('61', '0', '0', '0', '0');
+INSERT INTO `jc_channel_count` VALUES ('62', '32', '23', '21', '21');
+INSERT INTO `jc_channel_count` VALUES ('63', '0', '0', '0', '0');
+INSERT INTO `jc_channel_count` VALUES ('64', '0', '0', '0', '0');
+INSERT INTO `jc_channel_count` VALUES ('65', '0', '0', '0', '0');
+INSERT INTO `jc_channel_count` VALUES ('66', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `jc_channel_ext`
@@ -392,6 +402,11 @@ INSERT INTO `jc_channel_ext` VALUES ('50', '纪录片', null, null, '0', '0', '0
 INSERT INTO `jc_channel_ext` VALUES ('57', '实用助手', null, null, '0', '0', '1', '0', '20', null, null, null, '/WEB-INF/t/cms/www/default/channel/download_child.html', null, null, null, '1', '1', '48', '48', '180', '120', '0', '1', '0', null, null, null, '0', '0');
 INSERT INTO `jc_channel_ext` VALUES ('60', '网络调查', null, null, '0', '0', '0', '0', '20', null, null, null, '/WEB-INF/t/cms/www/default/channel/news_wldc.html', null, null, null, '0', '0', '139', '139', '310', '310', '0', '1', '0', '网络调查', '网络调查', '网络调查', '0', '0');
 INSERT INTO `jc_channel_ext` VALUES ('61', '招聘', null, null, '0', '0', '0', '0', '20', null, null, null, '', '', null, null, '0', '0', '139', '139', '310', '310', '0', '1', '0', '招聘', '招聘', '招聘', '0', '0');
+INSERT INTO `jc_channel_ext` VALUES ('62', '数学', null, null, '0', '0', '0', '0', '10', null, null, null, null, null, null, null, '0', '0', '139', '139', '310', '310', '0', '1', '0', null, null, null, '0', '0');
+INSERT INTO `jc_channel_ext` VALUES ('63', '物理', null, null, '0', '0', '0', '0', '10', null, null, null, null, null, null, null, '0', '0', '139', '139', '310', '310', '0', '1', '0', null, null, null, '0', '0');
+INSERT INTO `jc_channel_ext` VALUES ('64', '工程', null, null, '0', '0', '0', '0', '10', null, null, null, null, null, null, null, '0', '0', '139', '139', '310', '310', '0', '1', '0', null, null, null, '0', '0');
+INSERT INTO `jc_channel_ext` VALUES ('65', '机械', null, null, '0', '0', '0', '0', '10', null, null, null, null, null, null, null, '0', '0', '139', '139', '310', '310', '0', '1', '0', null, null, null, '0', '0');
+INSERT INTO `jc_channel_ext` VALUES ('66', '其他', null, null, '0', '0', '0', '0', '10', null, null, null, null, null, null, null, '0', '0', '139', '139', '310', '310', '0', '1', '0', null, null, null, '0', '0');
 
 -- ----------------------------
 -- Table structure for `jc_channel_model`
@@ -473,6 +488,11 @@ INSERT INTO `jc_chnl_group_contri` VALUES ('42', '1');
 INSERT INTO `jc_chnl_group_contri` VALUES ('43', '1');
 INSERT INTO `jc_chnl_group_contri` VALUES ('44', '1');
 INSERT INTO `jc_chnl_group_contri` VALUES ('45', '1');
+INSERT INTO `jc_chnl_group_contri` VALUES ('62', '1');
+INSERT INTO `jc_chnl_group_contri` VALUES ('63', '1');
+INSERT INTO `jc_chnl_group_contri` VALUES ('64', '1');
+INSERT INTO `jc_chnl_group_contri` VALUES ('65', '1');
+INSERT INTO `jc_chnl_group_contri` VALUES ('66', '1');
 INSERT INTO `jc_chnl_group_contri` VALUES ('1', '2');
 INSERT INTO `jc_chnl_group_contri` VALUES ('11', '2');
 INSERT INTO `jc_chnl_group_contri` VALUES ('42', '2');
@@ -484,6 +504,11 @@ INSERT INTO `jc_chnl_group_contri` VALUES ('49', '2');
 INSERT INTO `jc_chnl_group_contri` VALUES ('50', '2');
 INSERT INTO `jc_chnl_group_contri` VALUES ('60', '2');
 INSERT INTO `jc_chnl_group_contri` VALUES ('61', '2');
+INSERT INTO `jc_chnl_group_contri` VALUES ('62', '2');
+INSERT INTO `jc_chnl_group_contri` VALUES ('63', '2');
+INSERT INTO `jc_chnl_group_contri` VALUES ('64', '2');
+INSERT INTO `jc_chnl_group_contri` VALUES ('65', '2');
+INSERT INTO `jc_chnl_group_contri` VALUES ('66', '2');
 
 -- ----------------------------
 -- Table structure for `jc_chnl_group_view`
@@ -598,7 +623,7 @@ CREATE TABLE `jc_config` (
 -- ----------------------------
 -- Records of jc_config
 -- ----------------------------
-INSERT INTO `jc_config` VALUES ('1', '/star72', null, '8080', '/dbfile.svl?n=', '0', '/r/cms/www/no_picture.gif', '/login.jspx', null, '1', '120', '120', '/r/cms/www/watermark.png', 'www.72star.com', '40', '#FF0000', '100', '1', '0', '0', '2014-12-21', '2014-12-21 20:41:04', 'star72', '12', null, null, null, null, null, '1', '0');
+INSERT INTO `jc_config` VALUES ('1', '/star72', null, '8080', '/dbfile.svl?n=', '0', '/r/cms/www/no_picture.gif', '/login.jspx', null, '1', '120', '120', '/r/cms/www/watermark.png', 'www.72star.com', '40', '#FF0000', '100', '1', '0', '0', '2015-01-04', '2015-01-04 20:20:16', 'star72', '12', null, null, null, null, null, '1', '0');
 
 -- ----------------------------
 -- Table structure for `jc_config_attr`
@@ -704,7 +729,7 @@ CREATE TABLE `jc_content` (
   CONSTRAINT `fk_jc_content_type` FOREIGN KEY (`type_id`) REFERENCES `jc_content_type` (`type_id`),
   CONSTRAINT `fk_jc_content_user` FOREIGN KEY (`user_id`) REFERENCES `jc_user` (`user_id`),
   CONSTRAINT `fk_jc_contentchannel` FOREIGN KEY (`channel_id`) REFERENCES `jc_channel` (`channel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=518 DEFAULT CHARSET=utf8 COMMENT='CMS内容表';
+) ENGINE=InnoDB AUTO_INCREMENT=521 DEFAULT CHARSET=utf8 COMMENT='CMS内容表';
 
 -- ----------------------------
 -- Records of jc_content
@@ -713,6 +738,9 @@ INSERT INTO `jc_content` VALUES ('334', '57', '1', '1', '4', '1', '2013-09-27 09
 INSERT INTO `jc_content` VALUES ('335', '57', '1', '1', '4', '1', '2013-09-27 09:57:15', '0', '1', '0', '2', '0', '0', '0', '0', '0');
 INSERT INTO `jc_content` VALUES ('516', '45', '1', '2', '5', '1', '2013-09-12 11:12:45', '0', '0', '0', '2', '0', '0', '0', '0', '0');
 INSERT INTO `jc_content` VALUES ('517', '45', '1', '2', '5', '1', '2013-09-12 11:19:03', '0', '0', '0', '2', '0', '0', '0', '0', '0');
+INSERT INTO `jc_content` VALUES ('518', '62', '1', '1', '1', '2', '2014-12-26 20:27:29', '10', '0', '0', '2', '16', '0', '0', '0', '0');
+INSERT INTO `jc_content` VALUES ('519', '62', '1', '1', '1', '2', '2014-12-26 20:31:06', '9', '0', '0', '2', '0', '0', '0', '0', '0');
+INSERT INTO `jc_content` VALUES ('520', '62', '1', '1', '1', '2', '2014-12-26 20:31:31', '8', '0', '0', '2', '8', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `jc_contenttag`
@@ -731,6 +759,15 @@ CREATE TABLE `jc_contenttag` (
 -- ----------------------------
 -- Records of jc_contenttag
 -- ----------------------------
+INSERT INTO `jc_contenttag` VALUES ('518', '1', '0');
+INSERT INTO `jc_contenttag` VALUES ('518', '2', '1');
+INSERT INTO `jc_contenttag` VALUES ('518', '3', '2');
+INSERT INTO `jc_contenttag` VALUES ('519', '4', '0');
+INSERT INTO `jc_contenttag` VALUES ('519', '2', '1');
+INSERT INTO `jc_contenttag` VALUES ('519', '3', '2');
+INSERT INTO `jc_contenttag` VALUES ('520', '5', '0');
+INSERT INTO `jc_contenttag` VALUES ('520', '2', '1');
+INSERT INTO `jc_contenttag` VALUES ('520', '3', '2');
 
 -- ----------------------------
 -- Table structure for `jc_content_attachment`
@@ -797,6 +834,9 @@ INSERT INTO `jc_content_channel` VALUES ('57', '334');
 INSERT INTO `jc_content_channel` VALUES ('57', '335');
 INSERT INTO `jc_content_channel` VALUES ('45', '516');
 INSERT INTO `jc_content_channel` VALUES ('45', '517');
+INSERT INTO `jc_content_channel` VALUES ('62', '518');
+INSERT INTO `jc_content_channel` VALUES ('62', '519');
+INSERT INTO `jc_content_channel` VALUES ('62', '520');
 
 -- ----------------------------
 -- Table structure for `jc_content_check`
@@ -822,6 +862,9 @@ INSERT INTO `jc_content_check` VALUES ('334', '2', null, '0', '1', '2011-12-19 1
 INSERT INTO `jc_content_check` VALUES ('335', '2', null, '0', '1', '2011-12-19 14:21:32');
 INSERT INTO `jc_content_check` VALUES ('516', '2', null, '0', null, null);
 INSERT INTO `jc_content_check` VALUES ('517', '2', null, '0', null, null);
+INSERT INTO `jc_content_check` VALUES ('518', '2', null, '0', null, null);
+INSERT INTO `jc_content_check` VALUES ('519', '2', null, '0', null, null);
+INSERT INTO `jc_content_check` VALUES ('520', '2', null, '0', null, null);
 
 -- ----------------------------
 -- Table structure for `jc_content_count`
@@ -857,6 +900,9 @@ INSERT INTO `jc_content_count` VALUES ('334', '4', '0', '0', '0', '0', '0', '0',
 INSERT INTO `jc_content_count` VALUES ('335', '6', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `jc_content_count` VALUES ('516', '3', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
 INSERT INTO `jc_content_count` VALUES ('517', '6', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `jc_content_count` VALUES ('518', '18', '18', '18', '18', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `jc_content_count` VALUES ('519', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
+INSERT INTO `jc_content_count` VALUES ('520', '8', '8', '8', '8', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `jc_content_ext`
@@ -881,6 +927,11 @@ CREATE TABLE `jc_content_ext` (
   `link` varchar(255) DEFAULT NULL COMMENT '外部链接',
   `tpl_content` varchar(100) DEFAULT NULL COMMENT '指定模板',
   `need_regenerate` tinyint(1) NOT NULL DEFAULT '1' COMMENT '需要重新生成静态页',
+  `common1` varchar(255) DEFAULT NULL,
+  `common2` varchar(255) DEFAULT NULL,
+  `common3` varchar(255) DEFAULT NULL,
+  `common4` varchar(255) DEFAULT NULL,
+  `common5` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`content_id`),
   CONSTRAINT `fk_jc_ext_content` FOREIGN KEY (`content_id`) REFERENCES `jc_content` (`content_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='CMS内容扩展表';
@@ -888,10 +939,13 @@ CREATE TABLE `jc_content_ext` (
 -- ----------------------------
 -- Records of jc_content_ext
 -- ----------------------------
-INSERT INTO `jc_content_ext` VALUES ('334', '搜狗拼音输入', null, null, null, null, '准确快速', '2013-09-27 09:58:07', null, null, null, '0', '/u/cms/www/201309/19141700opui.jpg', '/u/cms/www/201309/19141756u9sa.jpg', null, null, null, '1');
-INSERT INTO `jc_content_ext` VALUES ('335', '有道词典', null, null, null, null, '翻译多语种网络词典', '2013-09-27 09:57:18', null, null, null, '0', '/u/cms/www/201309/19142041eu8x.jpg', '/u/cms/www/201309/19142206y73m.jpg', null, null, null, '1');
-INSERT INTO `jc_content_ext` VALUES ('516', '高考36年变迁珍贵影像', null, null, null, null, '1977年冬天，中断了十年又重新恢复的高考制度，开始改变这个庞大国家无数人的命运。一纸试卷废除了“推荐上大学”，给当时渴望改变命运的人们一个公平竞争的机会。很多人借此叩开了另一个世界的大门，走上辉煌的人生道路。', '2013-09-12 11:12:45', null, null, null, '0', null, null, '/u/cms/www/201309/1211124392sy.jpg', null, null, '1');
-INSERT INTO `jc_content_ext` VALUES ('517', '美国富二代大学生的奢侈生活', null, null, null, null, ' 在美国，日趋上涨的大学花费已经严重威胁到了低收入家庭的学生，大量学生即使在毕业四五年后还身背学债。而另一方面，一种迎合富人家庭大学生的服务新模式已经出现。', '2013-09-12 11:19:03', null, null, null, '0', null, null, '/u/cms/www/201309/1211190051if.jpg', null, null, '1');
+INSERT INTO `jc_content_ext` VALUES ('334', '搜狗拼音输入', null, null, null, null, '准确快速', '2013-09-27 09:58:07', null, null, null, '0', '/u/cms/www/201309/19141700opui.jpg', '/u/cms/www/201309/19141756u9sa.jpg', null, null, null, '1', null, null, null, null, null);
+INSERT INTO `jc_content_ext` VALUES ('335', '有道词典', null, null, null, null, '翻译多语种网络词典', '2013-09-27 09:57:18', null, null, null, '0', '/u/cms/www/201309/19142041eu8x.jpg', '/u/cms/www/201309/19142206y73m.jpg', null, null, null, '1', null, null, null, null, null);
+INSERT INTO `jc_content_ext` VALUES ('516', '高考36年变迁珍贵影像', null, null, null, null, '1977年冬天，中断了十年又重新恢复的高考制度，开始改变这个庞大国家无数人的命运。一纸试卷废除了“推荐上大学”，给当时渴望改变命运的人们一个公平竞争的机会。很多人借此叩开了另一个世界的大门，走上辉煌的人生道路。', '2013-09-12 11:12:45', null, null, null, '0', null, null, '/u/cms/www/201309/1211124392sy.jpg', null, null, '1', null, null, null, null, null);
+INSERT INTO `jc_content_ext` VALUES ('517', '美国富二代大学生的奢侈生活', null, null, null, null, ' 在美国，日趋上涨的大学花费已经严重威胁到了低收入家庭的学生，大量学生即使在毕业四五年后还身背学债。而另一方面，一种迎合富人家庭大学生的服务新模式已经出现。', '2013-09-12 11:19:03', null, null, null, '0', null, null, '/u/cms/www/201309/1211190051if.jpg', null, null, '1', null, null, null, null, null);
+INSERT INTO `jc_content_ext` VALUES ('518', '排列组合在线计算', null, null, null, null, null, '2014-12-26 20:27:29', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, null);
+INSERT INTO `jc_content_ext` VALUES ('519', '方程在线计算', null, null, null, null, null, '2014-12-26 20:31:06', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, null);
+INSERT INTO `jc_content_ext` VALUES ('520', '微积分在线计算', null, null, null, null, null, '2014-12-26 20:31:31', null, null, null, '0', null, null, null, null, null, '1', null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `jc_content_group_view`
@@ -949,11 +1003,16 @@ CREATE TABLE `jc_content_tag` (
   `ref_counter` int(11) NOT NULL DEFAULT '1' COMMENT '被引用的次数',
   PRIMARY KEY (`tag_id`),
   UNIQUE KEY `ak_tag_name` (`tag_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='CMS内容TAG表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='CMS内容TAG表';
 
 -- ----------------------------
 -- Records of jc_content_tag
 -- ----------------------------
+INSERT INTO `jc_content_tag` VALUES ('1', '排列组合', '1');
+INSERT INTO `jc_content_tag` VALUES ('2', '在线', '3');
+INSERT INTO `jc_content_tag` VALUES ('3', '计算', '3');
+INSERT INTO `jc_content_tag` VALUES ('4', '方程', '1');
+INSERT INTO `jc_content_tag` VALUES ('5', '微积分', '1');
 
 -- ----------------------------
 -- Table structure for `jc_content_topic`
@@ -1770,7 +1829,7 @@ CREATE TABLE `jc_log` (
   KEY `fk_jc_log_user` (`user_id`),
   CONSTRAINT `fk_jc_log_site` FOREIGN KEY (`site_id`) REFERENCES `jc_site` (`site_id`),
   CONSTRAINT `fk_jc_log_user` FOREIGN KEY (`user_id`) REFERENCES `jc_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='CMS日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COMMENT='CMS日志表';
 
 -- ----------------------------
 -- Records of jc_log
@@ -1798,6 +1857,48 @@ INSERT INTO `jc_log` VALUES ('20', '1', '1', '3', '2014-12-21 20:32:57', '127.0.
 INSERT INTO `jc_log` VALUES ('21', '1', '1', '3', '2014-12-21 20:39:19', '127.0.0.1', '/star72//jeeadmin/star72/config/o_system_update.do', '修改系统设置', null);
 INSERT INTO `jc_log` VALUES ('22', '1', null, '1', '2014-12-21 20:48:39', '127.0.0.1', '/star72/jeeadmin/star72/login.do', 'login success', null);
 INSERT INTO `jc_log` VALUES ('23', '1', null, '1', '2014-12-26 19:25:16', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('24', '1', '1', '3', '2014-12-26 19:27:39', '127.0.0.1', '/star72/admin/star72/site/o_save.do', '增加站点', 'id=2;name=公式大全');
+INSERT INTO `jc_log` VALUES ('25', '1', null, '1', '2014-12-26 19:29:36', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('26', '1', '2', '3', '2014-12-26 19:30:06', '127.0.0.1', '/star72/admin/star72/site_config/o_base_update.do', '站点基本设置', null);
+INSERT INTO `jc_log` VALUES ('27', '1', null, '1', '2014-12-26 19:38:19', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('28', '1', null, '1', '2014-12-26 19:42:12', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('29', '1', '1', '3', '2014-12-26 19:45:13', '127.0.0.1', '/star72/admin/star72/site/o_save.do', '增加站点', 'id=3;name=古代文献');
+INSERT INTO `jc_log` VALUES ('30', '1', '2', '3', '2014-12-26 19:46:26', '127.0.0.1', '/star72/admin/star72/site/o_update.do', '修改站点', 'id=2;name=公式大全');
+INSERT INTO `jc_log` VALUES ('31', '1', '2', '3', '2014-12-26 19:46:36', '127.0.0.1', '/star72/admin/star72/site/o_update.do', '修改站点', 'id=3;name=古代文献');
+INSERT INTO `jc_log` VALUES ('32', '1', null, '1', '2014-12-26 19:48:02', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('33', '1', null, '1', '2014-12-26 19:49:26', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('34', '1', '2', '3', '2014-12-26 19:54:26', '127.0.0.1', '/star72/admin/star72/channel/o_save.do', '增加栏目', 'id=62;title=null');
+INSERT INTO `jc_log` VALUES ('35', '1', '2', '3', '2014-12-26 19:54:43', '127.0.0.1', '/star72/admin/star72/channel/o_save.do', '增加栏目', 'id=63;title=null');
+INSERT INTO `jc_log` VALUES ('36', '1', '2', '3', '2014-12-26 19:55:58', '127.0.0.1', '/star72/admin/star72/channel/o_save.do', '增加栏目', 'id=64;title=null');
+INSERT INTO `jc_log` VALUES ('37', '1', '2', '3', '2014-12-26 19:56:16', '127.0.0.1', '/star72/admin/star72/channel/o_save.do', '增加栏目', 'id=65;title=null');
+INSERT INTO `jc_log` VALUES ('38', '1', '2', '3', '2014-12-26 19:56:34', '127.0.0.1', '/star72/admin/star72/channel/o_save.do', '增加栏目', 'id=66;title=null');
+INSERT INTO `jc_log` VALUES ('39', '1', '2', '3', '2014-12-26 20:27:29', '127.0.0.1', '/star72/admin/star72/content/o_save.do', '增加文章', 'id=518;title=排列组合在线计算');
+INSERT INTO `jc_log` VALUES ('40', '1', '2', '3', '2014-12-26 20:31:06', '127.0.0.1', '/star72/admin/star72/content/o_save.do', '增加文章', 'id=519;title=方程在线计算');
+INSERT INTO `jc_log` VALUES ('41', '1', '2', '3', '2014-12-26 20:31:31', '127.0.0.1', '/star72/admin/star72/content/o_save.do', '增加文章', 'id=520;title=微积分在线计算');
+INSERT INTO `jc_log` VALUES ('42', '1', null, '1', '2014-12-27 13:26:31', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('43', '1', null, '1', '2014-12-28 21:23:20', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('44', '1', null, '1', '2014-12-28 21:30:34', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('45', '1', null, '1', '2014-12-28 21:32:57', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('46', '1', null, '1', '2014-12-28 21:34:09', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('47', '1', null, '1', '2014-12-28 22:27:27', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('48', '1', null, '1', '2015-01-01 09:55:22', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('49', '1', '1', '3', '2015-01-01 09:56:51', '127.0.0.1', '/star72/admin/star72/site_config/o_base_update.do', '站点基本设置', null);
+INSERT INTO `jc_log` VALUES ('50', '1', '3', '3', '2015-01-01 09:57:05', '127.0.0.1', '/star72/admin/star72/site_config/o_base_update.do', '站点基本设置', null);
+INSERT INTO `jc_log` VALUES ('51', '1', null, '1', '2015-01-02 11:02:16', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('52', '1', null, '1', '2015-01-02 14:21:45', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('53', '1', null, '1', '2015-01-02 14:57:25', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('54', '1', '3', '3', '2015-01-02 15:00:44', '127.0.0.1', '/star72/admin/star72/site_config/o_base_update.do', '站点基本设置', null);
+INSERT INTO `jc_log` VALUES ('55', '1', null, '1', '2015-01-02 18:15:20', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('56', '1', null, '1', '2015-01-03 16:03:47', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('57', '1', null, '1', '2015-01-03 20:13:00', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('58', '1', null, '1', '2015-01-04 20:08:15', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('59', '1', null, '1', '2015-01-05 20:51:22', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('60', '1', null, '1', '2015-01-06 20:01:41', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('61', '1', null, '1', '2015-01-07 19:52:41', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('62', '1', null, '1', '2015-01-08 19:33:46', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('63', '1', null, '1', '2015-01-10 00:30:37', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
+INSERT INTO `jc_log` VALUES ('64', '1', '3', '3', '2015-01-10 00:44:32', '127.0.0.1', '/star72/admin/star72/model/o_save.do', '增加模型', 'id=9;name=文献');
+INSERT INTO `jc_log` VALUES ('65', '1', null, '1', '2015-01-10 15:19:46', '127.0.0.1', '/star72/admin/star72/login.do', 'login success', null);
 
 -- ----------------------------
 -- Table structure for `jc_message`
@@ -1856,6 +1957,7 @@ INSERT INTO `jc_model` VALUES ('4', '下载', '4', 'download', 'download', '139'
 INSERT INTO `jc_model` VALUES ('5', '图库', '5', 'pic', 'pic', '139', '139', '310', '310', '5', '1', '0', '0');
 INSERT INTO `jc_model` VALUES ('6', '视频', '6', 'vedio', 'vedio', '139', '139', '310', '310', '10', '1', '0', '0');
 INSERT INTO `jc_model` VALUES ('8', '招聘', 'job', 'job', 'job', '139', '139', '310', '310', '10', '1', '0', '0');
+INSERT INTO `jc_model` VALUES ('9', '文献', 'wenxian', 'wenxian', 'wenxian', '139', '139', '310', '310', '10', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `jc_model_item`
@@ -1882,7 +1984,7 @@ CREATE TABLE `jc_model_item` (
   PRIMARY KEY (`modelitem_id`),
   KEY `fk_jc_item_model` (`model_id`),
   CONSTRAINT `fk_jc_item_model` FOREIGN KEY (`model_id`) REFERENCES `jc_model` (`model_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=426 DEFAULT CHARSET=utf8 COMMENT='CMS模型项表';
+) ENGINE=InnoDB AUTO_INCREMENT=484 DEFAULT CHARSET=utf8 COMMENT='CMS模型项表';
 
 -- ----------------------------
 -- Records of jc_model_item
@@ -2099,6 +2201,64 @@ INSERT INTO `jc_model_item` VALUES ('422', '6', 'allowScore', '评分', '10', nu
 INSERT INTO `jc_model_item` VALUES ('423', '8', 'finalStep', '终审级别', '10', null, null, null, null, null, null, null, '2', '0', '1', '0', '1');
 INSERT INTO `jc_model_item` VALUES ('424', '8', 'allowShare', '分享', '10', null, null, null, null, null, null, null, '8', '0', '1', '0', '1');
 INSERT INTO `jc_model_item` VALUES ('425', '8', 'allowScore', '评分', '10', null, null, null, null, null, null, null, '8', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('426', '9', 'name', '栏目名称', '10', null, null, null, null, null, null, null, '1', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('427', '9', 'path', '访问路径', '10', null, null, null, null, null, null, null, '2', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('428', '9', 'title', 'meta标题', '10', null, null, null, null, null, null, null, '1', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('429', '9', 'keywords', 'meta关键字', '10', null, null, null, null, null, null, null, '1', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('430', '9', 'description', 'meta描述', '10', null, null, null, null, null, null, null, '4', '1', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('431', '9', 'tplChannel', '栏目模板', '10', null, null, null, null, null, null, null, '6', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('432', '9', 'tplContent', '内容模板', '10', null, null, null, null, null, null, null, '6', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('433', '9', 'channelStatic', '栏目静态化', '10', null, null, null, null, null, null, null, '4', '1', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('434', '9', 'contentStatic', '内容静态化', '10', null, null, null, null, null, null, null, '4', '1', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('435', '9', 'priority', '排列顺序', '10', null, null, null, null, null, null, null, '2', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('436', '9', 'display', '显示', '10', null, null, null, null, null, null, null, '8', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('437', '9', 'docImg', '文档图片', '10', null, null, null, null, null, null, null, '8', '1', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('438', '9', 'finalStep', '终审级别', '10', null, null, null, null, null, null, null, '2', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('439', '9', 'afterCheck', '审核后', '10', null, null, null, null, null, null, null, '6', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('440', '9', 'commentControl', '评论', '10', null, null, null, null, null, null, null, '8', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('441', '9', 'allowUpdown', '顶踩', '10', null, null, null, null, null, null, null, '8', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('442', '9', 'allowShare', '分享', '10', null, null, null, null, null, null, null, '8', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('443', '9', 'allowScore', '评分', '10', null, null, null, null, null, null, null, '8', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('444', '9', 'viewGroupIds', '浏览权限', '10', null, null, null, null, null, null, null, '7', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('445', '9', 'contriGroupIds', '投稿权限', '10', null, null, null, null, null, null, null, '7', '0', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('446', '9', 'link', '外部链接', '10', null, null, null, null, null, null, null, '1', '1', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('447', '9', 'titleImg', '标题图', '10', null, null, null, null, null, null, null, '1', '1', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('448', '9', 'contentImg', '内容图', '10', null, null, null, null, null, null, null, '1', '1', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('449', '9', 'txt', '内容', '10', null, null, null, null, null, null, null, '4', '1', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('450', '9', 'txt1', '内容1', '10', null, null, null, null, null, null, null, '4', '1', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('451', '9', 'txt2', '内容2', '10', null, null, null, null, null, null, null, '4', '1', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('452', '9', 'txt3', '内容3', '10', null, null, null, null, null, null, null, '4', '1', '1', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('453', '9', 'common1', '扩展一', '70', '', '', '', '3', '30', '', '', '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('454', '9', 'common2', '扩展二', '70', '', '', '', '3', '30', '', '', '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('455', '9', 'common3', '扩展三', '70', '', '', '', '3', '30', '', '', '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('456', '9', 'common4', '扩展四', '70', '', '', '', '3', '30', '', '', '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('457', '9', 'common5', '扩展五', '70', '', '', '', '3', '30', '', '', '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('458', '9', 'channelId', '栏目', '10', null, null, null, null, null, null, null, '6', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('459', '9', 'title', '标题', '10', null, null, null, null, null, null, null, '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('460', '9', 'shortTitle', '简短标题', '10', null, null, null, null, null, null, null, '1', '0', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('461', '9', 'titleColor', '标题颜色', '10', null, null, null, null, null, null, null, '6', '0', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('462', '9', 'tagStr', 'Tag标签', '10', null, null, null, null, null, null, null, '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('463', '9', 'description', '摘要', '10', null, null, null, null, null, null, null, '4', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('464', '9', 'author', '作者', '10', null, null, null, null, null, null, null, '1', '0', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('465', '9', 'origin', '来源', '10', null, null, null, null, null, null, null, '1', '0', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('466', '9', 'viewGroupIds', '浏览权限', '10', null, null, null, null, null, null, null, '7', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('467', '9', 'topLevel', '固顶级别', '10', null, null, null, null, null, null, null, '6', '0', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('468', '9', 'releaseDate', '发布时间', '10', null, null, null, null, null, null, null, '5', '0', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('469', '9', 'typeId', '内容类型', '10', null, null, null, null, null, null, null, '6', '0', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('470', '9', 'tplContent', '指定模板', '10', null, null, null, null, null, null, null, '6', '0', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('471', '9', 'typeImg', '类型图', '10', null, null, null, null, null, null, null, '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('472', '9', 'titleImg', '标题图', '10', null, null, null, null, null, null, null, '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('473', '9', 'contentImg', '内容图', '10', null, null, null, null, null, null, null, '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('474', '9', 'attachments', '附件', '10', null, null, null, null, null, null, null, '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('475', '9', 'media', '多媒体', '10', null, null, null, null, null, null, null, '1', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('476', '9', 'txt', '内容', '10', null, null, null, null, null, null, null, '4', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('477', '9', 'txt1', '内容1', '10', null, null, null, null, null, null, null, '4', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('478', '9', 'txt2', '内容2', '10', null, null, null, null, null, null, null, '4', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('479', '9', 'txt3', '内容3', '10', null, null, null, null, null, null, null, '4', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('480', '9', 'pictures', '图片集', '10', null, null, null, null, null, null, null, '4', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('481', '9', 'docPath', '文档路径', '10', null, null, null, null, null, null, null, '4', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('482', '9', 'downNeed', '下载需要财富', '10', null, null, null, null, null, null, null, '2', '1', '0', '0', '1');
+INSERT INTO `jc_model_item` VALUES ('483', '9', 'isOpen', '是否开放', '10', null, null, null, null, null, null, null, '7', '1', '0', '0', '1');
 
 -- ----------------------------
 -- Table structure for `jc_origin`
@@ -2375,18 +2535,21 @@ CREATE TABLE `jc_site` (
   `tpl_index` varchar(255) DEFAULT NULL COMMENT '首页模板',
   `keywords` varchar(255) DEFAULT NULL COMMENT '站点关键字',
   `description` varchar(255) DEFAULT NULL COMMENT '站点描述',
+  `solr_path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`site_id`),
   UNIQUE KEY `ak_domain_path` (`domain`),
   KEY `fk_jc_site_config` (`config_id`),
   KEY `fk_jc_site_upload_ftp` (`ftp_upload_id`),
   CONSTRAINT `fk_jc_site_config` FOREIGN KEY (`config_id`) REFERENCES `jc_config` (`config_id`),
   CONSTRAINT `fk_jc_site_upload_ftp` FOREIGN KEY (`ftp_upload_id`) REFERENCES `jo_ftp` (`ftp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='CMS站点表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='CMS站点表';
 
 -- ----------------------------
 -- Records of jc_site
 -- ----------------------------
-INSERT INTO `jc_site` VALUES ('1', '1', null, 'localhost', 'www', '七十二颗星', '星七二', 'http：//', '.jhtml', '.html', '/jx', '0', '0', 'zh_CN', 'zh_CN', 'default', '3', '3', '0', '1', '', '', '/WEB-INF/t/cms/www/default/index/index.html', '', '');
+INSERT INTO `jc_site` VALUES ('1', '1', null, '127.0.0.3', 'www', '七十二颗星', '星七二', 'http://', '.jhtml', '.html', '/jx', '0', '0', 'zh_CN', 'zh_CN', 'default', '3', '3', '0', '1', '', '', '/WEB-INF/t/cms/www/default/index/index.html', '', '', null);
+INSERT INTO `jc_site` VALUES ('2', '1', null, '127.0.0.1', 'gongshi', '公式大全', '公式大全', 'http://', '.jhtml', '.html', '', '0', '0', 'zh_CN', 'zh_CN', 'default', '2', '3', '0', '1', '', '', '', '', '', null);
+INSERT INTO `jc_site` VALUES ('3', '1', null, 'localhost', 'wenxian', '古代文献', '古代文献', 'http://', '.jhtml', '.html', '', '0', '0', 'zh_CN', 'zh_CN', 'default', '2', '3', '0', '1', '', '', '', '', '', 'http://localhost:8080/Solr/gudaiwenxian');
 
 -- ----------------------------
 -- Table structure for `jc_site_access`
@@ -2413,12 +2576,13 @@ CREATE TABLE `jc_site_access` (
   PRIMARY KEY (`access_id`),
   KEY `fk_jc_access_site` (`site_id`),
   CONSTRAINT `fk_jc_access_site` FOREIGN KEY (`site_id`) REFERENCES `jc_site` (`site_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='站点访问表';
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COMMENT='站点访问表';
 
 -- ----------------------------
 -- Records of jc_site_access
 -- ----------------------------
-INSERT INTO `jc_site_access` VALUES ('1', '5055B80C7D6EA9FB02AEB1C7433D6182', '1', '20:12:06', '2014-12-21', '127.0.0.1', '', '直接访问', null, null, 'http://localhost:8080/starcms/', 'http://localhost:8080/starcms/', '784', '10', 'Win 7', 'firefox 32', '');
+INSERT INTO `jc_site_access` VALUES ('55', 'A09F27DD810DB00D1CB3CAA2A41AB54D', '3', '00:33:47', '2015-01-10', '127.0.0.1', '', '直接访问', null, null, 'http://localhost:8080/star72/', 'http://localhost:8080/star72/', '0', '1', 'Win 7', 'firefox 34', '');
+INSERT INTO `jc_site_access` VALUES ('56', '4A19F4D92CC27E7BD8C317B4E5DFE2AC', '3', '15:19:50', '2015-01-10', '127.0.0.1', '', '直接访问', null, null, 'http://localhost:8080/star72/', 'http://localhost:8080/star72/wenxian/navi/cat.jhtml', '1170', '5', 'Win 7', 'firefox 34', '');
 
 -- ----------------------------
 -- Table structure for `jc_site_access_count`
@@ -2433,11 +2597,53 @@ CREATE TABLE `jc_site_access_count` (
   PRIMARY KEY (`access_count`),
   KEY `fk_jc_access_count_site` (`site_id`),
   CONSTRAINT `fk_jc_access_count_site` FOREIGN KEY (`site_id`) REFERENCES `jc_site` (`site_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='每日统计页数访问情况';
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COMMENT='每日统计页数访问情况';
 
 -- ----------------------------
 -- Records of jc_site_access_count
 -- ----------------------------
+INSERT INTO `jc_site_access_count` VALUES ('1', '1', '1', '2014-12-26', '2');
+INSERT INTO `jc_site_access_count` VALUES ('2', '1', '2', '2014-12-28', '2');
+INSERT INTO `jc_site_access_count` VALUES ('3', '12', '1', '2014-12-28', '2');
+INSERT INTO `jc_site_access_count` VALUES ('4', '73', '1', '2014-12-28', '2');
+INSERT INTO `jc_site_access_count` VALUES ('5', '176', '1', '2015-01-01', '3');
+INSERT INTO `jc_site_access_count` VALUES ('6', '2', '3', '2015-01-02', '3');
+INSERT INTO `jc_site_access_count` VALUES ('7', '3', '2', '2015-01-02', '3');
+INSERT INTO `jc_site_access_count` VALUES ('8', '5', '2', '2015-01-02', '3');
+INSERT INTO `jc_site_access_count` VALUES ('9', '8', '2', '2015-01-02', '3');
+INSERT INTO `jc_site_access_count` VALUES ('10', '68', '1', '2015-01-02', '3');
+INSERT INTO `jc_site_access_count` VALUES ('11', '104', '1', '2015-01-02', '3');
+INSERT INTO `jc_site_access_count` VALUES ('12', '168', '1', '2015-01-02', '3');
+INSERT INTO `jc_site_access_count` VALUES ('13', '1', '1', '2015-01-02', '3');
+INSERT INTO `jc_site_access_count` VALUES ('14', '7', '1', '2015-01-02', '3');
+INSERT INTO `jc_site_access_count` VALUES ('15', '17', '1', '2015-01-02', '3');
+INSERT INTO `jc_site_access_count` VALUES ('16', '28', '1', '2015-01-02', '3');
+INSERT INTO `jc_site_access_count` VALUES ('17', '1', '1', '2015-01-03', '3');
+INSERT INTO `jc_site_access_count` VALUES ('18', '2', '1', '2015-01-03', '3');
+INSERT INTO `jc_site_access_count` VALUES ('19', '64', '1', '2015-01-03', '3');
+INSERT INTO `jc_site_access_count` VALUES ('20', '138', '1', '2015-01-03', '3');
+INSERT INTO `jc_site_access_count` VALUES ('21', '11', '1', '2015-01-04', '3');
+INSERT INTO `jc_site_access_count` VALUES ('22', '8', '1', '2015-01-05', '3');
+INSERT INTO `jc_site_access_count` VALUES ('23', '11', '1', '2015-01-05', '3');
+INSERT INTO `jc_site_access_count` VALUES ('24', '18', '1', '2015-01-05', '3');
+INSERT INTO `jc_site_access_count` VALUES ('25', '269', '1', '2015-01-05', '3');
+INSERT INTO `jc_site_access_count` VALUES ('26', '18', '1', '2015-01-06', '3');
+INSERT INTO `jc_site_access_count` VALUES ('27', '34', '1', '2015-01-06', '3');
+INSERT INTO `jc_site_access_count` VALUES ('28', '1', '1', '2015-01-06', '3');
+INSERT INTO `jc_site_access_count` VALUES ('29', '6', '1', '2015-01-06', '3');
+INSERT INTO `jc_site_access_count` VALUES ('30', '22', '1', '2015-01-07', '3');
+INSERT INTO `jc_site_access_count` VALUES ('31', '29', '1', '2015-01-07', '3');
+INSERT INTO `jc_site_access_count` VALUES ('32', '70', '1', '2015-01-07', '3');
+INSERT INTO `jc_site_access_count` VALUES ('33', '96', '1', '2015-01-07', '3');
+INSERT INTO `jc_site_access_count` VALUES ('34', '28', '2', '2015-01-08', '3');
+INSERT INTO `jc_site_access_count` VALUES ('35', '46', '1', '2015-01-08', '3');
+INSERT INTO `jc_site_access_count` VALUES ('36', '75', '1', '2015-01-08', '3');
+INSERT INTO `jc_site_access_count` VALUES ('37', '6', '1', '2015-01-08', '3');
+INSERT INTO `jc_site_access_count` VALUES ('38', '12', '1', '2015-01-08', '3');
+INSERT INTO `jc_site_access_count` VALUES ('39', '13', '1', '2015-01-08', '3');
+INSERT INTO `jc_site_access_count` VALUES ('40', '26', '1', '2015-01-08', '3');
+INSERT INTO `jc_site_access_count` VALUES ('41', '30', '1', '2015-01-08', '3');
+INSERT INTO `jc_site_access_count` VALUES ('42', '41', '1', '2015-01-08', '3');
 
 -- ----------------------------
 -- Table structure for `jc_site_access_pages`
@@ -2454,18 +2660,13 @@ CREATE TABLE `jc_site_access_pages` (
   `site_id` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`access_pages_id`),
   KEY `fk_jc_access_pages_access` (`session_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='访问详细页面表';
+) ENGINE=InnoDB AUTO_INCREMENT=1471 DEFAULT CHARSET=utf8 COMMENT='访问详细页面表';
 
 -- ----------------------------
 -- Records of jc_site_access_pages
 -- ----------------------------
-INSERT INTO `jc_site_access_pages` VALUES ('1', 'http://localhost:8080/starcms/', '5055B80C7D6EA9FB02AEB1C7433D6182', '2014-12-21', '20:12:07', '158', '1', '1');
-INSERT INTO `jc_site_access_pages` VALUES ('2', 'http://localhost:8080/starcms/', '5055B80C7D6EA9FB02AEB1C7433D6182', '2014-12-21', '20:14:45', '59', '2', '1');
-INSERT INTO `jc_site_access_pages` VALUES ('3', 'http://localhost:8080/starcms/', '5055B80C7D6EA9FB02AEB1C7433D6182', '2014-12-21', '20:16:23', '20', '4', '1');
-INSERT INTO `jc_site_access_pages` VALUES ('4', 'http://localhost:8080/starcms/', '5055B80C7D6EA9FB02AEB1C7433D6182', '2014-12-21', '20:15:44', '39', '3', '1');
-INSERT INTO `jc_site_access_pages` VALUES ('5', 'http://localhost:8080/starcms/', '5055B80C7D6EA9FB02AEB1C7433D6182', '2014-12-21', '20:16:43', '114', '5', '1');
-INSERT INTO `jc_site_access_pages` VALUES ('6', 'http://localhost:8080/starcms/', '5055B80C7D6EA9FB02AEB1C7433D6182', '2014-12-21', '20:18:37', '78', '6', '1');
-INSERT INTO `jc_site_access_pages` VALUES ('7', 'http://localhost:8080/starcms/', '5055B80C7D6EA9FB02AEB1C7433D6182', '2014-12-21', '20:19:55', '0', '7', '1');
+INSERT INTO `jc_site_access_pages` VALUES ('1469', 'http://localhost:8080/star72/', 'A09F27DD810DB00D1CB3CAA2A41AB54D', '2015-01-10', '00:33:48', '0', '1', '3');
+INSERT INTO `jc_site_access_pages` VALUES ('1470', 'http://localhost:8080/star72/', '4A19F4D92CC27E7BD8C317B4E5DFE2AC', '2015-01-10', '15:19:51', '0', '1', '3');
 
 -- ----------------------------
 -- Table structure for `jc_site_access_statistic`
@@ -2485,11 +2686,36 @@ CREATE TABLE `jc_site_access_statistic` (
   PRIMARY KEY (`access_statistic_id`),
   KEY `fk_jc_access_statistic_site` (`site_id`),
   CONSTRAINT `fk_jc_access_statistic_site` FOREIGN KEY (`site_id`) REFERENCES `jc_site` (`site_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='访问统计表';
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='访问统计表';
 
 -- ----------------------------
 -- Records of jc_site_access_statistic
 -- ----------------------------
+INSERT INTO `jc_site_access_statistic` VALUES ('1', '2014-12-28', '87', '1', '4', '21', '445', '2', 'all', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('2', '2014-12-28', '1', '1', '1', '1', '0', '2', 'source', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('3', '2014-12-28', '86', '1', '3', '28', '593', '2', 'source', '直接访问');
+INSERT INTO `jc_site_access_statistic` VALUES ('4', '2015-01-01', '176', '1', '1', '176', '10443', '3', 'all', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('5', '2015-01-01', '176', '1', '1', '176', '10443', '3', 'source', '直接访问');
+INSERT INTO `jc_site_access_statistic` VALUES ('6', '2015-01-02', '431', '1', '16', '26', '1794', '3', 'all', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('7', '2015-01-02', '8', '1', '4', '2', '159', '3', 'source', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('8', '2015-01-02', '423', '1', '12', '35', '2340', '3', 'source', '直接访问');
+INSERT INTO `jc_site_access_statistic` VALUES ('9', '2015-01-03', '205', '1', '4', '51', '2442', '3', 'all', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('10', '2015-01-03', '2', '1', '1', '2', '5', '3', 'source', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('11', '2015-01-03', '203', '1', '3', '67', '3255', '3', 'source', '直接访问');
+INSERT INTO `jc_site_access_statistic` VALUES ('12', '2015-01-04', '11', '1', '1', '11', '1747', '3', 'all', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('13', '2015-01-04', '11', '1', '1', '11', '1747', '3', 'source', '直接访问');
+INSERT INTO `jc_site_access_statistic` VALUES ('14', '2015-01-05', '306', '1', '4', '76', '2854', '3', 'all', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('15', '2015-01-05', '37', '1', '3', '12', '1022', '3', 'source', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('16', '2015-01-05', '269', '1', '1', '269', '8350', '3', 'source', '直接访问');
+INSERT INTO `jc_site_access_statistic` VALUES ('17', '2015-01-06', '59', '1', '4', '14', '3330', '3', 'all', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('18', '2015-01-06', '25', '1', '3', '8', '247', '3', 'source', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('19', '2015-01-06', '34', '1', '1', '34', '12578', '3', 'source', '直接访问');
+INSERT INTO `jc_site_access_statistic` VALUES ('20', '2015-01-07', '217', '1', '4', '54', '2157', '3', 'all', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('21', '2015-01-07', '121', '1', '3', '40', '1052', '3', 'source', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('22', '2015-01-07', '96', '1', '1', '96', '5471', '3', 'source', '直接访问');
+INSERT INTO `jc_site_access_statistic` VALUES ('23', '2015-01-08', '305', '1', '10', '30', '1012', '3', 'all', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('24', '2015-01-08', '110', '1', '4', '27', '674', '3', 'source', '');
+INSERT INTO `jc_site_access_statistic` VALUES ('25', '2015-01-08', '195', '1', '6', '32', '1237', '3', 'source', '直接访问');
 
 -- ----------------------------
 -- Table structure for `jc_site_attr`
@@ -2508,6 +2734,10 @@ CREATE TABLE `jc_site_attr` (
 -- ----------------------------
 INSERT INTO `jc_site_attr` VALUES ('1', 'pvTotal', '144');
 INSERT INTO `jc_site_attr` VALUES ('1', 'visitors', '34');
+INSERT INTO `jc_site_attr` VALUES ('2', 'pvTotal', '247');
+INSERT INTO `jc_site_attr` VALUES ('2', 'visitors', '10');
+INSERT INTO `jc_site_attr` VALUES ('3', 'pvTotal', '971');
+INSERT INTO `jc_site_attr` VALUES ('3', 'visitors', '35');
 
 -- ----------------------------
 -- Table structure for `jc_site_cfg`
@@ -2548,6 +2778,8 @@ CREATE TABLE `jc_site_company` (
 -- Records of jc_site_company
 -- ----------------------------
 INSERT INTO `jc_site_company` VALUES ('1', '七十二颗星', '10-20人', '私企', '互联网', '', '', '', null, null);
+INSERT INTO `jc_site_company` VALUES ('2', '公式大全', null, null, null, null, null, null, null, null);
+INSERT INTO `jc_site_company` VALUES ('3', '古代文献', null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `jc_site_model`
@@ -2732,7 +2964,7 @@ CREATE TABLE `jc_user` (
 -- ----------------------------
 -- Records of jc_user
 -- ----------------------------
-INSERT INTO `jc_user` VALUES ('1', '1', 'admin', '', '2011-01-03 00:00:00', '127.0.0.1', '2014-12-26 19:25:16', '127.0.0.1', '1045', '9', '197857', '45', '2014-08-29', '1', '0', '0');
+INSERT INTO `jc_user` VALUES ('1', '1', 'admin', '', '2011-01-03 00:00:00', '127.0.0.1', '2015-01-10 15:19:46', '127.0.0.1', '1070', '9', '197857', '45', '2014-08-29', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for `jc_user_attr`
@@ -2878,12 +3110,14 @@ CREATE TABLE `jc_user_site` (
   KEY `fk_jc_user_site` (`site_id`),
   CONSTRAINT `fk_jc_site_user` FOREIGN KEY (`user_id`) REFERENCES `jc_user` (`user_id`),
   CONSTRAINT `fk_jc_user_site` FOREIGN KEY (`site_id`) REFERENCES `jc_site` (`site_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='CMS管理员站点表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='CMS管理员站点表';
 
 -- ----------------------------
 -- Records of jc_user_site
 -- ----------------------------
 INSERT INTO `jc_user_site` VALUES ('2', '1', '1', '3', '1');
+INSERT INTO `jc_user_site` VALUES ('3', '1', '2', '2', '1');
+INSERT INTO `jc_user_site` VALUES ('4', '1', '3', '2', '1');
 
 -- ----------------------------
 -- Table structure for `jc_vote_item`

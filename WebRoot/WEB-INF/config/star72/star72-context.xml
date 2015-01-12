@@ -77,6 +77,17 @@
 	<!--LISTENER-->
 	<bean id="contentLuceneListener" class="com.star72.cmsmain.cms.lucene.ContentLuceneListener"/>
 	<bean id="contentStaticPageListener" class="com.star72.cmsmain.cms.staticpage.ContentStaticPageListener"/>
+	<bean id="contentSolrListener" class="com.star72.cmsmain.cms.lucene.ContentSolrListener">
+		<property name="handleMap">
+            <map>
+                <entry key="1" value-ref="contentSolrHandler4Common" />
+            </map>
+        </property>
+	</bean>
+	
+	<!--solr content handler-->
+	<bean id="contentSolrHandler4Common" class="com.star72.cmsmain.cms.lucene.handler.ContentSolrHandler4Common"/>
+	
 	
 	<!--MANAGER-->
 	<bean id="channelMng" class="com.star72.cmsmain.cms.manager.main.impl.ChannelMngImpl">

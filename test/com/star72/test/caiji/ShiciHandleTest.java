@@ -23,7 +23,7 @@ public class ShiciHandleTest{
 	
 	@Test
 	public void test() throws IOException {
-		String path = "D:\\temp\\元诗选.txt";
+		String path = "D:\\TEST\\star\\先秦汉魏晋南北朝诗.txt";
 		String destPath = FilenameUtils.getFullPath(path) + FilenameUtils.getBaseName(path);
 		List<String> readLines = FileUtils.readLines(new File(path));
 		
@@ -53,6 +53,9 @@ public class ShiciHandleTest{
 						}
 						title = split[0];
 					}
+					
+//					System.out.println(title);
+					
 					FileUtils.writeLines(new File(destPath + File.separator + title + ".txt"), contentList);
 					
 					title = null;
@@ -83,11 +86,22 @@ public class ShiciHandleTest{
 		boolean falg = false;
 		
 //		falg = isTitle_yuefushiji(line);//乐府诗集
-		falg = isTitle_yuanshixuan(line);//元诗选
+//		falg = isTitle_yuanshixuan(line);//元诗选
+		falg = isTitle_xianqian(line);//先秦汉魏晋南北朝诗
 		
 		return falg;
 	}
 	
+	private boolean isTitle_xianqian(String line) {
+		if(line != null) {
+			if(line.contains("【")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+
 	private boolean isTitle_yuanshixuan(String line) {
 		if(line != null) {
 			if(line.contains("◆") || line.contains("○")) {

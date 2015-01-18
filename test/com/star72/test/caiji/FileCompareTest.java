@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.junit.Test;
 
@@ -19,8 +20,8 @@ public class FileCompareTest {
 	@Test
 	public void test() {
 		
-		String pathRaw = "G:\\文档\\gudaiwenxian";//原始文件夹
-		String pathMake = "G:\\文档\\gudian\\首页";//加工后的文件夹
+		String pathRaw = "G:\\文档\\gudaiwenxian\\易藏";//原始文件夹
+		String pathMake = "G:\\文档\\gudian\\首页\\01易藏-0195部";//加工后的文件夹
 		
 		
 		File rawFile = new File(pathRaw);
@@ -40,35 +41,64 @@ public class FileCompareTest {
 		}
 		
 		//获取文件名
-		Set<String> rawFileNames = StarFileUtils.getFileNames(rawFile, true, true);
-		Set<String> makeFileNames_temp = StarFileUtils.getFileNames(makeFile, true, true);
-		Set<String> makeFileNames = new HashSet<String>();
-		for(String name : makeFileNames_temp) {
-			String[] arr = name.split("\\\\");
-			String last = arr[arr.length - 1];
-			String last_2 = arr[arr.length - 2];
-			if(last.split("-").length == 4 && last_2.split("-").length != 4) {
-				makeFileNames.add(name);
+		Set<String> rawFileNames = StarFileUtils.getFileNames(rawFile, true, false);
+		Set<String> makeFileNames = StarFileUtils.getFileNames(makeFile, true, true);
+		
+		System.out.println(rawFileNames.size());
+		System.out.println(makeFileNames.size());
+		
+//		boolean flag = true;
+//		if(flag) {
+//			return null;
+//		}
+		
+		int count = 0;
+		for(String rawFileName : rawFileNames) {
+			String rawBase = FilenameUtils.getBaseName(rawFileName);
+			boolean f = false;
+			for(String makeFileName : makeFileNames) {
+				
+				String makeBase = FilenameUtils.getBaseName(makeFileName);
+				
+				String[] arr = makeBase.split("-");
+				if(arr.length == 4) {
+					if(arr[1].equals(rawBase)) {
+						System.out.println();
+						System.out.println(rawFileName);
+						System.out.println(makeFileName);
+						System.out.println();
+						count++;
+						f = true;
+						break;
+					}
+				}
+				
 			}
+			
+			if(!f) {
+				//System.out.println(rawFileName);
+			}
+			
+//			List<String> list = new ArrayList<String>();
+//			for(String makeFileName : makeFileNames) {
+//				if(isSame(rawFileName, makeFileName)) {
+//					list.add(makeFileName);
+//				}
+//			}
+//			if(list.size() == 1) {
+//				//System.out.println(rawFileName);
+//				map.put(new File(rawFileName), new File(list.get(0)));
+//			} else if(list.size() == 0) {
+//				System.out.println(rawFileName);
+//				count++;
+//			} else {
+//				//过滤
+//			}
 		}
 		
-		for(String rawFileName : rawFileNames) {
-			List<String> list = new ArrayList<String>();
-			for(String makeFileName : makeFileNames) {
-				if(isSame(rawFileName, makeFileName)) {
-					list.add(makeFileName);
-				}
-			}
-			System.out.println(list.size());
-			if(list.size() == 1) {
-				System.out.println(rawFileName);
-				map.put(new File(rawFileName), new File(list.get(0)));
-			} else if(list.size() == 0) {
-//				System.out.println(rawFileName);
-			} else {
-				//过滤
-			}
-		}
+		System.out.println(count);
+		System.out.println(rawFileNames.size());
+		System.out.println(makeFileNames.size());
 		
 		return map;
 	}
@@ -80,7 +110,7 @@ public class FileCompareTest {
 		String[] makeArr = makeFileName.split("\\\\");
 		
 		boolean flag = true;
-		for(int i=rawArr.length - 1; i >= 0; i--) {
+		for(int i=rawArr.length - 1; i >= rawArr.length - 2; i--) {
 			String raw = FilenameUtils.getBaseName(rawArr[i]);
 			boolean f2 = false;
 			for(int j=makeArr.length - 1; j >= 0; j--) {

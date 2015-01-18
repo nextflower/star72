@@ -54,6 +54,38 @@ import static com.star72.cmsmain.cms.entity.assist.CmsSiteAccessStatistic.STATIS
 @Controller
 public class CmsStatisticAct {
 	
+	@RequiresPermissions("statistic:access:main")
+	@RequestMapping("/statistic/access/main.do")
+	public String access_main(String queryModel, Integer year, Integer month,
+			Integer day, ModelMap model) {
+		
+		return "statistic/access/main";
+	}
+	
+	@RequiresPermissions("statistic:access:count")
+	@RequestMapping("/statistic/access/count.do")
+	public String accessCount(String queryModel, Integer year, Integer month,
+			Integer day, ModelMap model) {
+		
+		return "statistic/access/count";
+	}
+	
+	@RequiresPermissions("statistic:access:pages")
+	@RequestMapping("/statistic/access/pages.do")
+	public String accessPages(String queryModel, Integer year, Integer month,
+			Integer day, ModelMap model) {
+		
+		return "statistic/access/pages";
+	}
+	
+	@RequiresPermissions("statistic:access:statistic")
+	@RequestMapping("/statistic/access/statistic.do")
+	public String accessStatistic(String queryModel, Integer year, Integer month,
+			Integer day, ModelMap model) {
+		
+		return "statistic/access/statistic";
+	}
+	
 	@RequiresPermissions("statistic:member:v_list")
 	@RequestMapping("/statistic/member/v_list.do")
 	public String memberList(String queryModel, Integer year, Integer month,

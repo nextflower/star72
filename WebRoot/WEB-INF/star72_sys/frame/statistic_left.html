@@ -97,6 +97,22 @@ $(function() {
                 </@cms_perm>
                 </#list>
             </div>
+			<div id="div_5">访问数据管理</div>
+            <div style="margin:0; padding:0;">
+				<@cms_perm url="/statistic/access/main.do">
+				<div class="leftmenuBG"><a href="../statistic/access/main.do" target="rightFrame">站点访问</a></div>
+		        </@cms_perm>
+				<@cms_perm url="/statistic/access/count.do">
+				<div class="leftmenuBG"><a href="../statistic/access/count.do" target="rightFrame">访问计数</a></div>
+		        </@cms_perm>
+				<@cms_perm url="/statistic/access/pages.do">
+				<div class="leftmenuBG"><a href="../statistic/access/pages.do" target="rightFrame">访问页面</a></div>
+		        </@cms_perm>
+				<@cms_perm url="/statistic/access/statistic.do">
+				<div class="leftmenuBG"><a href="../statistic/access/statistic.do" target="rightFrame">访问统计</a></div>
+		        </@cms_perm>
+            </div>
+		
      </ul>
 </div>
 </body>

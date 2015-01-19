@@ -1,15 +1,13 @@
 package com.star72.test.caiji;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 import com.star72.common.utils.StarFileUtils;
@@ -20,8 +18,9 @@ public class FileCompareTest {
 	@Test
 	public void test() {
 		
-		String pathRaw = "G:\\文档\\gudaiwenxian\\易藏";//原始文件夹
-		String pathMake = "G:\\文档\\gudian\\首页\\01易藏-0195部";//加工后的文件夹
+		//String pathRaw = "G:\\文档\\gudaiwenxian\\易藏";//原始文件夹
+		String pathRaw = "D:\\gudaiwenxian";//原始文件夹
+		String pathMake = "D:\\gudian\\首页";//加工后的文件夹
 		
 		
 		File rawFile = new File(pathRaw);
@@ -44,90 +43,68 @@ public class FileCompareTest {
 		Set<String> rawFileNames = StarFileUtils.getFileNames(rawFile, true, false);
 		Set<String> makeFileNames = StarFileUtils.getFileNames(makeFile, true, true);
 		
-		System.out.println(rawFileNames.size());
-		System.out.println(makeFileNames.size());
+		//判断是否文件名全部符合要求
+		boolean isAllRight = isAllRight(makeFileNames);
+		if(!isAllRight) {
+			return map;
+		}
+		//包含作者的文件名全部符合条件
 		
-//		boolean flag = true;
-//		if(flag) {
-//			return null;
-//		}
-		
-		int count = 0;
-		for(String rawFileName : rawFileNames) {
-			String rawBase = FilenameUtils.getBaseName(rawFileName);
-			boolean f = false;
-			for(String makeFileName : makeFileNames) {
-				
-				String makeBase = FilenameUtils.getBaseName(makeFileName);
-				
-				String[] arr = makeBase.split("-");
-				if(arr.length == 4) {
-					if(arr[1].equals(rawBase)) {
-						System.out.println();
-						System.out.println(rawFileName);
-						System.out.println(makeFileName);
-						System.out.println();
-						count++;
-						f = true;
-						break;
-					}
+		//筛选包含作者的标准结果
+		Map<String, String> makeFileNameMap = new HashMap<String, String>();
+		for(String makeFileName : makeFileNames) {
+			String[] arr = makeFileName.split("\\\\");
+			int count = 0;
+			for(String s : arr) {
+				if(s.split("-").length == 4) {
+					count++;
 				}
-				
 			}
-			
-			if(!f) {
-				//System.out.println(rawFileName);
+			if(count == 1 && arr[arr.length-1].split("-").length == 4) {
+				String baseName = FilenameUtils.getBaseName(makeFileName);
+				makeFileNameMap.put(baseName.split("-")[1], makeFileName);
 			}
-			
-//			List<String> list = new ArrayList<String>();
-//			for(String makeFileName : makeFileNames) {
-//				if(isSame(rawFileName, makeFileName)) {
-//					list.add(makeFileName);
-//				}
-//			}
-//			if(list.size() == 1) {
-//				//System.out.println(rawFileName);
-//				map.put(new File(rawFileName), new File(list.get(0)));
-//			} else if(list.size() == 0) {
-//				System.out.println(rawFileName);
-//				count++;
-//			} else {
-//				//过滤
-//			}
 		}
 		
-		System.out.println(count);
-		System.out.println(rawFileNames.size());
-		System.out.println(makeFileNames.size());
+		int mapCount = 0;
+		for(String rawFileName : rawFileNames) {
+			String baseName = FilenameUtils.getBaseName(rawFileName);
+			String value = makeFileNameMap.get(baseName);
+			if(value != null) {
+				mapCount++;
+				map.put(new File(rawFileName), new File(value));
+			}
+		}
+		
+		System.out.println("原始文件数量：" + rawFileNames.size());
+		System.out.println("作者文件数量：" + makeFileNameMap.size());
+		System.out.println(mapCount);
 		
 		return map;
 	}
 
-	private boolean isSame(String rawFileName, String makeFileName) {
-		//  \道藏\藏外\云笈七签.txt   
-		//  \03道藏-1689部\09藏外-186种\9-云笈七签-宋-张君房\59-卷一道德部.txt
-		String[] rawArr = rawFileName.split("\\\\");
-		String[] makeArr = makeFileName.split("\\\\");
-		
-		boolean flag = true;
-		for(int i=rawArr.length - 1; i >= rawArr.length - 2; i--) {
-			String raw = FilenameUtils.getBaseName(rawArr[i]);
-			boolean f2 = false;
-			for(int j=makeArr.length - 1; j >= 0; j--) {
-				String make = FilenameUtils.getBaseName(makeArr[j]);
-				if(make.contains(raw)) {
-					f2 = true;
+	private boolean isAllRight(Set<String> makeFileNames) {
+		boolean isAllRight = true;
+		for(String makeFileName : makeFileNames) {
+			boolean isRight = false;
+			boolean isFile = false;
+			String[] arr = makeFileName.split("\\\\");
+			for(int i=arr.length - 1; i >= 0; i--) {
+				String temp = arr[i];
+				if(temp.endsWith(".txt")) {
+					isFile = true;
+				}
+				if(StringUtils.countMatches(temp, "-") == 3 || StringUtils.countMatches(temp, "-") == 4) {
+					isRight = true;
 					break;
 				}
 			}
-			if(!f2) {
-				return false;
+			if(!isRight && isFile) {
+				System.out.println(makeFileName);
+				isAllRight = false;
 			}
 		}
-		
-		return flag;
+		return isAllRight;
 	}
-	
-	
 
 }

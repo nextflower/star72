@@ -19,16 +19,33 @@ public class FileCompareTest {
 	public void test() {
 		
 		//String pathRaw = "G:\\文档\\gudaiwenxian\\易藏";//原始文件夹
-		String pathRaw = "D:\\gudaiwenxian";//原始文件夹
-		String pathMake = "D:\\gudian\\首页";//加工后的文件夹
+		String pathRaw = "G:\\文档\\gudaiwenxian";//原始文件夹
+		String pathMake = "G:\\文档\\gudian\\首页";//加工后的文件夹
 		
 		
 		File rawFile = new File(pathRaw);
 		File makeFile = new File(pathMake);
 		
+		//生成原始文件和加工后文件的映射map,若无对应,则为null
 		Map<File, File> map = getCompareMap(rawFile, makeFile);
 		
-		
+		for(File file : map.keySet()) {
+			File value = map.get(file);
+			String author = null;
+			String chaodai = null;
+			if(value != null && value.isDirectory()) {//已经深度加工的文件
+				//System.out.println(value.getAbsolutePath());
+				String baseName = FilenameUtils.getBaseName(value.getAbsolutePath());
+				String[] arr = baseName.split("-");
+				if(arr.length == 4) {
+					author = arr[3];
+					chaodai = arr[2];
+				}
+			} else {//按照原来的文件进行统一处理
+				
+			}
+			
+		}
 		
 	}
 
@@ -73,6 +90,8 @@ public class FileCompareTest {
 			if(value != null) {
 				mapCount++;
 				map.put(new File(rawFileName), new File(value));
+			} else {
+				map.put(new File(rawFileName), null);
 			}
 		}
 		

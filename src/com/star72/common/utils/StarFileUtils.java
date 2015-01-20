@@ -11,6 +11,32 @@ import java.util.Set;
  *
  */
 public class StarFileUtils {
+	
+	/**
+	 * 获取文件的大小(KB)
+	 * @param file
+	 * @return
+	 */
+	public static double getFileSizeKB(File file) {
+		if(file != null && file.isFile()) {
+			long length = file.length();
+			return length * 1.0 / (1024);
+		}
+		return 0;
+	}
+	
+	/**
+	 * 获取文件的大小(MB)
+	 * @param file
+	 * @return
+	 */
+	public static double getFileSizeMB(File file) {
+		if(file != null && file.isFile()) {
+			long length = file.length();
+			return length * 1.0 / (1024 * 1024);
+		}
+		return 0;
+	}
 
 	/**
 	 * 文件统计方法(文件夹不做统计)

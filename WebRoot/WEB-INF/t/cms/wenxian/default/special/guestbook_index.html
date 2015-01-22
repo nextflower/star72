@@ -24,96 +24,24 @@
     <body style="padding:20px;">
         [#include "../include/header.html"/]<hr>
         <div class="container">
-            <div class="w670">
-                <div class="hundred100 mt10">
-                    <div class="AreaTitle text-center wenxian"><h1>留言列表</h1></div>
-                    <div class="lybCon">
-                        [@cms_guestbook_page siteId=site.id count='5']
-                        [#list tag_pagination.list as m]
-						
-							<div class="panel panel-primary">
-							   <div class="panel-body">
-	                                <span>${(m.member.qq)!'匿名网友'} 于${m.createTime}留言：</span>
-	                                <span>[@text_cut s=m.contentHtml len=60/]</span>
-	                                <div class="clear"></div>
-									[#if m.replyHtml??]
-	                                <span>&nbsp;管理员回复：[@text_cut s=m.replyHtml len=30/]</span>
-									[/#if]
-							   </div>
-							</div>
-                        [/#list] 
-						
-						<!--分页代码-->
-						
-                        [/@cms_guestbook_page]
-                    </div>
-                </div>
-                <div class="clear-10">
-                </div>
-				
-				<div class="row"><h1></h1></div>
-				
-                <div class="row">
-                    <div class="AreaTitle wenxian text-center"><h4>发表留言</h4></div>
-					<div class="panel panel-primary">
-					   <div class="panel-body">
-						<form id="guestbookForm" class="form-horizontal" role="form" action="${base}/guestbook.jspx" method="post">
-							<input type="hidden" name="ctgId" value="1"/>
-						   <div class="row">
-						      <label for="qq" class="col-sm-2 control-label">昵称(必填)</label>
-						      <div class="col-sm-3">
-						         <input name="qq" id="qq" type="text" class="form-control" placeholder="请输入昵称">
-								 <span id="qq_error"></span>
-						      </div>
-						   </div>
-						   <div class="row"><h5></h5></div>
-						    <div class="row">
-							  <label for="email" class="col-sm-2 control-label">邮箱</label>
-						      <div class="col-sm-4">
-						         <input type="email" name="email" class="form-control" id="email" placeholder="请输入邮箱">
-								 <span id="email_error"></span>
-						      </div>
-						   </div>
-						   <div class="row"><h5></h5></div>
-						   <div class="row">
-						      <label for="title" class="col-sm-2 control-label">标题(必填)</label>
-						      <div class="col-sm-6">
-						         <input name="title" class="form-control" id="title" placeholder="请输入标题">
-								 <span id="title_error"></span>
-						      </div>
-						   </div>
-						   <div class="row"><h5></h5></div>
-						   <div class="row">
-							    <label for="content" class="col-sm-2 control-label">留言内容(必填)</label>
-								<div class="col-sm-8">
-							    	<textarea name="content" id="content" cols="130" rows="4"></textarea>
-									<span id="content_error"></span>
-								</div>
-						  </div>
-						  <div class="row"><h5></h5></div>
-						   <div class="row">
-						      <label for="captcha" class="col-sm-2 control-label">验证码(必填)</label>
-						      <div class="col-sm-2">
-						         <input name="captcha" class="form-control" id="captcha" placeholder="请输入右侧的验证码">
-								 <span id="captcha_error"></span>
-						      </div>
-							  <div class="col-sm-2">
-							  		<img src="${base}/captcha.svl" class="img-thumbnail" style="height:34px;" onclick="this.src='${base}/captcha.svl?d='+new Date()">
-	                          </div>
-						   </div>
-						   <div class="form-group">
-						      <div class="text-center">
-						         <button id="submit" type="submit" class="btn btn-success">留言</button>&nbsp;
-						         <button type="reset" class="btn btn-default">重置</button>
-						      </div>
-						   </div>
-						</form>
-						
-					   </div>
-					</div>
-					
-				</div>
-            </div>
+        	<div class="well">
+				<!-- 多说评论框 start -->
+				<div class="ds-thread" data-thread-key="0" data-title="留言板" data-url="http://www.star72.com:8180/star72/guestbook.jspx"></div>
+				<!-- 多说评论框 end -->
+				<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+				<script type="text/javascript">
+				var duoshuoQuery = {short_name:"72star"};
+					(function() {
+						var ds = document.createElement('script');
+						ds.type = 'text/javascript';ds.async = true;
+						ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+						ds.charset = 'UTF-8';
+						(document.getElementsByTagName('head')[0] 
+						 || document.getElementsByTagName('body')[0]).appendChild(ds);
+					})();
+					</script>
+				<!-- 多说公共JS代码 end -->
+			</div>
         </div>
         [#include "../include/footer.html"/]
         <script src="${resSys}/jquery.js">

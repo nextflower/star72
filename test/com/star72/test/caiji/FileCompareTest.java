@@ -29,17 +29,28 @@ public class FileCompareTest {
 		//生成原始文件和加工后文件的映射map,若无对应,则为null
 		Map<File, File> map = getCompareMap(rawFile, makeFile);
 		
+		int count = 0;
+		
 		for(File file : map.keySet()) {
+			count++;
 			File value = map.get(file);
 			String author = null;
 			String chaodai = null;
-			if(value != null && value.isDirectory()) {//已经深度加工的文件
+			String source = null;
+			if(value != null) {//已经深度加工的文件
 				//System.out.println(value.getAbsolutePath());
 				String baseName = FilenameUtils.getBaseName(value.getAbsolutePath());
 				String[] arr = baseName.split("-");
 				if(arr.length == 4) {
 					author = arr[3];
 					chaodai = arr[2];
+					source = arr[1];
+				}
+				System.out.println("作者：" + author + ",朝代：" + chaodai + ",来源：" + source + ",排序：" + count);
+				if(value.isFile()) {
+					//文件
+				} else {
+					//目录
 				}
 			} else {//按照原来的文件进行统一处理
 				

@@ -6,9 +6,16 @@ import java.security.NoSuchAlgorithmException;
 
 import org.junit.Test;
 
+import com.star72.common.utils.StarStringUtils;
 import com.star72.toolbox.util.ToolBoxUtils;
 
 public class ToolBoxTest {
+	
+	@Test
+	public void test22() {
+		String s = "<p><div id=\"cont\"></p>";
+		System.out.println(StarStringUtils.deleteAllHTMLTag(s));
+	}
 
 	
 	public void fan2jianTest() throws IOException {
@@ -24,7 +31,6 @@ public class ToolBoxTest {
 	}
 	
 	
-	@Test
 	public void testMd5() {
 		long t = System.currentTimeMillis();
 		for(int i=0; i<Integer.MAX_VALUE; i++) {

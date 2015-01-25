@@ -83,4 +83,7 @@
 	<bean id="scoreGroupAct" class="com.star72.cmsmain.cms.action.admin.assist.CmsScoreGroupAct"/>
 	<bean id="scoreItemAct" class="com.star72.cmsmain.cms.action.admin.assist.CmsScoreItemAct"/>
 	
+	<!--wenxian-->
+	<bean id="wenXianImportAct" class="com.star72.wenxian.action.WenXianImportAct"/>
+	
 </beans>

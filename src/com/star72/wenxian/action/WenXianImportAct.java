@@ -1,4 +1,4 @@
-package com.star72.test.caiji;
+package com.star72.wenxian.action;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,20 +9,42 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.solr.common.util.Hash;
-import org.junit.Test;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.star72.cmsmain.cms.entity.main.Content;
+import com.star72.cmsmain.cms.entity.main.ContentExt;
+import com.star72.cmsmain.cms.entity.main.ContentTxt;
 import com.star72.common.utils.StarFileUtils;
 import com.star72.common.utils.StarStringUtils;
 
+/**
+ * 古典文献初始导入
+ * 
+ * @author larry
+ *
+ */
+@Controller
+public class WenXianImportAct {
 
-public class FileCompareTest {
+	@RequiresPermissions("wenxian:import")
+	@RequestMapping("/wenxian/import.do")
+	public void view(HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) throws IOException {
+		
+		importData();
+		
+	}
 	
-	@Test
-	public void test() throws IOException {
+	public void importData() throws IOException {
 		
 		Set<String> catSet = new HashSet<String>();
 		catSet.add("易藏");
@@ -37,7 +59,6 @@ public class FileCompareTest {
 		catSet.add("艺藏");
 		catSet.add("诗歌");
 		
-		//String pathRaw = "G:\\文档\\gudaiwenxian\\易藏";//原始文件夹
 		String pathRaw = "G:\\文档\\gudaiwenxian";//原始文件夹
 		String pathMake = "G:\\文档\\gudian\\首页";//加工后的文件夹
 		
@@ -92,8 +113,8 @@ public class FileCompareTest {
 					//文件,直接入库,不在拆分
 					StringBuffer sb = new StringBuffer();
 					String title = source;
-					//String contentStr = getContentStr(file);
-					//storeToDB(title, contentStr, source, author, chaodai, rootCat, childCats, count);
+					String contentStr = getContentStr(file);
+					storeToDB(title, contentStr, source, author, chaodai, rootCat, childCats, count);
 				} else {
 					//目录,将其下级目录进行入库
 					File[] files = value.listFiles();
@@ -165,6 +186,20 @@ public class FileCompareTest {
 		
 		System.out.println("" + count + ",title:" + title + ",source:" + source + ",author:" + author + ",chaodai:" + chaodai
 				+ ",rootCat:" + rootCat + ",childCats:" + childCats);
+		
+		//各个属性值的非空判断
+		
+		//作者的首字母缩写
+		
+		Content c = new Content();
+		
+		ContentExt ext = new ContentExt();
+		ext.setTitle(title);
+		ext.setAuthor(author);
+		
+		ContentTxt txt = new ContentTxt();
+		txt.setTxt(contentStr);
+		
 		
 	}
 
@@ -285,5 +320,4 @@ public class FileCompareTest {
 		}
 		return isAllRight;
 	}
-
 }

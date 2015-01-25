@@ -22,6 +22,7 @@ public class PinyinUtil {
 		}
 		return result;
 	}
+	
 	public static List<String> hanzi2Pinyin(String str) {
 		List<String> result = new ArrayList<String>();
 		char[] charArray = str.toCharArray();

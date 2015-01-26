@@ -3,9 +3,11 @@ package com.star72.toolbox.test;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import org.junit.Test;
 
+import com.star72.common.utils.PinyinUtil;
 import com.star72.common.utils.StarStringUtils;
 import com.star72.toolbox.util.ToolBoxUtils;
 
@@ -13,8 +15,9 @@ public class ToolBoxTest {
 	
 	@Test
 	public void test22() {
-		String s = "<p><div id=\"cont\"></p>";
-		System.out.println(StarStringUtils.deleteAllHTMLTag(s));
+		String s = "佚名";
+		List<String> list = PinyinUtil.hanzi2PinyinNoDiao(s);
+		System.out.println(list);
 	}
 
 	

@@ -16,13 +16,19 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.star72.cmsmain.cms.entity.main.Channel;
 import com.star72.cmsmain.cms.entity.main.Content;
 import com.star72.cmsmain.cms.entity.main.ContentExt;
 import com.star72.cmsmain.cms.entity.main.ContentTxt;
+import com.star72.cmsmain.cms.manager.main.ChannelMng;
+import com.star72.cmsmain.core.entity.CmsSite;
+import com.star72.cmsmain.core.web.util.CmsUtils;
+import com.star72.common.utils.PinyinUtil;
 import com.star72.common.utils.StarFileUtils;
 import com.star72.common.utils.StarStringUtils;
 
@@ -34,17 +40,28 @@ import com.star72.common.utils.StarStringUtils;
  */
 @Controller
 public class WenXianImportAct {
+	
+	@Autowired
+	private ChannelMng channelMng;
 
 	@RequiresPermissions("wenxian:import")
 	@RequestMapping("/wenxian/import.do")
 	public void view(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) throws IOException {
+		CmsSite site = CmsUtils.getSite(request);
 		
-		importData();
+		importData(site);
 		
 	}
 	
-	public void importData() throws IOException {
+	public void importData(CmsSite site) throws IOException {
+		
+		//生成channel map
+		Map<String, Channel> chMap = new HashMap<String, Channel>();
+		List<Channel> topList = channelMng.getTopList(site.getId(), false);
+		for(Channel ch : topList) {
+			chMap.put(ch.getName(), ch);
+		}
 		
 		Set<String> catSet = new HashSet<String>();
 		catSet.add("易藏");
@@ -114,7 +131,7 @@ public class WenXianImportAct {
 					StringBuffer sb = new StringBuffer();
 					String title = source;
 					String contentStr = getContentStr(file);
-					storeToDB(title, contentStr, source, author, chaodai, rootCat, childCats, count);
+					storeToDB(site, title, contentStr, source, author, chaodai, rootCat, childCats, count);
 				} else {
 					//目录,将其下级目录进行入库
 					File[] files = value.listFiles();
@@ -147,13 +164,13 @@ public class WenXianImportAct {
 									lfCount++;
 									String title2 = title + "[" + lfCount + "]";
 									String contentStr = getContentStr(f);
-									storeToDB(title2, contentStr, source, author, chaodai, rootCat, childCats, count);
+									storeToDB(site, title2, contentStr, source, author, chaodai, rootCat, childCats, count);
 								}
 							}
 							
 						} else {
 							String contentStr = getContentStr(fi);
-							storeToDB(title, contentStr, source, author, chaodai, rootCat, childCats, count);
+							storeToDB(site, title, contentStr, source, author, chaodai, rootCat, childCats, count);
 						}
 						
 						
@@ -172,7 +189,7 @@ public class WenXianImportAct {
 				for(int i=0; i <list.size(); i++) {
 					String title = source + "[" + (i + 1) + "]";
 					String contentStr = list.get(i);
-					storeToDB(title, contentStr, source, author, chaodai, rootCat, childCats, count);
+					storeToDB(site, title, contentStr, source, author, chaodai, rootCat, childCats, count);
 				}
 				
 			}
@@ -181,15 +198,25 @@ public class WenXianImportAct {
 		
 	}
 
-	private void storeToDB(String title, String contentStr, String source,
+	private void storeToDB(CmsSite site, String title, String contentStr, String source,
 			String author, String chaodai, String rootCat, String childCats,int count) {
 		
 		System.out.println("" + count + ",title:" + title + ",source:" + source + ",author:" + author + ",chaodai:" + chaodai
 				+ ",rootCat:" + rootCat + ",childCats:" + childCats);
 		
-		//各个属性值的非空判断
+		//获取channel
 		
-		//作者的首字母缩写
+		//各个属性值的非空判断
+		if(StringUtils.isBlank(author)) {
+			author = "佚名";
+		}
+		if(StringUtils.isBlank(chaodai)) {
+			chaodai = "不详";
+		}
+		
+		
+		//作者的首字母缩写: A B C D E F G
+		String authorPinyin = PinyinUtil.hanzi2PinyinNoDiao(author).get(0).substring(0, 1).toUpperCase();
 		
 		Content c = new Content();
 		
@@ -200,6 +227,19 @@ public class WenXianImportAct {
 		ContentTxt txt = new ContentTxt();
 		txt.setTxt(contentStr);
 		
+		
+		String[] tagArr = null;// tag数组,目前未指定
+		Integer[] channelIds = null;// 副栏目id,需考虑如何指定
+		Integer[] topicIds = null;// 主题id,需考虑如何指定
+		Integer[] viewGroupIds = new Integer[]{};// 浏览权限,暂设置为空
+		Boolean draft = false;// 状态,目前直接指定
+		Boolean forMember = false;// 是否会员,目前直接指定
+		Integer typeID = 1;// 稿件类型,目前指定为普通
+		
+		//保存
+//		c = contentMng.save(content, ext, txt, channelIds, topicIds, viewGroupIds,
+//				tagArr, attachmentPaths, attachmentNames, attachmentFilenames,
+//				pics, channel.getId(), typeID, draft, user, forMember);
 		
 	}
 

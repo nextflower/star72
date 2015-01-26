@@ -105,8 +105,10 @@
 	<bean id="contentMng" class="com.star72.cmsmain.cms.manager.main.impl.ContentMngImpl">
 		<property name="listenerList">
 			<list>
+				<!--
 				<ref bean="contentLuceneListener"/>
 				<ref bean="contentStaticPageListener"/>
+				-->
 			</list>
 		</property>
 	</bean>

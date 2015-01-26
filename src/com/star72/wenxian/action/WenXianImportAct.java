@@ -22,11 +22,15 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.star72.cmsmain.cms.entity.main.Channel;
+import com.star72.cmsmain.cms.entity.main.CmsModel;
 import com.star72.cmsmain.cms.entity.main.Content;
 import com.star72.cmsmain.cms.entity.main.ContentExt;
 import com.star72.cmsmain.cms.entity.main.ContentTxt;
 import com.star72.cmsmain.cms.manager.main.ChannelMng;
+import com.star72.cmsmain.cms.manager.main.CmsModelMng;
+import com.star72.cmsmain.cms.manager.main.ContentMng;
 import com.star72.cmsmain.core.entity.CmsSite;
+import com.star72.cmsmain.core.entity.CmsUser;
 import com.star72.cmsmain.core.web.util.CmsUtils;
 import com.star72.common.utils.PinyinUtil;
 import com.star72.common.utils.StarFileUtils;
@@ -43,18 +47,23 @@ public class WenXianImportAct {
 	
 	@Autowired
 	private ChannelMng channelMng;
+	@Autowired
+	private ContentMng contentMng;
+	@Autowired
+	private CmsModelMng modelMng;
 
 	@RequiresPermissions("wenxian:import")
 	@RequestMapping("/wenxian/import.do")
 	public void view(HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) throws IOException {
 		CmsSite site = CmsUtils.getSite(request);
+		CmsUser user = CmsUtils.getUser(request);
 		
-		importData(site);
+		importData(site, user);
 		
 	}
 	
-	public void importData(CmsSite site) throws IOException {
+	public void importData(CmsSite site, CmsUser user) throws IOException {
 		
 		//生成channel map
 		Map<String, Channel> chMap = new HashMap<String, Channel>();
@@ -76,8 +85,8 @@ public class WenXianImportAct {
 		catSet.add("艺藏");
 		catSet.add("诗歌");
 		
-		String pathRaw = "G:\\文档\\gudaiwenxian";//原始文件夹
-		String pathMake = "G:\\文档\\gudian\\首页";//加工后的文件夹
+		String pathRaw = "H:\\文档\\gudaiwenxian";//原始文件夹
+		String pathMake = "H:\\文档\\gudian\\首页";//加工后的文件夹
 		
 		
 		File rawFile = new File(pathRaw);
@@ -113,7 +122,10 @@ public class WenXianImportAct {
 			}
 			
 			childCats = catSb.toString().replaceFirst(",", "");
-			
+			Channel channel = chMap.get(rootCat);
+			if(channel == null) {
+				System.out.println(rootCat);
+			}
 			
 			
 			if(value != null) {//已经深度加工的文件
@@ -128,10 +140,9 @@ public class WenXianImportAct {
 				
 				if(value.isFile()) {
 					//文件,直接入库,不在拆分
-					StringBuffer sb = new StringBuffer();
 					String title = source;
 					String contentStr = getContentStr(file);
-					storeToDB(site, title, contentStr, source, author, chaodai, rootCat, childCats, count);
+					storeToDB(site, user, channel, title, contentStr, source, author, chaodai, rootCat, childCats, count);
 				} else {
 					//目录,将其下级目录进行入库
 					File[] files = value.listFiles();
@@ -164,13 +175,13 @@ public class WenXianImportAct {
 									lfCount++;
 									String title2 = title + "[" + lfCount + "]";
 									String contentStr = getContentStr(f);
-									storeToDB(site, title2, contentStr, source, author, chaodai, rootCat, childCats, count);
+									storeToDB(site, user, channel, title2, contentStr, source, author, chaodai, rootCat, childCats, count);
 								}
 							}
 							
 						} else {
 							String contentStr = getContentStr(fi);
-							storeToDB(site, title, contentStr, source, author, chaodai, rootCat, childCats, count);
+							storeToDB(site, user, channel, title, contentStr, source, author, chaodai, rootCat, childCats, count);
 						}
 						
 						
@@ -189,7 +200,7 @@ public class WenXianImportAct {
 				for(int i=0; i <list.size(); i++) {
 					String title = source + "[" + (i + 1) + "]";
 					String contentStr = list.get(i);
-					storeToDB(site, title, contentStr, source, author, chaodai, rootCat, childCats, count);
+					storeToDB(site, user, channel, title, contentStr, source, author, chaodai, rootCat, childCats, count);
 				}
 				
 			}
@@ -198,7 +209,7 @@ public class WenXianImportAct {
 		
 	}
 
-	private void storeToDB(CmsSite site, String title, String contentStr, String source,
+	private void storeToDB(CmsSite site, CmsUser user, Channel channel, String title, String contentStr, String source,
 			String author, String chaodai, String rootCat, String childCats,int count) {
 		
 		System.out.println("" + count + ",title:" + title + ",source:" + source + ",author:" + author + ",chaodai:" + chaodai
@@ -218,11 +229,24 @@ public class WenXianImportAct {
 		//作者的首字母缩写: A B C D E F G
 		String authorPinyin = PinyinUtil.hanzi2PinyinNoDiao(author).get(0).substring(0, 1).toUpperCase();
 		
+		//title\author\source\txt\childCats\authorPinyin\count\chaodai\
+		
 		Content c = new Content();
+		c.setSite(site);
+		c.setUser(user);
+		c.setChannel(channel);
+		c.setModel(modelMng.findById(9));
 		
 		ContentExt ext = new ContentExt();
 		ext.setTitle(title);
 		ext.setAuthor(author);
+		ext.setShortTitle(source);
+		
+		ext.setCommon1(childCats);
+		ext.setCommon2(authorPinyin);
+		ext.setCommon3(chaodai);
+		ext.setCommon4(String.valueOf(count));
+		
 		
 		ContentTxt txt = new ContentTxt();
 		txt.setTxt(contentStr);
@@ -235,11 +259,14 @@ public class WenXianImportAct {
 		Boolean draft = false;// 状态,目前直接指定
 		Boolean forMember = false;// 是否会员,目前直接指定
 		Integer typeID = 1;// 稿件类型,目前指定为普通
+		String[] attachmentPaths = null;
+		String[] attachmentNames = null;
+		String[] attachmentFilenames = null;
+		String[] pics = null;
 		
 		//保存
-//		c = contentMng.save(content, ext, txt, channelIds, topicIds, viewGroupIds,
-//				tagArr, attachmentPaths, attachmentNames, attachmentFilenames,
-//				pics, channel.getId(), typeID, draft, user, forMember);
+		contentMng.save(c, ext, txt, channel.getId(), typeID, draft, user, forMember);
+		
 		
 	}
 
@@ -249,8 +276,7 @@ public class WenXianImportAct {
 		if(StarFileUtils.getFileSizeMB(file) > 35) {
 			return result;
 		}
-		
-		List<String> lines = FileUtils.readLines(file);
+		List<String> lines = FileUtils.readLines(file, "utf8");
 		StringBuffer sb = new StringBuffer();
 		
 		for(String line : lines) {
@@ -272,7 +298,7 @@ public class WenXianImportAct {
 
 	private String getContentStr(File file) throws IOException {
 		StringBuffer sb = new StringBuffer();
-		List<String> lines = FileUtils.readLines(file);
+		List<String> lines = FileUtils.readLines(file, "utf8");
 		sb.append("<div class=\"wxContent\">");
 		sb.append("\r\n");
 		for(String line : lines) {

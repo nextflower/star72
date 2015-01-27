@@ -58,11 +58,8 @@ $(function() {
 <@p.select label="cmsLucene.channelId" id="channelId" name="channelId" list=channelList listKey="id" listValue="name" listDeep="deep" headerKey="" headerValue="cmsLucene.allChannel"/>
 <@p.text label="cmsLucene.startDate" id="startDate" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>
 <@p.text label="cmsLucene.endDate" id="endDate" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>
-<@p.text label="cmsLucene.max" id="max" name="max" value="1000" required="true" class="required digits" min="10"/>
 <@p.td>
 	<input type="hidden" id="siteId" name="siteId" value="${site.id}"/>
-	<input type="hidden" id="startId" name="startId"/>
-	<input type="hidden" id="stop" value=""/>
 	<input class="generate-index" type="submit" id="submitButton" value="<@s.m "cmsLucene.createIndex"/>"/>
 &nbsp; <input class="cancel" type="button" id="cancelButton" value="<@s.m "global.cancel"/>" disabled="disabled" onclick="$('#stop').val('1')"/>
 </@p.td>

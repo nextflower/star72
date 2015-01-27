@@ -141,7 +141,7 @@ public class WenXianImportAct {
 				if(value.isFile()) {
 					//文件,直接入库,不在拆分
 					String title = source;
-					String contentStr = getContentStr(file);
+					String contentStr = getContentStr(value);
 					storeToDB(site, user, channel, title, contentStr, source, author, chaodai, rootCat, childCats, count);
 				} else {
 					//目录,将其下级目录进行入库
@@ -213,9 +213,8 @@ public class WenXianImportAct {
 			String author, String chaodai, String rootCat, String childCats,int count) {
 		
 		System.out.println("" + count + ",title:" + title + ",source:" + source + ",author:" + author + ",chaodai:" + chaodai
-				+ ",rootCat:" + rootCat + ",childCats:" + childCats);
+				+ ",rootCat:" + rootCat + ",childCats:" + childCats + ",content_length:" + contentStr.length());
 		
-		//获取channel
 		
 		//各个属性值的非空判断
 		if(StringUtils.isBlank(author)) {
@@ -264,9 +263,19 @@ public class WenXianImportAct {
 		String[] attachmentFilenames = null;
 		String[] pics = null;
 		
-		//保存
-		contentMng.save(c, ext, txt, channel.getId(), typeID, draft, user, forMember);
-		
+		if(contentStr.length() < 1000000) {
+			
+			try {
+				contentMng.save(c, ext, txt, channel.getId(), typeID, draft, user, forMember);
+			} catch (Exception e) {
+				if(e.getMessage().contains("Incorrect string value")) {
+					System.out.println(e.getMessage());
+				} else {
+					e.printStackTrace();
+				}
+			}
+			
+		}
 		
 	}
 

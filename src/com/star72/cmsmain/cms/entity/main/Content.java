@@ -23,11 +23,11 @@ import com.star72.cmsmain.cms.entity.main.Channel.AfterCheckEnum;
 import com.star72.cmsmain.cms.entity.main.base.BaseContent;
 import com.star72.cmsmain.cms.staticpage.StaticPageUtils;
 import com.star72.cmsmain.cms.web.CmsThreadVariable;
-import com.star72.cmsmain.common.util.DateUtils;
 import com.star72.cmsmain.core.entity.CmsGroup;
 import com.star72.cmsmain.core.entity.CmsSite;
 import com.star72.cmsmain.core.entity.CmsUser;
 import com.star72.cmsmain.core.web.ContentInterface;
+import com.star72.common.utils.StarDateUtils;
 
 public class Content extends BaseContent implements ContentInterface {
 	private static final long serialVersionUID = 1L;
@@ -1103,7 +1103,7 @@ public class Content extends BaseContent implements ContentInterface {
 	public boolean getNew(){
 		Date releaseDate=getReleaseDate();
 		Date today=Calendar.getInstance().getTime();
-		int between=DateUtils.getDaysBetweenDate(releaseDate, today);
+		int between=StarDateUtils.getDaysBetweenDate(releaseDate, today);
 		Integer dayNew=getSite().getConfig().getConfigAttr().getDayNew();
 		if(dayNew==0){
 			return false;

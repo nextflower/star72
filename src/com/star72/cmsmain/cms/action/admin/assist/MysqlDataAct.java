@@ -34,7 +34,6 @@ import com.star72.cmsmain.cms.manager.assist.CmsMysqlDataBackMng;
 import com.star72.cmsmain.cms.manager.assist.CmsResourceMng;
 
 import com.star72.cmsmain.cms.Constants;
-import com.star72.cmsmain.common.util.DateUtils;
 import com.star72.cmsmain.common.util.StrUtils;
 import com.star72.cmsmain.common.util.Zipper;
 import com.star72.cmsmain.common.util.Zipper.FileEntry;
@@ -43,6 +42,7 @@ import com.star72.cmsmain.common.web.ResponseUtils;
 import com.star72.cmsmain.common.web.springmvc.RealPathResolver;
 import com.star72.cmsmain.core.manager.CmsLogMng;
 import com.star72.cmsmain.core.web.WebErrors;
+import com.star72.common.utils.StarDateUtils;
 
 @Controller
 public class MysqlDataAct {
@@ -145,7 +145,7 @@ public class MysqlDataAct {
 		if (!backDirectory.exists()) {
 			backDirectory.mkdir();
 		}
-		DateUtils dateUtils = DateUtils.getDateInstance();
+		StarDateUtils dateUtils = StarDateUtils.getDateInstance();
 		String backFilePath = backpath + SLASH+ dateUtils.getNowString() + "."
 				+ SUFFIX;
 		File file=new File(backFilePath);

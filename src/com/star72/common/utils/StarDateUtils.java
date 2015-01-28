@@ -1,20 +1,80 @@
 package com.star72.common.utils;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @author Tom
+ * @author larry
  */
-public class DateUtils {
+public class StarDateUtils {
+	
+	/**
+	 * 默认转换模式
+	 */
+	public static final String DEFAULT_PATTERN = "yyyy-MM-dd";
+	
 	private StringBuffer buffer = new StringBuffer();
 	private static String ZERO = "0";
-	private static DateUtils date;
+	private static StarDateUtils date;
 	public static SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 	public static SimpleDateFormat format1 = new SimpleDateFormat(
 			"yyyyMMdd HH:mm:ss");
+	
+	/**
+	 * 字符串转日期:使用默认模式yyyy-MM-dd
+	 * @param str 待转换的文本:2012-01-01
+	 * @return
+	 */
+	public static Date parse2Date(String str) {
+		return parse2Date(str, DEFAULT_PATTERN);
+	}
+	
+	/**
+	 * 字符串转日期
+	 * @param str 待转换的文本:2012-01-01
+	 * @param pattern 模式:yyyy-MM-dd
+	 * @return
+	 */
+	public static Date parse2Date(String str, String pattern) {
+		DateFormat df = new SimpleDateFormat(pattern);
+		try {
+			return df.parse(str);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * 获取两个时间的差值秒
+	 * @param d1
+	 * @param d2
+	 * @return
+	 */
+	public static Integer getSecondBetweenDate(Date d1,Date d2){
+		Long second=(d2.getTime()-d1.getTime())/1000;
+		return second.intValue();
+	}
+	
+	/**
+	 * 
+	 * @param date
+	 *            指定比较日期
+	 * @param compareDate
+	 * @return
+	 */
+	public static boolean isInDate(Date date, Date compareDate) {
+		if (compareDate.after(getStartDate(date))
+				&& compareDate.before(getFinallyDate(date))) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
 
 	public String getNowString() {
 		Calendar calendar = getCalendar();
@@ -236,9 +296,9 @@ public class DateUtils {
 		return Calendar.getInstance();
 	}
 
-	public static DateUtils getDateInstance() {
+	public static StarDateUtils getDateInstance() {
 		if (date == null) {
-			date = new DateUtils();
+			date = new StarDateUtils();
 		}
 		return date;
 	}

@@ -29,13 +29,13 @@ import com.star72.cmsmain.cms.manager.assist.CmsSiteAccessPagesMng;
 import com.star72.cmsmain.cms.web.CmsThreadVariable;
 import com.star72.cmsmain.common.ipseek.IpSeekUtils;
 import com.star72.cmsmain.common.util.DateFormatUtils;
-import com.star72.cmsmain.common.util.DateUtils;
 import com.star72.cmsmain.common.util.UserAgentUtils;
 import com.star72.cmsmain.common.web.RequestUtils;
 import com.star72.cmsmain.common.web.springmvc.MessageResolver;
 import com.star72.cmsmain.core.entity.CmsSite;
 import com.star72.cmsmain.core.manager.CmsSiteMng;
 import com.star72.cmsmain.core.web.util.CmsUtils;
+import com.star72.common.utils.StarDateUtils;
 
 import static com.star72.cmsmain.cms.entity.assist.CmsSiteAccess.ENGINE_BAIDU;
 import static com.star72.cmsmain.cms.entity.assist.CmsSiteAccess.ENGINE_GOOGLE;
@@ -90,7 +90,7 @@ public class CmsSiteFlowCacheImpl implements CmsSiteFlowCache, DisposableBean {
 				access=visitAccess(request, ip, sessionId, page, referer,brower,operatingSystem);
 				newVisitor=true;
 			}
-			access=updateAccess(access, page, visitCount+1, DateUtils.getSecondBetweenDate(access.getAccessTime(), nowTime));
+			access=updateAccess(access, page, visitCount+1, StarDateUtils.getSecondBetweenDate(access.getAccessTime(), nowTime));
 		}
 		accessPage=visitPages(site,page, sessionId, visitCount, lastVisitTime);
 		visitCount+=1;
@@ -259,7 +259,7 @@ public class CmsSiteFlowCacheImpl implements CmsSiteFlowCache, DisposableBean {
 			prePageCacheKey=(String) pageElement.getKey();
 		}
 		if(prePage!=null){
-			prePage.setVisitSecond(DateUtils.getSecondBetweenDate(prePage.getAccessTime(), time));
+			prePage.setVisitSecond(StarDateUtils.getSecondBetweenDate(prePage.getAccessTime(), time));
 			accessPageCache.put(new Element(prePageCacheKey,prePage));
 		}
 		return bean;

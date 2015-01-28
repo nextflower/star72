@@ -63,6 +63,9 @@ import org.apache.http.util.EntityUtils;
 //import android.widget.EditText;
 //import android.app.Activity;
 
+/**
+ * 模拟登陆
+ */
 public class crifanLib {
 
 	private CookieStore gCurCookieStore = null;

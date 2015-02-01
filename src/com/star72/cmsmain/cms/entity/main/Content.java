@@ -731,6 +731,86 @@ public class Content extends BaseContent implements ContentInterface {
 			ext.setNeedRegenerate(isNeed);
 		}
 	}
+	
+	public String getCommon1() {
+		ContentExt ext = getContentExt();
+		if(ext != null) {
+			return ext.getCommon1();
+		} else {
+			return null;
+		}
+	}
+	
+	public void setCommon1(String common1) {
+		ContentExt ext = getContentExt();
+		if(ext != null) {
+			ext.setCommon1(common1);
+		}
+	}
+	
+	public String getCommon2() {
+		ContentExt ext = getContentExt();
+		if(ext != null) {
+			return ext.getCommon2();
+		} else {
+			return null;
+		}
+	}
+	
+	public void setCommon2(String common2) {
+		ContentExt ext = getContentExt();
+		if(ext != null) {
+			ext.setCommon2(common2);
+		}
+	}
+	
+	public String getCommon3() {
+		ContentExt ext = getContentExt();
+		if(ext != null) {
+			return ext.getCommon3();
+		} else {
+			return null;
+		}
+	}
+	
+	public void setCommon3(String common3) {
+		ContentExt ext = getContentExt();
+		if(ext != null) {
+			ext.setCommon3(common3);
+		}
+	}
+	
+	public String getCommon4() {
+		ContentExt ext = getContentExt();
+		if(ext != null) {
+			return ext.getCommon4();
+		} else {
+			return null;
+		}
+	}
+	
+	public void setCommon4(String common4) {
+		ContentExt ext = getContentExt();
+		if(ext != null) {
+			ext.setCommon4(common4);
+		}
+	}
+	
+	public String getCommon5() {
+		ContentExt ext = getContentExt();
+		if(ext != null) {
+			return ext.getCommon5();
+		} else {
+			return null;
+		}
+	}
+	
+	public void setCommon5(String common5) {
+		ContentExt ext = getContentExt();
+		if(ext != null) {
+			ext.setCommon5(common5);
+		}
+	}
 
 	public String getTxt() {
 		ContentTxt txt = getContentTxt();

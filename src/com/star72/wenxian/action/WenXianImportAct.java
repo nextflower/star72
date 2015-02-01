@@ -3,6 +3,8 @@ package com.star72.wenxian.action;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -59,10 +61,124 @@ public class WenXianImportAct {
 		CmsSite site = CmsUtils.getSite(request);
 		CmsUser user = CmsUtils.getUser(request);
 		
-		importData(site, user);
+		//importData(site, user);
+		importShiGe(site, user);//导入诗歌
 		
 	}
 	
+	private void importShiGe(CmsSite site, CmsUser user) throws IOException {
+		
+		Channel channel = channelMng.findById(11);//诗歌
+		
+		//TODO
+		String path = "D:\\gudian\\首页\\11诗词\\";//14382
+		
+		List<String> list = new ArrayList<String>();
+		list.add("10-全宋诗-卷四");
+		
+		
+			int count = 14388;
+			
+			for(int i=0; i<1; i++) {
+				
+				for(String s : list) {
+					File root = new File(path + s);
+					String bn = FilenameUtils.getBaseName(root.getName());
+					String source = bn.split("-")[1];
+					String author = null;
+					String chaodai = null;
+					int jishu = 0;
+					
+					String title = null;
+					String contentStr = null;
+					File[] childs = root.listFiles();
+					
+					Arrays.sort(childs, new Comparator<File>() {
+						@Override
+						public int compare(File o1, File o2) {
+							String o1Name = FilenameUtils.getBaseName(o1.getName());
+							String o2Name = FilenameUtils.getBaseName(o2.getName());
+							String[] arr1 = o1Name.split("-");
+							String[] arr2 = o2Name.split("-");
+							return Integer.parseInt(arr1[0]) - Integer.parseInt(arr2[0]);
+						}
+					});
+					
+					if(childs != null) {
+						for(File child : childs) {
+							jishu++;
+							if(jishu <= 36000) {
+								String baseName = FilenameUtils.getBaseName(child.getName());
+								
+								String[] arr = baseName.split("-");
+								if(arr.length == 4) {
+									title = arr[1];
+									chaodai = arr[2];
+									author = arr[3];
+								} else if(arr.length == 2) {
+									title = arr[1];
+								}
+								contentStr = getContentStr(child);
+								
+								System.out.println(baseName + "---【" + jishu + "】---【" + childs.length + "】---" + count + ",source:" + source + ",author:" + author + ",chaodai:" + chaodai
+									 + ",content_length:" + contentStr.length());
+								
+								storeToDB(site, user, channel, title, contentStr, source, author, chaodai, "诗词", "", count);
+								child.delete();
+								
+							}
+						}
+					}
+				}
+			}
+		
+	}
+	
+	private void importShiGe2(CmsSite site, CmsUser user) throws IOException {
+		
+		Channel channel = channelMng.findById(11);//诗歌
+		
+		//TODO
+		String path = "D:\\gudian\\首页\\11诗词\\16-宋诗钞-清-吴之振";//14204
+		
+		String source = "先秦汉魏晋南北朝诗";
+		String author = null;
+		String chaodai = null;
+		
+		File ffff = new File(path);
+		
+		int count = 14204;
+		String title = null;
+		String contentStr = null;
+		File root = new File(path);
+		File[] childs = root.listFiles();
+		if(childs != null) {
+			for(File child : childs) {
+				String baseName = FilenameUtils.getBaseName(child.getName());
+				System.out.println(baseName + "---" + childs.length);
+				String[] arr = baseName.split("-");
+				if(arr.length == 4) {
+					title = arr[1];
+					chaodai = arr[2];
+					author = arr[3];
+				} else if(arr.length == 2) {
+					title = arr[1];
+				}
+				contentStr = getContentStr(child);
+				storeToDB(site, user, channel, title, contentStr, source, author, chaodai, "诗词", "", count);
+			}
+		}
+		
+	}
+	
+	
+
+	/**
+	 * 用于导入10大分类书籍
+	 * @param site
+	 * @param user
+	 * @throws IOException
+	 */
 	public void importData(CmsSite site, CmsUser user) throws IOException {
 		
 		//生成channel map
@@ -212,10 +328,6 @@ public class WenXianImportAct {
 	private void storeToDB(CmsSite site, CmsUser user, Channel channel, String title, String contentStr, String source,
 			String author, String chaodai, String rootCat, String childCats,int count) {
 		
-		System.out.println("" + count + ",title:" + title + ",source:" + source + ",author:" + author + ",chaodai:" + chaodai
-				+ ",rootCat:" + rootCat + ",childCats:" + childCats + ",content_length:" + contentStr.length());
-		
-		
 		//各个属性值的非空判断
 		if(StringUtils.isBlank(author)) {
 			author = "佚名";
@@ -226,7 +338,11 @@ public class WenXianImportAct {
 		
 		
 		//作者的首字母缩写: A B C D E F G
-		String authorPinyin = PinyinUtil.hanzi2PinyinNoDiao(author).get(0).substring(0, 1).toUpperCase();
+		List<String> list = PinyinUtil.hanzi2PinyinNoDiao(author);
+		String authorPinyin = null;
+		if(list != null && list.size() > 0) {
+			authorPinyin = list.get(0).substring(0, 1).toUpperCase();
+		}
 		
 		//title\author\source\txt\childCats\authorPinyin\count\chaodai\
 		
@@ -266,6 +382,7 @@ public class WenXianImportAct {
 		if(contentStr.length() < 1000000) {
 			
 			try {
+				//TODO
 				contentMng.save(c, ext, txt, channel.getId(), typeID, draft, user, forMember);
 			} catch (Exception e) {
 				if(e.getMessage().contains("Incorrect string value")) {

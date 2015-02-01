@@ -339,6 +339,32 @@ function submitContent(){
 <div style="clear:both"></div>
 </@p.td>
 
+
+<#elseif item.field=="common1">
+<@p.td help=item.help helpPosition="${item.helpPosition!2}" label=item.label colspan=item.single?string("2","1") width="${item.single?string(100,50)}">
+<@p.text name=item.field value=content.common1 maxlength="200" size="${item.size!}"/>
+</@p.td>
+
+<#elseif item.field=="common2">
+<@p.td help=item.help helpPosition="${item.helpPosition!2}" label=item.label colspan=item.single?string("2","1") width="${item.single?string(100,50)}">
+<@p.text name=item.field value=content.common2 maxlength="200" size="${item.size!}"/>
+</@p.td>
+
+<#elseif item.field=="common3">
+<@p.td help=item.help helpPosition="${item.helpPosition!2}" label=item.label colspan=item.single?string("2","1") width="${item.single?string(100,50)}">
+<@p.text name=item.field value=content.common3 maxlength="200" size="${item.size!}"/>
+</@p.td>
+
+<#elseif item.field=="common4">
+<@p.td help=item.help helpPosition="${item.helpPosition!2}" label=item.label colspan=item.single?string("2","1") width="${item.single?string(100,50)}">
+<@p.text name=item.field value=content.common4 maxlength="200" size="${item.size!}"/>
+</@p.td>
+
+<#elseif item.field=="common5">
+<@p.td help=item.help helpPosition="${item.helpPosition!2}" label=item.label colspan=item.single?string("2","1") width="${item.single?string(100,50)}">
+<@p.text name=item.field value=content.common5 maxlength="200" size="${item.size!}"/>
+</@p.td>
+
 <#elseif item.field=="title">
 <@p.td required="true" help=item.help helpPosition="${item.helpPosition!2}" label=item.label colspan=item.single?string("2","1") width="${item.single?string(100,50)}">
 <@p.text value=content.title class="required" maxlength="150" size="${item.size!70}" name=item.field onchange="generateTags()"/>
@@ -618,8 +644,8 @@ function addPicLine() {
 <#elseif item.field=="docPath">
 <@p.td help=item.help helpPosition="${item.helpPosition!2}" label=item.label colspan=item.single?string("2","1") width="${item.single?string(100,50)}">
 <div>
-	<input type="text" id="docPath" name="docPath" style="width:265px" value="${content.docPath}" required="true" class="required"/>
-	<input type="hidden" id="fileSuffix" name="fileSuffix" value="${content.fileSuffix}"/>
+	<input type="text" id="docPath" name="docPath" style="width:265px" value="${content.docPath!}" required="true" class="required"/>
+	<input type="hidden" id="fileSuffix" name="fileSuffix" value="${content.fileSuffix!}"/>
 </div>
 <div>
 	<span id="mfc" style="position:relative;display:block;width:300px;*width:300px;">

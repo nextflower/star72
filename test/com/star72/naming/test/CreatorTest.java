@@ -10,7 +10,7 @@ import java.util.Set;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
-import com.star72.common.utils.DateUtils;
+import com.star72.common.utils.StarDateUtils;
 import com.star72.naming.create.KangXiNameCreator;
 import com.star72.naming.dicreader.DicReader;
 import com.star72.naming.entity.NameBean;
@@ -33,7 +33,7 @@ public class CreatorTest {
 		System.out.println(list.size());
 		Random r = new Random();
 		int num = r.nextInt(10000);
-		File f = new File("F:/TEMP/" + xing + "_" + xishen + "_" + shengxiao + "_" + DateUtils.getCurrentDay() + "_" + num + ".txt");
+		File f = new File("F:/TEMP/" + xing + "_" + xishen + "_" + shengxiao + "_" + StarDateUtils.getCurrentDay() + "_" + num + ".txt");
 		System.out.println(f.getAbsolutePath());
 		
 		try {

@@ -11,8 +11,8 @@ import com.star72.cmsmain.cms.entity.assist.CmsJobApply;
 import com.star72.cmsmain.cms.entity.main.Channel;
 import com.star72.cmsmain.cms.entity.main.Content;
 import com.star72.cmsmain.common.hibernate3.PriorityInterface;
-import com.star72.cmsmain.common.util.DateUtils;
 import com.star72.cmsmain.core.entity.base.BaseCmsUser;
+import com.star72.common.utils.StarDateUtils;
 
 public class CmsUser extends BaseCmsUser implements PriorityInterface {
 	private static final long serialVersionUID = 1L;
@@ -262,7 +262,7 @@ public class CmsUser extends BaseCmsUser implements PriorityInterface {
 		Date now=Calendar.getInstance().getTime();
 		Set<CmsJobApply>jobApplys=getJobApplys();
 		for(CmsJobApply apply:jobApplys){
-			if(DateUtils.isInDate(now, apply.getApplyTime())&&apply.getContent().getId().equals(contentId)){
+			if(StarDateUtils.isInDate(now, apply.getApplyTime())&&apply.getContent().getId().equals(contentId)){
 				return true;
 			}
 		}

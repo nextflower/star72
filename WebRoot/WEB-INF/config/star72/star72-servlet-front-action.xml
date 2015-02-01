@@ -45,5 +45,7 @@
 	<!--new add-->
 	<bean id="gongshiAct" class="com.star72.cmsmain.cms.action.front.GongshiAct"/>
 	<bean id="starSearchAct" class="com.star72.cmsmain.cms.action.front.StarSearchAct"/>
+	<bean id="toolBoxStaticAct" class="com.star72.toolbox.action.ToolBoxStaticAct"/>
+	<bean id="toolBoxAct" class="com.star72.toolbox.action.ToolBoxAct"/>
 	
 </beans>

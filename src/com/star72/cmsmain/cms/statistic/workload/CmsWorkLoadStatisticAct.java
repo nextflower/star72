@@ -17,10 +17,10 @@ import com.star72.cmsmain.cms.entity.main.Channel;
 import com.star72.cmsmain.cms.manager.main.ChannelMng;
 import com.star72.cmsmain.cms.statistic.workload.CmsWorkLoadStatistic.CmsWorkLoadStatisticDateKind;
 import com.star72.cmsmain.cms.statistic.workload.CmsWorkLoadStatistic.CmsWorkLoadStatisticGroup;
-import com.star72.cmsmain.common.util.DateUtils;
 import com.star72.cmsmain.core.entity.CmsUser;
 import com.star72.cmsmain.core.manager.CmsUserMng;
 import com.star72.cmsmain.core.web.util.CmsUtils;
+import com.star72.common.utils.StarDateUtils;
 
 /**
  * @author Tom
@@ -94,13 +94,13 @@ public class CmsWorkLoadStatisticAct {
 			int amount) {
 		Date result = null;
 		if (group == CmsWorkLoadStatisticGroup.year) {
-			result = DateUtils.getSpecficYearStart(date, amount);
+			result = StarDateUtils.getSpecficYearStart(date, amount);
 		} else if (group == CmsWorkLoadStatisticGroup.month) {
-			result = DateUtils.getSpecficMonthStart(date, amount);
+			result = StarDateUtils.getSpecficMonthStart(date, amount);
 		} else if (group == CmsWorkLoadStatisticGroup.week) {
-			result = DateUtils.getSpecficWeekStart(date, amount);
+			result = StarDateUtils.getSpecficWeekStart(date, amount);
 		} else if (group == CmsWorkLoadStatisticGroup.day) {
-			result = DateUtils.getSpecficDateStart(date, amount);
+			result = StarDateUtils.getSpecficDateStart(date, amount);
 		}
 		return result;
 	}

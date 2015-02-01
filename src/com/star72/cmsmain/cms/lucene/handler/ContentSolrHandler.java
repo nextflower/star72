@@ -19,4 +19,6 @@ public interface ContentSolrHandler {
 	
 	public EpsSolrDocument createSolrDocument(Content content);
 	
+	public Integer getSiteId();
+	
 }

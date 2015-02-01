@@ -19,4 +19,9 @@ public class ContentSolrHandler4Common extends ContentSolrHandlerAbstract {
 		return doc;
 	}
 
+	@Override
+	public Integer getSiteId() {
+		return null;
+	}
+
 }

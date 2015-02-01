@@ -77,17 +77,12 @@
 	<!--LISTENER-->
 	<bean id="contentLuceneListener" class="com.star72.cmsmain.cms.lucene.ContentLuceneListener"/>
 	<bean id="contentStaticPageListener" class="com.star72.cmsmain.cms.staticpage.ContentStaticPageListener"/>
-	<bean id="contentSolrListener" class="com.star72.cmsmain.cms.lucene.ContentSolrListener">
-		<property name="handleMap">
-            <map>
-                <entry key="1" value-ref="contentSolrHandler4Common" />
-            </map>
-        </property>
-	</bean>
+	<bean id="contentSolrListener" class="com.star72.cmsmain.cms.lucene.ContentSolrListener"/>
 	
 	<!--solr content handler-->
-	<bean id="contentSolrHandler4Common" class="com.star72.cmsmain.cms.lucene.handler.ContentSolrHandler4Common"/>
-	
+	<bean id="contentSolrHandler4Wenxian" class="com.star72.cmsmain.cms.lucene.handler.ContentSolrHandler4Wenxian">
+		<property name="siteId" value="1"/>
+	</bean>
 	
 	<!--MANAGER-->
 	<bean id="channelMng" class="com.star72.cmsmain.cms.manager.main.impl.ChannelMngImpl">
@@ -102,16 +97,18 @@
 	<bean id="channelExtMng" class="com.star72.cmsmain.cms.manager.main.impl.ChannelExtMngImpl"/>
 	<bean id="channelTxtMng" class="com.star72.cmsmain.cms.manager.main.impl.ChannelTxtMngImpl"/>
 	<bean id="channelCountMng" class="com.star72.cmsmain.cms.manager.main.impl.ChannelCountMngImpl"/>
+	
 	<bean id="contentMng" class="com.star72.cmsmain.cms.manager.main.impl.ContentMngImpl">
 		<property name="listenerList">
 			<list>
 				<!--
 				<ref bean="contentLuceneListener"/>
-				<ref bean="contentStaticPageListener"/>
 				-->
+				<ref bean="contentSolrListener"/>
 			</list>
 		</property>
 	</bean>
+	
 	<bean id="contentTagMng" class="com.star72.cmsmain.cms.manager.main.impl.ContentTagMngImpl"/>
 	<bean id="contentTypeMng" class="com.star72.cmsmain.cms.manager.main.impl.ContentTypeMngImpl"/>
 	<bean id="contentExtMng" class="com.star72.cmsmain.cms.manager.main.impl.ContentExtMngImpl"/>

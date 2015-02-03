@@ -6,39 +6,50 @@
 						<label class="btn btn-default btn-lg [#if !cat?? || cat=='']active[/#if]">
 					      <input type="radio" name="cat" id="option0" value="" [#if !cat?? || cat=='']checked="checked"[/#if]> 全部
 					   </label>
-					   <label class="btn btn-default btn-lg [#if cat?? && cat=='易藏']active[/#if]">
-					      <input type="radio" name="cat" id="option1" value="易藏" [#if cat?? && cat=='易藏']checked="checked"[/#if]> 易藏
-					   </label>
-					   <label class="btn btn-default btn-lg [#if cat?? && cat=='儒藏']active[/#if]">
-					      <input type="radio" name="cat" id="option2" value="儒藏" [#if cat?? && cat=='儒藏']checked="checked"[/#if]> 儒藏
-					   </label>
-					   <label class="btn btn-default btn-lg [#if cat?? && cat=='道藏']active[/#if]">
-					      <input type="radio" name="cat" id="option3" value="道藏" [#if cat?? && cat=='道藏']checked="checked"[/#if]> 道藏
-					   </label>
-					   <label class="btn btn-default btn-lg [#if cat?? && cat=='佛藏']active[/#if]">
-					      <input type="radio" name="cat" id="option4" value="佛藏" [#if cat?? && cat=='佛藏']checked="checked"[/#if]> 佛藏
-					   </label>
-					   <label class="btn btn-default btn-lg [#if cat?? && cat=='子藏']active[/#if]">
-					      <input type="radio" name="cat" id="option5" value="子藏" [#if cat?? && cat=='子藏']checked="checked"[/#if]> 子藏
-					   </label>
-					   <label class="btn btn-default btn-lg [#if cat?? && cat=='史藏']active[/#if]">
-					      <input type="radio" name="cat" id="option6" value="史藏" [#if cat?? && cat=='史藏']checked="checked"[/#if]> 史藏
-					   </label>
-					   <label class="btn btn-default btn-lg [#if cat?? && cat=='诗藏']active[/#if]">
-					      <input type="radio" name="cat" id="option7" value="诗藏" [#if cat?? && cat=='诗藏']checked="checked"[/#if]> 诗藏
-					   </label>
-					   <label class="btn btn-default btn-lg [#if cat?? && cat=='集藏']active[/#if]">
-					      <input type="radio" name="cat" id="option8" value="集藏" [#if cat?? && cat=='集藏']checked="checked"[/#if]> 集藏
-					   </label>
-					   <label class="btn btn-default btn-lg [#if cat?? && cat=='医藏']active[/#if]">
-					      <input type="radio" name="cat" id="option9" value="医藏" [#if cat?? && cat=='医藏']checked="checked"[/#if]> 医藏
-					   </label>
-					   <label class="btn btn-default btn-lg [#if cat?? && cat=='艺藏']active[/#if]">
-					      <input type="radio" name="cat" id="option10" value="艺藏" [#if cat?? && cat=='艺藏']checked="checked"[/#if]> 艺藏
-					   </label>
-					   <label class="btn btn-default btn-lg [#if cat?? && cat=='诗词']active[/#if]">
-					      <input type="radio" name="cat" id="option11" value="诗词" [#if cat?? && cat=='诗词']checked="checked"[/#if]> 诗词
-					   </label>
+					   [@cms_channel_list]
+					   		[#if tag_list?size gt 0]
+								[#list tag_list as ch]
+									<label class="btn btn-default btn-lg [#if cat?? && cat=='${ch.name}']active[/#if]">
+								      <input type="radio" name="cat" id="option1" value="${ch.name}" [#if cat?? && cat=='${ch.name}']checked="checked"[/#if]> ${ch.name}
+								   </label>
+								[/#list]
+							[#else]
+								   <label class="btn btn-default btn-lg [#if cat?? && cat=='易藏']active[/#if]">
+								      <input type="radio" name="cat" id="option1" value="易藏" [#if cat?? && cat=='易藏']checked="checked"[/#if]> 易藏
+								   </label>
+								   <label class="btn btn-default btn-lg [#if cat?? && cat=='儒藏']active[/#if]">
+								      <input type="radio" name="cat" id="option2" value="儒藏" [#if cat?? && cat=='儒藏']checked="checked"[/#if]> 儒藏
+								   </label>
+								   <label class="btn btn-default btn-lg [#if cat?? && cat=='道藏']active[/#if]">
+								      <input type="radio" name="cat" id="option3" value="道藏" [#if cat?? && cat=='道藏']checked="checked"[/#if]> 道藏
+								   </label>
+								   <label class="btn btn-default btn-lg [#if cat?? && cat=='佛藏']active[/#if]">
+								      <input type="radio" name="cat" id="option4" value="佛藏" [#if cat?? && cat=='佛藏']checked="checked"[/#if]> 佛藏
+								   </label>
+								   <label class="btn btn-default btn-lg [#if cat?? && cat=='子藏']active[/#if]">
+								      <input type="radio" name="cat" id="option5" value="子藏" [#if cat?? && cat=='子藏']checked="checked"[/#if]> 子藏
+								   </label>
+								   <label class="btn btn-default btn-lg [#if cat?? && cat=='史藏']active[/#if]">
+								      <input type="radio" name="cat" id="option6" value="史藏" [#if cat?? && cat=='史藏']checked="checked"[/#if]> 史藏
+								   </label>
+								   <label class="btn btn-default btn-lg [#if cat?? && cat=='诗藏']active[/#if]">
+								      <input type="radio" name="cat" id="option7" value="诗藏" [#if cat?? && cat=='诗藏']checked="checked"[/#if]> 诗藏
+								   </label>
+								   <label class="btn btn-default btn-lg [#if cat?? && cat=='集藏']active[/#if]">
+								      <input type="radio" name="cat" id="option8" value="集藏" [#if cat?? && cat=='集藏']checked="checked"[/#if]> 集藏
+								   </label>
+								   <label class="btn btn-default btn-lg [#if cat?? && cat=='医藏']active[/#if]">
+								      <input type="radio" name="cat" id="option9" value="医藏" [#if cat?? && cat=='医藏']checked="checked"[/#if]> 医藏
+								   </label>
+								   <label class="btn btn-default btn-lg [#if cat?? && cat=='艺藏']active[/#if]">
+								      <input type="radio" name="cat" id="option10" value="艺藏" [#if cat?? && cat=='艺藏']checked="checked"[/#if]> 艺藏
+								   </label>
+								   <label class="btn btn-default btn-lg [#if cat?? && cat=='诗词']active[/#if]">
+								      <input type="radio" name="cat" id="option11" value="诗词" [#if cat?? && cat=='诗词']checked="checked"[/#if]> 诗词
+								   </label>
+							[/#if]
+					   [/@cms_channel_list]
+					   
 					</div>
 					<div class="row"><h6>&nbsp;</h6></div>
 					<div class="row">

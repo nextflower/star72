@@ -44,6 +44,7 @@
 	<bean id="weixinTokenCache" class="com.star72.cmsmain.cms.service.WeixinTokenCacheImpl"/>
 	<bean id="acquisitionSvc" class="com.star72.cmsmain.cms.service.AcquisitionSvcImpl"/>
 	<bean id="luceneContentSvc" class="com.star72.cmsmain.cms.lucene.LuceneContentSvcImpl"/>
+	<bean id="solrContentSvc" class="com.star72.cmsmain.cms.lucene.SolrContentSvcImpl"/>
 	<bean id="searchWordsCache" class="com.star72.cmsmain.cms.service.SearchWordsCacheImpl"/>
 	<bean id="imageSvc" class="com.star72.cmsmain.cms.service.ImageSvcImpl"/>
 	<bean id="staticPageSvc" class="com.star72.cmsmain.cms.staticpage.StaticPageSvcImpl">
@@ -203,6 +204,7 @@
 	<bean id="cmsReceiverMessageDao" class="com.star72.cmsmain.cms.dao.assist.impl.CmsReceiverMessageDaoImpl"/>
 	
 	<bean id="luceneContentDao" class="com.star72.cmsmain.cms.lucene.LuceneContentDaoImpl"/>
+	<bean id="solrContentDao" class="com.star72.cmsmain.cms.lucene.SolrContentDaoImpl"/>
 	
 	<bean id="staticPageDao" class="com.star72.cmsmain.cms.staticpage.StaticPageDaoImpl"/>
 	<bean id="cmsStatisticDao" class="com.star72.cmsmain.cms.statistic.CmsStatisticDaoImpl"/>

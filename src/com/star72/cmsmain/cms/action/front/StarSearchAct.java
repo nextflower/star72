@@ -47,6 +47,20 @@ public class StarSearchAct {
 	public static final String NAVI_CAT = "tpl.naviCat";
 	public static final String NAVI_CHAODAI = "tpl.naviChaodai";
 	public static final String NAVI_AUTHOR = "tpl.naviAuthor";
+	public static final String THANK = "tpl.thank";
+	
+	@RequestMapping(value = "/wenxian/thank.jhtml")
+	public String thank(HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
+		
+		CmsSite site = CmsUtils.getSite(request);
+		
+		model.putAll(RequestUtils.getQueryParams(request));
+		FrontUtils.frontData(request, model, site);
+		
+		return FrontUtils.getTplPath(request, site.getSolutionPath(),
+				TPLDIR_SPECIAL, THANK);
+	}
 	
 	@RequestMapping(value = "/wenxian/navi/cat.jhtml")
 	public String navigationCat(HttpServletRequest request,

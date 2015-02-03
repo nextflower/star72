@@ -38,50 +38,61 @@
 			<div><h5></h5></div>
 			
 			<div class="row">
-				
-				<div class="col-md-4 text-center">
-					<a href="${base}/wenxian/search/cat/易藏.jhtml" role="button" class="btn btn-default btn-block"><h4>易藏</h4></a>
-				</div>
-				<div class="col-md-4 text-center">
-					<a href="${base}/wenxian/search/cat/儒藏.jhtml" role="button" class="btn btn-default btn-block"><h4>儒藏</h4></a>
-				</div>
-				<div class="col-md-4 text-center">
-					<a href="${base}/wenxian/search/cat/道藏.jhtml" role="button" class="btn btn-default btn-block"><h4>道藏</h4></a>
-				</div>
-				
-				<div><h5>&nbsp;</h5></div>
-				
-				<div class="col-md-4 text-center">
-					<a href="${base}/wenxian/search/cat/佛藏.jhtml" role="button" class="btn btn-default btn-block"><h4>佛藏</h4></a>
-				</div>
-				<div class="col-md-4 text-center">
-					<a href="${base}/wenxian/search/cat/子藏.jhtml" role="button" class="btn btn-default btn-block"><h4>子藏</h4></a>
-				</div>
-				<div class="col-md-4 text-center">
-					<a href="${base}/wenxian/search/cat/史藏.jhtml" role="button" class="btn btn-default btn-block"><h4>史藏</h4></a>
-				</div>
-				
-				<div><h5>&nbsp;</h5></div>
-				
-				<div class="col-md-4 text-center">
-					<a href="${base}/wenxian/search/cat/诗藏.jhtml" role="button" class="btn btn-default btn-block"><h4>诗藏</h4></a>
-				</div>
-				<div class="col-md-4 text-center">
-					<a href="${base}/wenxian/search/cat/集藏.jhtml" role="button" class="btn btn-default btn-block"><h4>集藏</h4></a>
-				</div>
-				<div class="col-md-4 text-center">
-					<a href="${base}/wenxian/search/cat/医藏.jhtml" role="button" class="btn btn-default btn-block"><h4>医藏</h4></a>
-				</div>
-				
-				<div><h5>&nbsp;</h5></div>
-				
-				<div class="col-md-4 text-center">
-					<a href="${base}/wenxian/search/cat/艺藏.jhtml" role="button" class="btn btn-default btn-block"><h4>艺藏</h4></a>
-				</div>
-				<div class="col-md-4 text-center">
-					<a href="${base}/wenxian/search/cat/诗词.jhtml" role="button" class="btn btn-default btn-block"><h4>诗词</h4></a>
-				</div>
-				
+				[@cms_channel_list]
+				[#if tag_list?size gt 0]
+					[#list tag_list as ch]
+						<div class="col-md-4 text-center">
+							<a href="${base}/wenxian/search/cat/${ch.name}.jhtml" role="button" class="btn btn-default btn-block"><h4>${ch.name}</h4></a>
+						</div>
+						[#if ch_index % 3 == 0]
+							<div><h5>&nbsp;</h5></div>
+						[/#if]
+					[/#list]
+				[#else]
+					<div class="col-md-4 text-center">
+						<a href="${base}/wenxian/search/cat/易藏.jhtml" role="button" class="btn btn-default btn-block"><h4>易藏</h4></a>
+					</div>
+					<div class="col-md-4 text-center">
+						<a href="${base}/wenxian/search/cat/儒藏.jhtml" role="button" class="btn btn-default btn-block"><h4>儒藏</h4></a>
+					</div>
+					<div class="col-md-4 text-center">
+						<a href="${base}/wenxian/search/cat/道藏.jhtml" role="button" class="btn btn-default btn-block"><h4>道藏</h4></a>
+					</div>
+					
+					<div><h5>&nbsp;</h5></div>
+					
+					<div class="col-md-4 text-center">
+						<a href="${base}/wenxian/search/cat/佛藏.jhtml" role="button" class="btn btn-default btn-block"><h4>佛藏</h4></a>
+					</div>
+					<div class="col-md-4 text-center">
+						<a href="${base}/wenxian/search/cat/子藏.jhtml" role="button" class="btn btn-default btn-block"><h4>子藏</h4></a>
+					</div>
+					<div class="col-md-4 text-center">
+						<a href="${base}/wenxian/search/cat/史藏.jhtml" role="button" class="btn btn-default btn-block"><h4>史藏</h4></a>
+					</div>
+					
+					<div><h5>&nbsp;</h5></div>
+					
+					<div class="col-md-4 text-center">
+						<a href="${base}/wenxian/search/cat/诗藏.jhtml" role="button" class="btn btn-default btn-block"><h4>诗藏</h4></a>
+					</div>
+					<div class="col-md-4 text-center">
+						<a href="${base}/wenxian/search/cat/集藏.jhtml" role="button" class="btn btn-default btn-block"><h4>集藏</h4></a>
+					</div>
+					<div class="col-md-4 text-center">
+						<a href="${base}/wenxian/search/cat/医藏.jhtml" role="button" class="btn btn-default btn-block"><h4>医藏</h4></a>
+					</div>
+					
+					<div><h5>&nbsp;</h5></div>
+					
+					<div class="col-md-4 text-center">
+						<a href="${base}/wenxian/search/cat/艺藏.jhtml" role="button" class="btn btn-default btn-block"><h4>艺藏</h4></a>
+					</div>
+					<div class="col-md-4 text-center">
+						<a href="${base}/wenxian/search/cat/诗词.jhtml" role="button" class="btn btn-default btn-block"><h4>诗词</h4></a>
+					</div>
+				[/#if]
+			   [/@cms_channel_list]
 			</div>
 			
 			

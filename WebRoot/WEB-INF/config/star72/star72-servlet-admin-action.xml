@@ -20,6 +20,7 @@
 	
 	<bean id="personalAct" class="com.star72.cmsmain.cms.action.admin.PersonalAct"/>
 	<bean id="luceneContentAct" class="com.star72.cmsmain.cms.lucene.LuceneContentAct"/>
+	<bean id="solrRebuildAct" class="com.star72.cmsmain.cms.lucene.SolrRebuildAct"/>
 	<bean id="staticAct" class="com.star72.cmsmain.cms.staticpage.StaticAct"/>
 	<bean id="ftpAct" class="com.star72.cmsmain.cms.action.admin.main.FtpAct"/>
 	<bean id="unifiedUserAct" class="com.star72.cmsmain.cms.action.admin.main.UnifiedUserAct"/>

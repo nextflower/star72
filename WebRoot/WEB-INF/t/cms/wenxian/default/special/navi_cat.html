@@ -44,7 +44,7 @@
 						<div class="col-md-4 text-center">
 							<a href="${base}/wenxian/search/cat/${ch.name}.jhtml" role="button" class="btn btn-default btn-block"><h4>${ch.name}</h4></a>
 						</div>
-						[#if ch_index % 3 == 0]
+						[#if (ch_index+1) % 3 == 0]
 							<div><h5>&nbsp;</h5></div>
 						[/#if]
 					[/#list]

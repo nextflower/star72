@@ -1,13 +1,15 @@
 <nav class="navbar" role="navigation">
 	
 		<div class="nav navbar-nav navbar-left col-md-6">
+			<form action="${base}/wenxian/search/keyword/search.jspx" method="post">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<input type="text" class="form-control" placeholder="关键词 | 书名 | 作者">
+				<input name="keyword" type="text" class="form-control" placeholder="关键词 | 书名 | 作者" value="${keyword!}">
 			</div>
 			<div class="col-md-2">
 				<button type="submit" class="btn btn-success">斗转星移</button>
 			</div>
+			</form>
 		  </div>
 		  
 		  <div class="nav navbar-nav navbar-right">
@@ -19,7 +21,7 @@
 			<a role="button" class="nav-a" href="#"><span class="glyphicon glyphicon-share"></span>一键分享</a>
 			<a role="button" class="nav-a" href="#"><span class="glyphicon glyphicon-heart-empty"></span>收藏本站</a>
 			-->
-			<a role="button" class="nav-a" href="${base}/guestbook.jspx"><span class="glyphicon glyphicon-pencil"></span>留言板</a>
+			<a role="button" class="nav-a" href="${base}/guestbook.jspx" rel="nofollow"><span class="glyphicon glyphicon-pencil"></span>留言板</a>
 		</div>
 		
 </nav>

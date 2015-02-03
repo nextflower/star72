@@ -4,47 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title></title>
 <#include "/star72_sys/head.html"/>
-<script type="text/javascript">
-function luceneSubmit() {
-	$.post("o_create.do", {
-		"startDate" : $("#startDate").val(),
-		"endDate" : $("#endDate").val(),
-		"max" : $("#max").val(),
-		"siteId" : $("#siteId").val(),
-		"channelId" : $("#channelId").val(),
-		"startId" : $("#startId").val()
-	}, function(data) {
-		if(data.success) {
-			if(data.lastId && $("#stop").val()=="") {
-				$("#startId").val(data.lastId);
-				luceneSubmit();
-			} else {
-				$("#startId").val("");
-				$.alert("<@s.m 'global.prompt'/>","<@s.m 'global.success'/>");
-				$("#submitButton").removeAttr("disabled");
-				$("#cancelButton").attr("disabled","disabled");
-				$("#stop").val("");
-			}
-		} else {
-			$.alert("<@s.m 'global.prompt'/>",data.msg);
-			$("#submitButton").removeAttr("disabled");
-			$("#cancelButton").attr("disabled","disabled");
-			$("#stop").val("");
-		}
-	}, "json");
-}
-
-$(function() {
-	$("#jvForm").validate( {
-		submitHandler : function(form) {
-			$("#submitButton").attr("disabled","disabled");
-			$("#cancelButton").removeAttr("disabled");
-			$("#stop").val("");		
-			luceneSubmit();
-		}
-	});
-});
-</script>
 </head>
 <body>
 <div class="box-positon">
@@ -54,7 +13,7 @@ $(function() {
 	<div class="clear"></div>
 </div>
 <div class="body-box">
-<@p.form id="jvForm" action="o_create.do">
+<@p.form id="jvForm" action="../solr/rebuild.do">
 <@p.select label="cmsLucene.channelId" id="channelId" name="channelId" list=channelList listKey="id" listValue="name" listDeep="deep" headerKey="" headerValue="cmsLucene.allChannel"/>
 <@p.text label="cmsLucene.startDate" id="startDate" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>
 <@p.text label="cmsLucene.endDate" id="endDate" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>

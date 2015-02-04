@@ -45,18 +45,22 @@
 	    		
 				<div class="ad"><h1></h1></div>
 	    		
-				<form id="catForm" action="${base}/wenxian/search/keyword/search.jspx" method="post">
+				<form action="${base}/wenxian/search/keyword/search.jspx" method="post">
 					<input type="hidden" name="keyword" value="${keyword!}"/>
-					<input type="hidden" id="currCat" name="cat" value="${cat!}"/>
+					<input type="hidden" name="cat" value="${cat!}"/>
 					<ul class="nav nav-tabs">
-					   <li [#if !cat?? || cat == '']class="active"[/#if]><a href="javascript:void(0);" onclick="$('#currCat').val('');$('#catForm').submit();">全部</a></li>
-					   [@cms_channel_list]
-					   		[#if tag_list?size gt 0]
-								[#list tag_list as c]
-									<li [#if cat?? && cat==c.name]class="active"[/#if]><a href="javascript:void(0);" onclick="$('#currCat').val('${c.name!}');$('#catForm').submit();">${c.name!}</a></li>
-								[/#list]
-							[/#if]
-					   [/@cms_channel_list]
+					   <li><a href="#">全部</a></li>
+					   <li><a href="#">易藏</a></li>
+					   <li class="active"><a href="#">儒藏</a></li>
+					   <li><a href="#">道藏</a></li>
+					   <li><a href="#">佛藏</a></li>
+					   <li><a href="#">子藏</a></li>
+					   <li><a href="#">史藏</a></li>
+					   <li><a href="#">诗藏</a></li>
+					   <li><a href="#">集藏</a></li>
+					   <li><a href="#">医藏</a></li>
+					   <li><a href="#">艺藏</a></li>
+					   <li><a href="#">诗词</a></li>
 					</ul>
 				</form>
 	    		
@@ -65,26 +69,53 @@
 						
 						<h6>共为您找到${result.totalCount}条记录,当前第${result.pageNo+1}页/共${result.totalPage}页, [@process_time/]</h6>
 						
-						[#if chaodaiMap??]
-							<div class="row">
-								<div class="col-md-1">
-									<button type="button" class="btn btn-info btn-xs" disabled="disabled">朝代筛选</button>
-								</div>
-								<div class="col-md-10">
-									<form id="chaodaiForm" action="${base}/wenxian/search/keyword/search.jspx" method="post">
-										<input type="hidden" name="keyword" value="${keyword!}"/>
-										<input type="hidden" name="cat" value="${cat!}"/>
-										<input type="hidden" id="chaodai" name="chaodai" value="${chaodai!}"/>
-										<button onclick="$('#chaodai').val('');$('#chaodaiForm').submit();" type="button" class="btn btn-xs [#if !chaodai?? || chaodai=='']btn-danger[#else]btn-success[/#if]">不限</button>
-										[#list chaodaiMap?keys as key]
-											<button onclick="$('#chaodai').val('${key}');$('#chaodaiForm').submit();" type="button" class="btn btn-xs [#if chaodai??&& chaodai==key]btn-danger[#else]btn-success[/#if]">${key!} <span class="badge">${chaodaiMap[key]}</span></button>
-										[/#list]
-								   </form>
-								</div>
+						<div class="row">
+							<div class="col-md-1">
+								<button type="button" class="btn btn-info btn-xs" disabled="disabled">朝代筛选</button>
 							</div>
-						    <div class="ad"><h1></h1></div>  
-						[/#if]		
-						
+							<div class="col-md-10">
+								<label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1"> 夏(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 商(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 西周(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 春秋(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 战国(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 秦(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 汉(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 隋(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 唐(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 五代(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 宋(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 明(56542)
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="optionsRadios4" value="option2"> 清(56542)
+							   </label>
+							</div>
+						</div>
+					    <div class="ad"><h1></h1></div>  		
 						[#include "../include/search_result_list.html"/]
 						
 						[#if list?? && list?size gt 0]

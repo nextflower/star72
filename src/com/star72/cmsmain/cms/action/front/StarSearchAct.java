@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.solr.common.SolrDocumentList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -111,6 +112,7 @@ public class StarSearchAct {
 		
 		String keyword = RequestUtils.getQueryParam(request, "keyword");
 		String cat = RequestUtils.getQueryParam(request, "cat");
+		String chaodai = RequestUtils.getQueryParam(request, "chaodai");
 		
 		int pageNo = URLHelper.getPageNo(request);//从1开始
 		
@@ -126,9 +128,26 @@ public class StarSearchAct {
 			item.addSiblingItem(new SolrCommonItem("CAT", cat), SolrItem.Relation.AND);
 		}
 		
-		SolrSearchCondition condition = new SolrSearchCondition(item, null, pageNo-1, 20);//页码需要从0开始
+		SolrSearchCondition con2 = new SolrSearchCondition(item);
+		con2.openFacet("CHAODAI");
+		con2.setFacetMinCount(1);
+		SolrResult result2 = server.query(con2);
+		Map<String, Map<String, Long>> facetMap = result2.getFacetMap();
+		if(facetMap != null) {
+			Map<String, Long> map = facetMap.get("CHAODAI");
+			if(map != null && map.size() > 0) {
+				model.put("chaodaiMap", map);
+			}
+		}
+		
+		if(StringUtils.isNotBlank(chaodai)) {
+			item.addSiblingItem(new SolrCommonItem("CHAODAI", chaodai), SolrItem.Relation.AND);
+		}
+		
+		SolrSearchCondition condition = new SolrSearchCondition(item, null, pageNo-1, 10);//页码需要从0开始
 		
 		condition.openHighlight("CONTENT", "TITLE");
+		
 		
 		SolrResult result = server.query(condition);
 		
@@ -136,6 +155,7 @@ public class StarSearchAct {
 		
 		model.put("result", result);
 		model.put("list", wenxianList);
+		
 		
 		model.putAll(RequestUtils.getQueryParams(request));
 		FrontUtils.frontData(request, model, site);
@@ -315,6 +335,8 @@ public class StarSearchAct {
 			String content = (String) map.get("CONTENT");
 			String title = (String) map.get("TITLE");
 			String source = (String) map.get("SOURCE");
+			String author = (String) map.get("AUTHOR");
+			String chaodai = (String) map.get("CHAODAI");
 			Map<String, String> hl = (Map<String, String>) map.get(SolrResult.HIGH_LIGHT_KEY);
 			String hlTitle = hl.get("TITLE");
 			String hlContent = hl.get("CONTENT");
@@ -327,6 +349,10 @@ public class StarSearchAct {
 			wenxianList.add(bean);
 			bean.setHlContent(hlContent);
 			bean.setHlTitle(hlTitle);
+			
+			bean.setAuthor(author);
+			bean.setChaodai(chaodai);
+			
 		}
 		return wenxianList;
 	}

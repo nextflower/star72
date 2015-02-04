@@ -6,7 +6,7 @@ import com.star72.cmsmain.cms.entity.main.Content;
 
 public interface SolrContentDao {
 
-	public Integer index(Integer siteId, Integer channelId, Date startDate, Date endDate);
+	public Integer index(Integer siteId, Integer channelId, Date startDate, Date endDate, Integer startId, Integer endId);
 	
 	public void deleteIndex(Content content);
 	

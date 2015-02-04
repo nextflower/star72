@@ -23,10 +23,6 @@ public class WenxianBean implements Serializable {
 	private String title;
 	private String hlTitle;
 	private String hlContent;
-	
-	private String author;
-	private String chaodai;
-	
 	private List<String> cats;
 	public String getId() {
 		return id;
@@ -74,18 +70,6 @@ public class WenxianBean implements Serializable {
 	}
 	public String getHlContent() {
 		return hlContent;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setChaodai(String chaodai) {
-		this.chaodai = chaodai;
-	}
-	public String getChaodai() {
-		return chaodai;
 	}
 	
 }

@@ -30,7 +30,7 @@ public class SolrContentDaoImpl extends HibernateBaseDao<Content, Integer>
 	}
 
 	@Override
-	public Integer index(Integer siteId, Integer channelId, Date startDate, Date endDate, Integer startId, Integer endId) {
+	public Integer index(Integer siteId, Integer channelId, Date startDate, Date endDate) {
 		Finder f = Finder.create("select bean from Content bean");
 		if (channelId != null) {
 			f.append(" join bean.channel channel, Channel parent");
@@ -54,16 +54,6 @@ public class SolrContentDaoImpl extends HibernateBaseDao<Content, Integer>
 			f.setParam("endDate", endDate);
 		}
 		
-		if(startId != null) {
-			f.append(" and bean.id >= :startId");
-			f.setParam("startId", startId);
-		}
-		
-		if(endId != null) {
-			f.append(" and bean.id <= :endId");
-			f.setParam("endId", endId);
-		}
-		
 		f.append(" and bean.status=" + ContentCheck.CHECKED);
 		f.append(" order by bean.id asc");
 		Session session = getSession();
@@ -77,7 +67,7 @@ public class SolrContentDaoImpl extends HibernateBaseDao<Content, Integer>
 			if(handler != null) {
 				handler.createIndex(content);
 			}
-			if (++count % 200 == 0) {
+			if (++count % 20 == 0) {
 				session.clear();
 			}
 		}

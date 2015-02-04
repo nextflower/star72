@@ -1,0 +1,17 @@
+<nav class="navbar" role="navigation">
+		<div class="navbar-right">
+			<a role="button" class="nav-a" href="${base}"><span class="glyphicon glyphicon-star-empty"></span>七十二颗星</a>
+			<a role="button" class="nav-a" href="${base}/wenxian/navi/cat.jhtml"><span class="glyphicon glyphicon-th"></span>分类导航</a>
+			<a role="button" class="nav-a" href="${base}/wenxian/navi/chaodai.jhtml"><span class="glyphicon glyphicon-home"></span>朝代导航</a>
+			<a role="button" class="nav-a" href="${base}/wenxian/navi/author.jhtml"><span class="glyphicon glyphicon-user"></span>作者导航</a>
+			<!--
+			<a role="button" class="nav-a" href="#"><span class="glyphicon glyphicon-share"></span>一键分享</a>
+			<a role="button" class="nav-a" href="#"><span class="glyphicon glyphicon-heart-empty"></span>收藏本站</a>
+			-->
+			<a role="button" class="nav-a" href="${base}/guestbook.jspx" rel="nofollow"><span class="glyphicon glyphicon-pencil"></span>留言板</a>
+		</div>
+</nav>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"right","bdTop":"250"},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+

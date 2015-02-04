@@ -31,7 +31,7 @@ public class SolrRebuildAct {
 	
 	@RequiresPermissions("solr:rebuild")
 	@RequestMapping(value = "/solr/rebuild.do")
-	public void index(Integer channelId, Date startDate, Date endDate, HttpServletRequest request, ModelMap model) {
+	public void index(Integer channelId, Date startDate, Date endDate, Integer startId, Integer endId, HttpServletRequest request, ModelMap model) {
 		
 		CmsSite site = CmsUtils.getSite(request);
 		LuceneRebuildTask task = LuceneRebuildTask.getRebuildTask();
@@ -40,7 +40,7 @@ public class SolrRebuildAct {
 			return;
 		} else {
 			task.start();
-			solrContentSvc.createIndex(site.getId(), channelId, startDate, endDate);
+			solrContentSvc.createIndex(site.getId(), channelId, startDate, endDate, startId, endId);
 			task.clear();
 		}
 		

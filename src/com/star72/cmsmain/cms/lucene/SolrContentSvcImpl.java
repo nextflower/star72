@@ -14,8 +14,8 @@ public class SolrContentSvcImpl implements SolrContentSvc {
 	
 	@Transactional(readOnly = true)
 	public Integer createIndex(Integer siteId, Integer channelId,
-			Date startDate, Date endDate, Integer startId, Integer endId){
-		return solrContentDao.index(siteId, channelId, startDate, endDate, startId, endId);
+			Date startDate, Date endDate, Integer start){
+		return solrContentDao.index(siteId, channelId, startDate, endDate, start);
 	}
 
 

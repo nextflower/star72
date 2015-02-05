@@ -17,8 +17,7 @@
 <@p.select label="cmsLucene.channelId" id="channelId" name="channelId" list=channelList listKey="id" listValue="name" listDeep="deep" headerKey="" headerValue="cmsLucene.allChannel"/>
 <@p.text label="cmsLucene.startDate" id="startDate" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>
 <@p.text label="cmsLucene.endDate" id="endDate" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>
-<@p.text label="起始ID" id="startId" name="startId"/>
-<@p.text label="结束ID" id="endId" name="endId"/>
+<@p.text label="起始计数" id="start" name="start"/>
 <@p.td>
 	<input type="hidden" id="siteId" name="siteId" value="${site.id}"/>
 	<input class="generate-index" type="submit" id="submitButton" value="<@s.m "cmsLucene.createIndex"/>"/>

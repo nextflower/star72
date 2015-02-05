@@ -7,7 +7,7 @@ import com.star72.cmsmain.cms.entity.main.Content;
 public interface SolrContentSvc {
 	
 	public Integer createIndex(Integer siteId, Integer channelId,
-			Date startDate, Date endDate, Integer startId, Integer endId);
+			Date startDate, Date endDate, Integer start);
 
 	public void createIndex(Content content);
 

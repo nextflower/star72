@@ -1,11 +1,13 @@
 package com.star72.cmsmain.cms.lucene.handler;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.star72.cmsmain.cms.entity.main.Channel;
 import com.star72.cmsmain.cms.entity.main.Content;
 import com.star72.cmsmain.core.entity.CmsSite;
 import com.star72.common.utils.StarStringUtils;
+import com.star72.search.solrmodule.query.EPSSolrServerForCommon;
 import com.star72.search.solrmodule.write.EpsSolrDocument;
 
 /**
@@ -14,6 +16,9 @@ import com.star72.search.solrmodule.write.EpsSolrDocument;
  *
  */
 public class ContentSolrHandler4Wenxian extends ContentSolrHandlerAbstract{
+	
+	private EPSSolrServerForCommon server = null;
+	private String defaultURL = null;
 	
 	public static final String FIELD_ID = "ID";//id
 	public static final String FIELD_CAT = "CAT";//common1
@@ -72,6 +77,22 @@ public class ContentSolrHandler4Wenxian extends ContentSolrHandlerAbstract{
 
 	public void setSiteId(Integer siteId) {
 		this.siteId = siteId;
+	}
+
+	public void setServer(EPSSolrServerForCommon server) {
+		this.server = server;
+	}
+
+	public EPSSolrServerForCommon getServer() {
+		return server;
+	}
+
+	public void setDefaultURL(String defaultURL) {
+		this.defaultURL = defaultURL;
+	}
+
+	public String getDefaultURL() {
+		return defaultURL;
 	}
 
 }

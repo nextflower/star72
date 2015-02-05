@@ -80,9 +80,16 @@
 	<bean id="contentStaticPageListener" class="com.star72.cmsmain.cms.staticpage.ContentStaticPageListener"/>
 	<bean id="contentSolrListener" class="com.star72.cmsmain.cms.lucene.ContentSolrListener"/>
 	
+	<!--solr server-->
+	<bean id="solrServerForCommon" class="com.star72.search.solrmodule.query.EPSSolrServerForCommon"/>
+	
 	<!--solr content handler-->
 	<bean id="contentSolrHandler4Wenxian" class="com.star72.cmsmain.cms.lucene.handler.ContentSolrHandler4Wenxian">
 		<property name="siteId" value="1"/>
+		<property name="server" ref="solrServerForCommon"/>
+		<!--
+		<property name="defaultURL" value=""/>
+		-->
 	</bean>
 	
 	<!--MANAGER-->

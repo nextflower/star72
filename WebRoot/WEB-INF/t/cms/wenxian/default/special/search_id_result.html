@@ -4,9 +4,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>${bean.title!}|${site.name}</title>
+        <title>[#if bean??]${bean.title!}[/#if]|${site.name} ${site.keywords!}</title>
         <!-- Bootstrap -->
         <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/${res}/css/style.css" rel="stylesheet">
+		<link href="${base}/res/bootstrap/css/normalize.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
             <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -20,93 +22,125 @@
         -->
 		
 		<style type="text/css">
-				body{ background-color:#CCCC66;}
+				body { margin:0; padding:0; background:url(${base}/res/images/bj.gif) top center; background-repeat: repeat; }
 				a.backtop {
-	                background: url("${base}/res/images/logo_top_black.gif") no-repeat scroll center center rgba(0, 0, 0, 0);
-	                bottom: 50px;
-	                cursor: pointer;
-	                display: none;
-	                height: 70px;
-	                position: fixed;
-	                right: 50px;
-	                text-indent: -9999px;
-	                width: 70px;
-	                z-index: 100;
-	            }
-		
+				    background: url("${base}/res/images/top.gif") no-repeat scroll center center rgba(0, 0, 0, 0);
+				    bottom: 50px;
+				    cursor: pointer;
+				    display: none;
+				    height: 70px;
+				    position: fixed;
+				    right: 50px;
+				    text-indent: -9999px;
+				    width: 70px;
+				    z-index: 100;
+				}
 		</style>
     </head>
-    <body style="padding:70px;">
+    <body style="padding:20px;">
     	
 		[#include "../include/header.html"/]
-		
+		<hr>
 		<div class="row">
 			
 			<!--left side ads-->
-			<div class="col-md-1 text-center">
+			<div class="col-md-2 text-center">
 				
 			</div>
 			
-	    	<div class="container col-md-10">
+	    	<div class="container col-md-8">
 	    		
 				<div class="row"><h2></h2></div>
 				
 				<!--result list-->
 				<div class="row">
-					<div class="panel panel-info">
-					   <div class="panel-heading">
-					      <h3 class="panel-title">
-					         	当前位置：
-								<a href="${site.url}"><button type="button" class="btn btn-link btn-sm">${site.name}</button></a>
-								»
-								[#if bean?? && bean.cats?size gt 0]
-									[#list bean.cats as cat]
-										<a href="${base}/wenxian/search/cat/${cat}.jhtml"><button type="button" class="btn btn-link btn-sm">${cat}</button></a>
-										[#if cat_has_next]»[/#if]
-									[/#list]
-								[/#if]
-								»
-								<button type="button" class="btn btn-link btn-sm">${bean.title!}</button>
-					      </h3>
-					   </div>
-					   <div class="panel-body">
-								<div class="panel panel-primary">
-								   <div class="panel-body">
-								   	<div class="text-center"><h4>${bean.title!}</h4></div>
-									<p class="text-muted">
-										<h6>
-											来源：《<a href="#">${bean.source!}</a>》
-											作者：<a href="#">${bean.author!'佚名'}</a>
-											 朝代：<a href="#">${bean.chaodai!'不详'}</a>
-										 </h6>
-									</p>
-									<hr>
-								   	${bean.content!}
-								   </div>
-								</div>
-					   </div>
+					<div class="panel panel-default">
+						[#if bean??]
+						   <div class="panel-heading">
+						      <h3 class="panel-title">
+						         	当前位置：
+									<a href="${site.url}"><button type="button" class="btn btn-link btn-sm">${site.name}</button></a>
+									»
+									[#if bean?? && bean.cats?size gt 0]
+										[#list bean.cats as cat]
+											<a href="${base}/wenxian/search/cat/${cat}.jhtml"><button type="button" class="btn btn-link btn-sm">${cat}</button></a>
+											[#if cat_has_next]»[/#if]
+										[/#list]
+									[/#if]
+									»
+									<button type="button" class="btn btn-link btn-sm">${bean.title!}</button>
+						      </h3>
+						   </div>
+						   <div class="panel-body">
+									<div class="panel panel-primary">
+									   <div class="panel-body">
+									   	<div class="text-center"><h4>${bean.title!}</h4></div>
+										<p class="text-muted">
+											<h6>
+												来源：《<a href="${base}/wenxian/search/source/${bean.source!'不详'}.jhtml">${bean.source!'不详'}</a>》
+												作者：<a href="${base}/wenxian/search/author/${bean.author!'佚名'}.jhtml">${bean.author!'佚名'}</a>
+												 朝代：<a href="${base}/wenxian/search/chaodai/${bean.chaodai!'不详'}.jhtml">${bean.chaodai!'不详'}</a>
+											 </h6>
+										</p>
+										<hr>
+									   	${bean.content!}
+										
+										
+											<hr>
+											 <div class="row">
+										   		<div class="col-md-6">
+										   			上一篇：[@cms_content id=bean.id next='1'][#if tag_bean??]<a href="${base}/wenxian/search/id/${tag_bean.id}.jhtml">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]
+										   		</div>
+												<div class="col-md-6">
+										   			下一篇：[@cms_content id=bean.id next='0'][#if tag_bean??]<a href="${base}/wenxian/search/id/${tag_bean.id}.jhtml">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]
+										   		</div>
+										   </div>
+									   </div>
+									</div>
+						   </div>
+						 [#else]
+						 	<div class="text-center">
+						 	<h4>您要访问的内容不存在。</h4>
+							</div>
+					     [/#if]
 					</div>
-
-					
 				</div>
+				
+				[#if bean??]
+				  <div class="row">
+		        	<div class="well">
+						<!-- 多说评论框 start -->
+						<div class="ds-thread" data-thread-key="${bean.id!}" data-title="${bean.title!}"></div>
+						<!-- 多说评论框 end -->
+						<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+						<script type="text/javascript">
+						var duoshuoQuery = {short_name:"72star"};
+							(function() {
+								var ds = document.createElement('script');
+								ds.type = 'text/javascript';ds.async = true;
+								ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+								ds.charset = 'UTF-8';
+								(document.getElementsByTagName('head')[0] 
+								 || document.getElementsByTagName('body')[0]).appendChild(ds);
+							})();
+							</script>
+						<!-- 多说公共JS代码 end -->
+					</div>
+		        </div>
+				[/#if]
 				
 				
 				
 			</div>
 			
 			<!--right side ads-->
-			<div class="col-md-1 text-center">
+			<div class="col-md-2 text-center">
 				<a class="backtop"><h6>返回顶部</h6></a>
 			</div>
 			
 		</div>
 		
-		    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-			   <div class="text-center">
-			   	<p class="navbar-text"><h6>©2014 七十二颗星 欢迎您的访问 </h6></p>
-			   </div>
-			</nav>
-			
+		[#include "../include/footer.html"/]
 		
         <script src="${resSys}/jquery.js"></script>
         <script src="${base}/res/bootstrap/js/bootstrap.min.js"></script>

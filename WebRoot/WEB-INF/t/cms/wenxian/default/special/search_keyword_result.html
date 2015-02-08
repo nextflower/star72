@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>检索结果列表|${site.name}</title>
+        <title>检索结果[#if keyword?? && keyword!='']|${keyword}[/#if][#if chaodai??]|${chaodai}[/#if][#if cat??]|${cat}[/#if]|${site.name} ${site.keywords!}</title>
         <!-- Bootstrap -->
         <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/${res}/css/style.css" rel="stylesheet">
@@ -90,10 +90,10 @@
 						[#if list?? && list?size gt 0]
 							<div class="text-center">
 								<ul class="pagination">
-								  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search.jspx?keyword=${keyword!}&cat=${cat!}')">首页</a></li>
-								  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.prePage+1}.jspx?keyword=${keyword!}&cat=${cat!}')" >上一页</a></li>
-								  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.nextPage+1}.jspx?keyword=${keyword!}&cat=${cat!}')">下一页</a></li>
-								  <li><a href="#" onclick="this.href=encodeURI('${base}/wenxian/search/keyword/search_${result.totalPage}.jspx?keyword=${keyword!}&cat=${cat!}')">尾页</a></li>
+								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search.jspx?keyword=${keyword!}&cat=${cat!}')">首页</a></li>
+								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search_${result.prePage+1}.jspx?keyword=${keyword!}&cat=${cat!}')" >上一页</a></li>
+								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search_${result.nextPage+1}.jspx?keyword=${keyword!}&cat=${cat!}')">下一页</a></li>
+								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search_${result.totalPage}.jspx?keyword=${keyword!}&cat=${cat!}')">尾页</a></li>
 								</ul>
 							</div>
 						[#else]

@@ -22,12 +22,12 @@ public class CreatorTest {
 	@Test
 	public void kangxiCreatorTest() {
 		KangXiNameCreator creator = new KangXiNameCreator();
-		String xing = "陈";
+		String xing = "王";
 		String midChar = null;
 		Boolean isTwoChar = false;
-		Boolean needDiezi = true;
-		String xishen = "土";
-		String shengxiao = null;
+		Boolean needDiezi = false;
+		String xishen = "金";
+		String shengxiao = "马";
 		List<NameBean> list = creator.create(xing, midChar, isTwoChar, needDiezi, xishen, shengxiao);
 		
 		System.out.println(list.size());
@@ -44,7 +44,6 @@ public class CreatorTest {
 		
 	}
 	
-	@Test
 	public void testSingleName() {
 		KangXiNameCreator creator = new KangXiNameCreator();
 		NameBean nb = new NameBean();
@@ -54,33 +53,4 @@ public class CreatorTest {
 		System.out.println(flag);
 	}
 	
-	@Test
-	public void readerTest() {
-		
-//		Map<String, Integer> kangxiBihua = DicReader.getKangxiBihua();
-//		System.out.println(kangxiBihua);
-		
-//		Map<String, Set<String>> kangxiWuxingMap = DicReader.getKangxiWuxingMap();
-//		System.out.println(kangxiWuxingMap);
-//		System.out.println(kangxiWuxingMap.keySet());
-		
-//		Map<String, String> kangxiBushou = DicReader.getKangxiBushou();
-//		System.out.println(kangxiBushou);
-		
-	}
-	
-	@Test
-	public void temp() {
-		
-		KangXiNameCreator creator = new KangXiNameCreator();
-		
-		Map<String, Set<String>> kangxiWuxingMap = DicReader.getKangxiWuxingMap();
-		Set<String> set_sh = kangxiWuxingMap.get("土");
-		String xing = "蒋定";
-		
-			for(String sh : set_sh) {
-				System.out.println(sh);
-			}
-	}
-
 }

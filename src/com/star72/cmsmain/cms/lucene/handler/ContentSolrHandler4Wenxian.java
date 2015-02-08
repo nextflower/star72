@@ -46,7 +46,9 @@ public class ContentSolrHandler4Wenxian extends ContentSolrHandlerAbstract{
 		CmsSite site = content.getSite();
 		String catStr = content.getCommon1();
 		doc.addField(FIELD_ID, content.getId());//1
-		doc.addField(FIELD_AUTHOR, content.getAuthor());//2
+		if(content.getAuthor() != null) {
+			doc.addField(FIELD_AUTHOR, StringUtils.deleteWhitespace(content.getAuthor()));//2
+		}
 		doc.addField(FIELD_AUTHOR_PIN, content.getCommon2());//3
 		doc.addField(FIELD_CHAODAI, content.getCommon3());//4
 		doc.addField(FIELD_SOURCE, content.getShortTitle());//5

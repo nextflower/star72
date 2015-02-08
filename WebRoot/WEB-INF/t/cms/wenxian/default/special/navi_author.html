@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>作者导航-${site.name}</title>
+        <title>作者导航-${site.name} ${site.keywords!}</title>
         <!-- Bootstrap -->
         <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/${res}/css/style.css" rel="stylesheet">
@@ -39,98 +39,47 @@
 			</div>
 			
 			<div><h5></h5></div>
-			
 			<ul class="nav nav-tabs">
-					   <li class="active"><a href="#">全部</a></li>
-					   <li><a href="#">A</a></li>
-					   <li><a href="#">B</a></li>
-					   <li><a href="#">C</a></li>
-					   <li><a href="#">D</a></li>
-					   <li><a href="#">E</a></li>
-					   <li><a href="#">F</a></li>
-					   <li><a href="#">G</a></li>
-					   <li><a href="#">H</a></li>
-					   <li><a href="#">I</a></li>
-					   <li><a href="#">J</a></li>
-					   <li><a href="#">K</a></li>
-					   <li><a href="#">L</a></li>
-					   <li><a href="#">M</a></li>
-					   <li><a href="#">N</a></li>
-					   <li><a href="#">P</a></li>
-					   <li><a href="#">Q</a></li>
-					   <li><a href="#">R</a></li>
-					   <li><a href="#">S</a></li>
-					   <li><a href="#">T</a></li>
-					   <li><a href="#">U</a></li>
-					   <li><a href="#">V</a></li>
-					   <li><a href="#">W</a></li>
-					   <li><a href="#">X</a></li>
-					   <li><a href="#">Y</a></li>
-					   <li><a href="#">Z</a></li>
+					   <li  [#if !index?? || index=='']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml'">全部</a></li>
+					   <li [#if index?? && index=='A']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=A'">A</a></li>
+					   <li [#if index?? && index=='B']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=B'">B</a></li>
+					   <li [#if index?? && index=='C']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=C'">C</a></li>
+					   <li [#if index?? && index=='D']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=D'">D</a></li>
+					   <li [#if index?? && index=='E']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=E'">E</a></li>
+					   <li [#if index?? && index=='F']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=F'">F</a></li>
+					   <li [#if index?? && index=='G']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=G'">G</a></li>
+					   <li [#if index?? && index=='H']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=H'">H</a></li>
+					   <li [#if index?? && index=='J']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=J'">J</a></li>
+					   <li [#if index?? && index=='K']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=K'">K</a></li>
+					   <li [#if index?? && index=='L']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=L'">L</a></li>
+					   <li [#if index?? && index=='M']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=M'">M</a></li>
+					   <li [#if index?? && index=='N']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=N'">N</a></li>
+					   <li [#if index?? && index=='O']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=O'">O</a></li>
+					   <li [#if index?? && index=='P']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=P'">P</a></li>
+					   <li [#if index?? && index=='Q']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=Q'">Q</a></li>
+					   <li [#if index?? && index=='R']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=R'">R</a></li>
+					   <li [#if index?? && index=='S']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=S'">S</a></li>
+					   <li [#if index?? && index=='T']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=T'">T</a></li>
+					   <li [#if index?? && index=='W']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=W'">W</a></li>
+					   <li [#if index?? && index=='X']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=X'">X</a></li>
+					   <li [#if index?? && index=='Y']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=Y'">Y</a></li>
+					   <li [#if index?? && index=='Z']class="active"[/#if]><a href="javascript:void(0);" onclick="window.location.href='${base}/wenxian/navi/author.jhtml?index=Z'">Z</a></li>
 					</ul>
 					
 					<div><h5>&nbsp;</h5></div>
 			<div class="row">
-				
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" target="_blank" role="button" class="btn btn-default btn-block"><h6>李白</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" role="button" class="btn btn-default btn-block"><h6>杜甫</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" role="button" class="btn btn-default btn-block"><h6>白居易</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" role="button" class="btn btn-default btn-block"><h6>欧阳修</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" role="button" class="btn btn-default btn-block"><h6>苏轼</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" role="button" class="btn btn-default btn-block"><h6>柳宗元</h6></a>
-				</div>
-				
-				<div><h5>&nbsp;</h5></div>
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" role="button" class="btn btn-default btn-block"><h6>李白</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" role="button" class="btn btn-default btn-block"><h6>杜甫</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" role="button" class="btn btn-default btn-block"><h6>白居易</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" role="button" class="btn btn-default btn-block"><h6>欧阳修</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" role="button" class="btn btn-default btn-block"><h6>苏轼</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="${base}/wenxian/search/author/李白.jhtml" role="button" class="btn btn-default btn-block"><h6>柳宗元</h6></a>
-				</div>
-				
-				<div><h5>&nbsp;</h5></div>
-				<div class="col-md-2 text-center">
-					<a href="" role="button" class="btn btn-default btn-block"><h6>李白</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="" role="button" class="btn btn-default btn-block"><h6>杜甫</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="" role="button" class="btn btn-default btn-block"><h6>白居易</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="" role="button" class="btn btn-default btn-block"><h6>欧阳修</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="" role="button" class="btn btn-default btn-block"><h6>苏轼</h6></a>
-				</div>
-				<div class="col-md-2 text-center">
-					<a href="" role="button" class="btn btn-danger btn-block"><h6>显示全部</h6></a>
-				</div>
-				
+				[#if authorMap??]
+					[#list authorMap?keys as key]
+						<div class="col-md-2 text-center">
+							<a href="${base}/wenxian/search/author/${key!}.jhtml" role="button" class="btn btn-default btn-block"><h6>${key!}</h6></a>
+						</div>
+						
+						[#if (key_index+1) % 6 == 0]
+							<div><h5>&nbsp;</h5></div>
+						[/#if]
+						
+					[/#list]
+				[/#if]
 			</div>
 			
 			

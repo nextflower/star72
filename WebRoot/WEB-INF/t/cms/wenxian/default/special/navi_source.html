@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>朝代导航-${site.name} ${site.keywords!}</title>
+        <title>作者导航-${site.name} ${site.keywords!}</title>
         <!-- Bootstrap -->
         <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/${res}/css/style.css" rel="stylesheet">
@@ -26,7 +26,7 @@
 		<hr>
 		
 
-
+		
 		<!--left-->
 		<div class="col-md-2 text-center"></div>
 		
@@ -34,20 +34,23 @@
 		<div class="col-md-8 text-center">
 			<div class="row">
 				<div class="wenxian text-center">
-					<h3>朝代导航</h3>
+					<h3>图书导航</h3>
 				</div>
 			</div>
 			
-			<div><h5></h5></div>
-			
 			<div class="row">
-				[#if chaodaiMap??]
-					[#list chaodaiMap?keys as key]
-						<div class="col-md-3 text-center">
-							<a href="${base}/wenxian/search/chaodai/${key!}.jhtml" role="button" class="btn btn-default btn-block"><h4>${key!}</h4></a>
+				<ul class="nav nav-tabs">
+					[#list 1..total as page]
+					   <li [#if count?? && count?number == page]class="active"[/#if]><a href="${base}/wenxian/navi/source.jhtml?count=${page}" onclick="window.location.href='${base}/wenxian/navi/source.jhtml?count=${page}'">${page}</a></li>
+					[/#list]
+				</ul>
+				<h5>&nbsp;</h5>
+				[#if sourceList??]
+					[#list sourceList as source]
+						<div class="col-md-2 text-center">
+							<a href="${base}/wenxian/search/source/${source!}.jhtml" role="button" class="btn btn-default btn-block"><h6>[@text_cut s=source len=9 append=""/]</h6></a>
 						</div>
-						
-						[#if (key_index+1) % 4 == 0]
+						[#if (source_index+1) % 6 == 0]
 							<div><h5>&nbsp;</h5></div>
 						[/#if]
 						
@@ -57,7 +60,6 @@
 			
 			
 			<div><h1>&nbsp;</h1></div>
-			<div><h1></h1></div>
 			
 			[#include "../include/footer.html"/]
 		</div>
@@ -65,7 +67,6 @@
 		
 		<!--right-->
 		<div class="col-md-2 text-center"></div>
-			
 		
         <script src="${resSys}/jquery.js"></script>
         <script src="${base}/res/bootstrap/js/bootstrap.min.js"></script>

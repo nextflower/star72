@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>${chaodai!}|${site.name} ${site.keywords!}</title>
+        <title>${chaodai!}_${result.pageNo!}|${site.name} ${site.keywords!}</title>
         <!-- Bootstrap -->
         <link href="${base}/res/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/${res}/css/style.css" rel="stylesheet">
@@ -28,7 +28,6 @@
 			    width: 70px;
 			    z-index: 100;
 			}
-			
 		</style>
 		
     </head>
@@ -52,7 +51,7 @@
 						<div class="row">
 							<div class="panel panel-info">
 							   <div class="panel-body">
-										<h6>当前朝代<span class="badge">${chaodai!}</span>,共为您找到${result.totalCount}条记录,当前第${result.pageNo+1}页/共${result.totalPage}页, [@process_time/]</h6>
+										<h6>当前书名<span class="badge">${source!}</span>,共为您找到${result.totalCount}条记录,当前第${result.pageNo+1}页/共${result.totalPage}页, [@process_time/]</h6>
 							    		<div class="col-md-12">
 							    			
 											[#include "../include/search_result_list.html"/]
@@ -60,10 +59,10 @@
 											[#if list?? && list?size gt 0]
 												<div class="text-center">
 													<ul class="pagination">
-													  <li><a href="${base}/wenxian/search/chaodai/${hrefFormer}.jhtml" onclick="window.location.href='${base}/wenxian/search/chaodai/${hrefFormer}.jhtml'">首页</a></li>
-													  <li><a href="${base}/wenxian/search/chaodai/${hrefFormer}_${result.prePage+1}.jhtml" onclick="window.location.href='${base}/wenxian/search/chaodai/${hrefFormer}_${result.prePage+1}.jhtml'">上一页</a></li>
-													  <li><a href="${base}/wenxian/search/chaodai/${hrefFormer}_${result.nextPage+1}.jhtml" onclick="window.location.href='${base}/wenxian/search/chaodai/${hrefFormer}_${result.nextPage+1}.jhtml'">下一页</a></li>
-													  <li><a href="${base}/wenxian/search/chaodai/${hrefFormer}_${result.totalPage}.jhtml" onclick="window.location.href='${base}/wenxian/search/chaodai/${hrefFormer}_${result.totalPage}.jhtml'">尾页</a></li>
+													  <li><a href="${base}/wenxian/search/source/${hrefFormer}.jhtml" onclick="window.location.href='${base}/wenxian/search/source/${hrefFormer}.jhtml'">首页</a></li>
+													  <li><a href="${base}/wenxian/search/source/${hrefFormer}_${result.prePage+1}.jhtml" onclick="window.location.href='${base}/wenxian/search/source/${hrefFormer}_${result.prePage+1}.jhtml'">上一页</a></li>
+													  <li><a href="${base}/wenxian/search/source/${hrefFormer}_${result.nextPage+1}.jhtml" onclick="window.location.href='${base}/wenxian/search/source/${hrefFormer}_${result.nextPage+1}.jhtml'">下一页</a></li>
+													  <li><a href="${base}/wenxian/search/source/${hrefFormer}_${result.totalPage}.jhtml" onclick="window.location.href='${base}/wenxian/search/source/${hrefFormer}_${result.totalPage}.jhtml'">尾页</a></li>
 													</ul>
 												</div>
 											[#else]

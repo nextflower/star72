@@ -9,7 +9,8 @@ public class DateFormatUtils extends org.apache.commons.lang.time.DateFormatUtil
 	private DateFormatUtils(){}
 	
 	public static String formatDate(Date date){
-		return DateFormat.getDateInstance().format(date);
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		return format.format(date);
 	}
 	
 	public static String formatTime(Date date){

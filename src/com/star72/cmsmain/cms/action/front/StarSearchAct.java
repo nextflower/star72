@@ -256,7 +256,9 @@ public class StarSearchAct {
 			if(item == null) {
 				item = new SolrCommonItem("CHAODAI", chaodai);
 			} else {
-				item.addSiblingItem(new SolrCommonItem("CHAODAI", chaodai), SolrItem.Relation.AND);
+				SolrItem temp = new SolrCommonItem("CHAODAI", chaodai);
+				temp.addSiblingItem(item, SolrItem.Relation.AND);
+				item = temp;
 			}
 		}
 		

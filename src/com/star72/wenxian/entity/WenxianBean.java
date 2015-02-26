@@ -1,8 +1,13 @@
 package com.star72.wenxian.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
 
 /**
  * 后台查询的结果封装类
@@ -23,6 +28,7 @@ public class WenxianBean implements Serializable {
 	private String title;
 	private String hlTitle;
 	private String hlContent;
+	private String goodContent;
 	
 	private String author;
 	private String chaodai;
@@ -86,6 +92,13 @@ public class WenxianBean implements Serializable {
 	}
 	public String getChaodai() {
 		return chaodai;
+	}
+	public String getGoodContent() {
+		if(StringUtils.isBlank(getContent())) {
+			return getContent();
+		}
+		
+		return getContent().replace("　", "<br/>　");
 	}
 	
 }

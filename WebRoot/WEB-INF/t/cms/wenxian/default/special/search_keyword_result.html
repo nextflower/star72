@@ -101,10 +101,10 @@
 						[#if list?? && list?size gt 0]
 							<div class="text-center">
 								<ul class="pagination">
-								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search.jspx?keyword=${keyword!}&cat=${cat!}')">首页</a></li>
-								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search_${result.prePage+1}.jspx?keyword=${keyword!}&cat=${cat!}')" >上一页</a></li>
-								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search_${result.nextPage+1}.jspx?keyword=${keyword!}&cat=${cat!}')">下一页</a></li>
-								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search_${result.totalPage}.jspx?keyword=${keyword!}&cat=${cat!}')">尾页</a></li>
+								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search.jspx?keyword=${keyword!}&cat=${cat!}&chaodai=${chaodai!}')">首页</a></li>
+								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search_${result.prePage+1}.jspx?keyword=${keyword!}&cat=${cat!}&chaodai=${chaodai!}')" >上一页</a></li>
+								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search_${result.nextPage+1}.jspx?keyword=${keyword!}&cat=${cat!}&chaodai=${chaodai!}')">下一页</a></li>
+								  <li><a href="javascript:void(0);" onclick="window.location.href=encodeURI('${base}/wenxian/search/keyword/search_${result.totalPage}.jspx?keyword=${keyword!}&cat=${cat!}&chaodai=${chaodai!}')">尾页</a></li>
 								</ul>
 							</div>
 						[#else]

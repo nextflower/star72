@@ -99,7 +99,7 @@
 											<hr>
 											 <div class="row">
 										   		<div class="col-md-6">
-										   			上一篇：[@cms_content id=bean.id next='1'][#if tag_bean??]<a href="${base}/wenxian/search/id/${tag_bean.id}.jhtml">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]
+										   			上一篇：[@cms_content id=bean.id next='1'][#if tag_bean??][#assign channelId=tag_bean.channel.id/]<a href="${base}/wenxian/search/id/${tag_bean.id}.jhtml">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]
 										   		</div>
 												<div class="col-md-6">
 										   			下一篇：[@cms_content id=bean.id next='0'][#if tag_bean??]<a href="${base}/wenxian/search/id/${tag_bean.id}.jhtml">${tag_bean.title}</a>[#else]没有了[/#if][/@cms_content]
@@ -139,7 +139,26 @@
 		        </div>
 				[/#if]
 				
-				
+				[#if channelId??]
+				<div clas="row">
+					<div class="container col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">同类推荐</div>
+					   		<ul class="list-group">
+					   			[@cms_content_list count='10' orderBy='4' titLen='16' channelId=channelId  channelOption='1']
+			                    [#list tag_list as a]
+			                      <li class="list-group-item">
+			                    <a href="${a.url}" title="${a.title}" target="_blank">
+			                    [@text_cut s=a.title len=titLen /]
+			                    </a>
+			                    </li>
+			                    [/#list]
+			                    [/@cms_content_list]
+							</ul>
+						</div>
+					</div>
+				</div>
+				[/#if]
 				
 			</div>
 			

@@ -148,7 +148,7 @@
 					   			[@cms_content_list count='10' orderBy='4' titLen='16' channelId=channelId  channelOption='1']
 			                    [#list tag_list as a]
 			                      <li class="list-group-item">
-			                    <a href="${a.url}" title="${a.title}" target="_blank">
+			                    <a href="${base}/wenxian/search/id/${a.id}.jhtml" title="${a.title}" target="_blank">
 			                    [@text_cut s=a.title len=titLen /]
 			                    </a>
 			                    </li>
